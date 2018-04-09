@@ -12,9 +12,16 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import project_management.app.ManagementTool;
+import project_management.app.Project;
 
-public class CreatAProjectFeature {
+public class CreatAProjectSteps {
 
+	private ManagementTool managementTool;
+	
+	public CreatAProjectSteps(ManagementTool managementTool) {
+		this.managementTool = managementTool;
+	}
+	
 	@Given("^a worker is register in the company$")
 	public void aWorkerIsRegisterInTheCompany() throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
@@ -29,7 +36,7 @@ public class CreatAProjectFeature {
 
 	@When("^the worker creat a project (\\d+)$")
 	public void theWorkerCreatAProject(int name) throws Exception {
-	    ManagementTool.creatProject(name);
+	    managementTool.creatProject(name);
 	}
 
 	@Then("^the project is created$")
