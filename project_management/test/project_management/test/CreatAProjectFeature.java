@@ -11,8 +11,9 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import project_management.app.ManagementTool;
 
-public class creatAProjectFeature {
+public class CreatAProjectFeature {
 
 	@Given("^a worker is register in the company$")
 	public void aWorkerIsRegisterInTheCompany() throws Exception {
@@ -27,9 +28,8 @@ public class creatAProjectFeature {
 	}
 
 	@When("^the worker creat a project (\\d+)$")
-	public void theWorkerCreatAProject(int arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void theWorkerCreatAProject(int name) throws Exception {
+	    ManagementTool.creatProject(name);
 	}
 
 	@Then("^the project is created$")
