@@ -1,5 +1,8 @@
 package project_management.test;
-
+/**
+ * @author Alex
+ *
+ */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -13,8 +16,10 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import project_management.app.ManagementTool;
 import project_management.app.Project;
-import project_management.app.exceptions.UserIsNotLoggedIn;
 import project_management.app.exceptions.UserNotLoggedIn;
+
+
+
 
 public class CreatAProjectSteps {
 
@@ -35,13 +40,13 @@ public class CreatAProjectSteps {
 	    managementTool.login("AAAA");
 	}
 
-	@When("^the worker creat a project (\\d+)$")
-	public void theWorkerCreatAProject(int name) throws Exception {
+	@When("^the worker creat a project \"([^\"]*)\"$")
+	public void theWorkerCreatAProject(String name) throws Exception {
 	    managementTool.creatProject(name);
 	}
 
-	@Then("^the project (\\d+) is created$")
-	public void theProjectIsCreated(int name) throws Exception {
+	@Then("^the project \"([^\"]*)\" is created$")
+	public void theProjectIsCreated(String name) throws Exception {
 	    assertTrue(managementTool.searchProjects(name));
 	}
 
@@ -50,8 +55,8 @@ public class CreatAProjectSteps {
 	    managementTool.logout();
 	}
 
-	@When("^they try to creat a project (\\d+)$")
-	public void theyTryToCreatAProject(int name) throws Exception {
+	@When("^they try to creat a project \"([^\"]*)\"$")
+	public void theyTryToCreatAProject(String name) throws Exception {
 	    try {
 	    	managementTool.creatProject(name);
 	    } catch (UserNotLoggedIn e) {
