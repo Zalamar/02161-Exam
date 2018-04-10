@@ -13,10 +13,13 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import project_management.app.ManagementTool;
 import project_management.app.Project;
+import project_management.app.exceptions.UserIsNotLoggedIn;
+import project_management.app.exceptions.UserNotLoggedIn;
 
 public class CreatAProjectSteps {
 
 	private ManagementTool managementTool;
+	private String errorMessage;
 	
 	public CreatAProjectSteps(ManagementTool managementTool) {
 		this.managementTool = managementTool;
@@ -24,14 +27,12 @@ public class CreatAProjectSteps {
 	
 	@Given("^a worker is register in the company$")
 	public void aWorkerIsRegisterInTheCompany() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	    managementTool.addWorker("AAAA", "Person 1");
 	}
 
 	@Given("^a worker is logged in$")
 	public void aWorkerIsLoggedIn() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	    managementTool.login("AAAA");
 	}
 
 	@When("^the worker creat a project (\\d+)$")
@@ -39,27 +40,27 @@ public class CreatAProjectSteps {
 	    managementTool.creatProject(name);
 	}
 
-	@Then("^the project is created$")
-	public void theProjectIsCreated() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	@Then("^the project (\\d+) is created$")
+	public void theProjectIsCreated(int name) throws Exception {
+	    assertTrue(managementTool.searchProjects(name));
 	}
 
 	@Given("^that no worker is logged in$")
 	public void thatNoWorkerIsLoggedIn() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	    managementTool.logout();
 	}
 
 	@When("^they try to creat a project (\\d+)$")
-	public void theyTryToCreatAProject(int arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void theyTryToCreatAProject(int name) throws Exception {
+	    try {
+	    	managementTool.creatProject(name);
+	    } catch (UserNotLoggedIn e) {
+	    	errorMessage = e.getMessage();
+	    }
 	}
 
 	@Then("^I get the error message \"([^\"]*)\"$")
-	public void iGetTheErrorMessage(String arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void iGetTheErrorMessage(String errorMessage) throws Exception {
+	    assertEquals(errorMessage, this.errorMessage);
 	}
 }

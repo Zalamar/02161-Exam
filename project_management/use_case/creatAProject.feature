@@ -8,7 +8,7 @@ Background:
 	
 Scenario: Creat a project
 	When the worker creat a project 011001
-	Then the project is created	
+	Then the project 011001 is created	
 
 Scenario: The worker is not logged in
 	Given that no worker is logged in
