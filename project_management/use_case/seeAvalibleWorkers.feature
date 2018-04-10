@@ -23,8 +23,8 @@
 #	And the project manager is logged in 
 #	
 #Scenario: The project manager will see the available workers
-#	Given the project adds the start time 01042018 and end time 31082017 to the activity 001
-#	When the project manager selects the project 011001 and acticity 001 
+#	Given the project adds the start time 01042018 and end time 31082017 to the activity "001"
+#	When the project manager selects the project "011001" and acticity "001" 
 #	And the project manager selects see available workers 
 #	Then he will se whos is avalible 
 #		| AAAA | "1 day off" |
