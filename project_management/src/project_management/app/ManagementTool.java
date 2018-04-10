@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project_management.app.exceptions.NoProjectIsSelected;
+import project_management.app.exceptions.TheProjectAlreadyHaveAManager;
 import project_management.app.exceptions.UserNotLoggedIn;
 
 public class ManagementTool {
@@ -14,19 +15,13 @@ public class ManagementTool {
 	private Project selectedProject = null;
 
 	public void creatProject(String string) throws UserNotLoggedIn { // Alex
-		if (employeeLoggedIn != null) {
+		if (isEmployeeLoggedIn()) {
 			projectList.add(new Project(string));
-		} else {
-			throw new UserNotLoggedIn();
 		}
 	}
 
-	public void login(String string) { // Alex
-		for (Employee e : employeeList) {
-			if (e.getUsername().equals(string)) {
-				employeeLoggedIn = e;
-			}
-		}
+	public void login(String name) { // Alex
+		employeeLoggedIn = searchEmployee(name);
 	}
 
 	public void addWorker(String username, String name) { // Alex
@@ -49,7 +44,7 @@ public class ManagementTool {
 	public void selectProject(String name) { // Alex
 		if (searchProjects(name)) {
 			for (Project p : projectList) {
-				if (p.getName() == name) {
+				if (p.getName().equals(name)) {
 					selectedProject = p;
 				}
 			}
@@ -57,20 +52,59 @@ public class ManagementTool {
 	}
 
 	public void addAnActivity(String name) throws UserNotLoggedIn, NoProjectIsSelected { // Alex
-		if (employeeLoggedIn != null && selectedProject != null) {
+		if (isEmployeeLoggedIn() && selectedProject != null) {
 			selectedProject.addActivity(new Activity(name));
-		} else if (employeeLoggedIn == null) {
-			throw new UserNotLoggedIn();
 		} else {
 			throw new NoProjectIsSelected();
 		}
 	}
 
-	public boolean searchActivitys(String name) {
+	public boolean searchActivitys(String name) { // Alex
 		if (selectedProject.searchActivitys(name)) {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public void addProjectManager(String name) throws TheProjectAlreadyHaveAManager, UserNotLoggedIn, NoProjectIsSelected { // Alex
+		if (selectedProject != null) {
+			if (!selectedProject.hasAManager() && isEmployeeLoggedIn()) {
+				selectedProject.addManager(searchEmployee(name));
+			} else {
+				throw new TheProjectAlreadyHaveAManager();
+			}
+		} else {
+			throw new NoProjectIsSelected();
+		}
+	}
+
+	private boolean isEmployeeLoggedIn() throws UserNotLoggedIn { // Alex
+		if (employeeLoggedIn != null) {
+			return true;
+		} else {
+			throw new UserNotLoggedIn();
+		}
+	}
+
+	private Employee searchEmployee(String name) { // Alex
+		for (Employee e : employeeList) {
+			if (e.getUsername().equals(name)) {
+				return e;
+			}
+		}
+		return null;
+	}
+
+	public Project getSelectedProject() { // Alex
+		return selectedProject;
+	}
+
+	public void removeProjectManager() throws UserNotLoggedIn, NoProjectIsSelected { // Alex
+		if (isEmployeeLoggedIn() && selectedProject != null) {
+			selectedProject.removeManager();
+		} else {
+			throw new NoProjectIsSelected();
 		}
 	}
 
