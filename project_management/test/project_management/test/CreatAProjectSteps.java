@@ -15,7 +15,6 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import project_management.app.ManagementTool;
-import project_management.app.Project;
 import project_management.app.exceptions.UserNotLoggedIn;
 
 
@@ -24,9 +23,9 @@ import project_management.app.exceptions.UserNotLoggedIn;
 public class CreatAProjectSteps {
 
 	private ManagementTool managementTool;
-	private String errorMessage;
+	public static String errorMessage;
 	
-	public CreatAProjectSteps(ManagementTool managementTool) {
+	public CreatAProjectSteps(ManagementTool managementTool) { 
 		this.managementTool = managementTool;
 	}
 	

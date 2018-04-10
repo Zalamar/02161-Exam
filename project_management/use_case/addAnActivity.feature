@@ -16,7 +16,7 @@ Scenario: Try to creat one when not logged in
 	Given that no worker is logged in
 	When a worker selecets the project "011001"
 	And a worker add an activity "001" to the project
-	Then I get the error message "No user logged in"
+	Then I get the error message "No user is logged in"
 	
 Scenario: Try to creat one when no project is selected
 	When a worker add an activity "001" to the project
