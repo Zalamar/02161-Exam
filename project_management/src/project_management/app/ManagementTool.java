@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import project_management.app.exceptions.NoProjectIsSelected;
+import project_management.app.exceptions.NoProjectWithThatName;
 import project_management.app.exceptions.TheProjectAlreadyHaveAManager;
 import project_management.app.exceptions.UserNotLoggedIn;
 
@@ -28,7 +29,7 @@ public class ManagementTool {
 		employeeList.add(new Employee(username, name));
 	}
 
-	public boolean searchProjects(String name) { // Alex
+	public boolean isthereAProjectWithIsName(String name) { // Alex
 		for (Project p : projectList) {
 			if (p.getName().equals(name)) {
 				return true;
@@ -41,13 +42,15 @@ public class ManagementTool {
 		employeeLoggedIn = null;
 	}
 
-	public void selectProject(String name) { // Alex
-		if (searchProjects(name)) {
+	public void selectProject(String name) throws NoProjectWithThatName { // Alex
+		if (isthereAProjectWithIsName(name)) {
 			for (Project p : projectList) {
 				if (p.getName().equals(name)) {
 					selectedProject = p;
 				}
 			}
+		} else {
+			throw new NoProjectWithThatName();
 		}
 	}
 
@@ -107,5 +110,12 @@ public class ManagementTool {
 			throw new NoProjectIsSelected();
 		}
 	}
+
+	public void deleteProject(String name) throws NoProjectWithThatName { // Alex
+		projectList.remove(selectedProject);
+		selectedProject = null;
+	}
+
+
 
 }

@@ -33,7 +33,11 @@ public class AddAnActivitySteps {
 
 	@When("^a worker selecets the project \"([^\"]*)\"$")
 	public void aWorkerSelecetsTheProject(String name) throws Exception {
-	    managementTool.selectProject(name);
+		try {
+			managementTool.selectProject(name);
+		} catch (NoProjectWithThatName e) {
+	    	CreatAProjectSteps.errorMessage = e.getMessage();
+	    }
 	}
 
 	@When("^a worker add an activity \"([^\"]*)\" to the project$")

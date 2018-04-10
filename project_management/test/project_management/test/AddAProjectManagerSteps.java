@@ -23,14 +23,14 @@ import project_management.app.exceptions.*;
 public class AddAProjectManagerSteps {
 
 	private ManagementTool managementTool;
+	
+	public AddAProjectManagerSteps(ManagementTool managementTool) {
+		this.managementTool = managementTool;
+	}
 
 	@Given("^another worker is register in the company$")
 	public void anotherWorkerIsRegisterInTheCompany() throws Exception {
 		managementTool.addWorker("AAAB", "Person 2");
-	}
-
-	public AddAProjectManagerSteps(ManagementTool managementTool) {
-		this.managementTool = managementTool;
 	}
 
 	@When("^a worker assign the project a project manager \"([^\"]*)\"$")

@@ -46,7 +46,7 @@ public class CreatAProjectSteps {
 
 	@Then("^the project \"([^\"]*)\" is created$")
 	public void theProjectIsCreated(String name) throws Exception {
-	    assertTrue(managementTool.searchProjects(name));
+	    assertTrue(managementTool.isthereAProjectWithIsName(name));
 	}
 
 	@Given("^that no worker is logged in$")
