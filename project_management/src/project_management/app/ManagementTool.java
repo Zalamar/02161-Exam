@@ -1,6 +1,9 @@
 package project_management.app;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import project_management.app.exceptions.ActivityNotFoundException;
@@ -174,8 +177,36 @@ public class ManagementTool {
 		}
 	}
 
-	public Activity getSelectedActivity() {
+	public Activity getSelectedActivity() { // Tobias
 		return selectedActivity;
+	}
+
+	public void addTimeToActivity(int activityTime) throws UserNotLoggedIn { // Tobias
+		if(isEmployeeLoggedIn()) {
+			selectedActivity.addTime(activityTime);
+		} else {
+			throw new UserNotLoggedIn();
+		}
+	}
+
+	public int getActivityTime() throws UserNotLoggedIn {
+		return selectedActivity.getEstimatedTime();
+	}
+
+	public void addActivityStartDate(GregorianCalendar date) {
+		selectedActivity.setStartDate(date);
+	}
+
+	public void addActivityEndDate(GregorianCalendar date) {
+		selectedActivity.setEndDate(date);
+	}
+
+	public GregorianCalendar getActivityStartDate() {
+		return selectedActivity.getStartDate();
+	}
+
+	public GregorianCalendar getActivityEndDate() {
+		return selectedActivity.getEndDate();
 	}
 	
 	
