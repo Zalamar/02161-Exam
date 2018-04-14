@@ -8,6 +8,7 @@ public class Project {
 	private String name;
 	private List<Activity> activityList = new ArrayList<Activity>();
 	private Employee manager;
+	private List<Employee> workerList = new ArrayList<Employee>();
 
 	public Project(String Name) { // Alex
 		this.name = Name;
@@ -56,6 +57,10 @@ public class Project {
 
 	public boolean deleteActivity(Activity selectedActivity) { // Tobias
 		return activityList.remove(selectedActivity);
+	}
+
+	public void addWorker(Employee worker) { // Tobias
+		workerList.add(worker);
 	}
 
 }

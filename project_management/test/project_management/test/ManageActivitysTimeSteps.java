@@ -1,14 +1,14 @@
 package project_management.test;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 /**
  * @author Tobias
  *
  */
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -16,12 +16,12 @@ import cucumber.api.java.en.When;
 import project_management.app.ManagementTool;
 import project_management.app.exceptions.*;
 
-public class ManageActivitysTime {
+public class ManageActivitysTimeSteps {
 	
 	private ManagementTool managementTool;
 	private String errorMessage;
 	
-	public ManageActivitysTime(ManagementTool managementTool) {
+	public ManageActivitysTimeSteps(ManagementTool managementTool) {
 		this.managementTool = managementTool;
 	}
 	

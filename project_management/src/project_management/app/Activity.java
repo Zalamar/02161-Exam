@@ -1,6 +1,8 @@
 package project_management.app;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class Activity {
 
@@ -8,6 +10,7 @@ public class Activity {
 	private int estimatedTime = 0;
 	private GregorianCalendar startDate;
 	private GregorianCalendar endDate;
+	private List<Employee> workerList = new ArrayList<Employee>();
 	
 	public Activity(String name) {
 		this.name = name;
@@ -29,20 +32,33 @@ public class Activity {
 		this.estimatedTime = estimatedTime;
 	}
 
-	public GregorianCalendar getStartDate() {
+	public GregorianCalendar getStartDate() { // Tobias
 		return startDate;
 	}
 
-	public GregorianCalendar getEndDate() {
+	public GregorianCalendar getEndDate() { // Tobias
 		return endDate;
 	}
 
-	public void setEndDate(GregorianCalendar endDate) {
+	public void setEndDate(GregorianCalendar endDate) { // Tobias
 		this.endDate = endDate;
 	}
 	
-	public void setStartDate(GregorianCalendar startDate) {
+	public void setStartDate(GregorianCalendar startDate) { // Tobias
 		this.startDate = startDate;
+	}
+
+	public void addWorker(Employee worker) { // Tobias
+		workerList.add(worker);
+	}
+
+	public Employee searchWorkerList(String name) { // Tobias
+		for (Employee e : workerList) {
+			if (e.getUsername().equals(name)) {
+				return e;
+			}
+		}
+		return null;
 	}
 
 }

@@ -189,28 +189,48 @@ public class ManagementTool {
 		}
 	}
 
-	public int getActivityTime() throws UserNotLoggedIn {
+	public int getActivityTime() throws UserNotLoggedIn { // Tobias
 		return selectedActivity.getEstimatedTime();
 	}
 
-	public void addActivityStartDate(GregorianCalendar date) throws UserNotLoggedIn {
+	public void addActivityStartDate(GregorianCalendar date) throws UserNotLoggedIn { // Tobias
 		if (isEmployeeLoggedIn()) {
 			selectedActivity.setStartDate(date);
 		}
 	}
 
-	public void addActivityEndDate(GregorianCalendar date) throws UserNotLoggedIn {
+	public void addActivityEndDate(GregorianCalendar date) throws UserNotLoggedIn { // Tobias
 		if (isEmployeeLoggedIn()) {
 			selectedActivity.setEndDate(date);
 		}
 	}
 
-	public GregorianCalendar getActivityStartDate() {
+	public GregorianCalendar getActivityStartDate() { // Tobias
 		return selectedActivity.getStartDate();
 	}
 
-	public GregorianCalendar getActivityEndDate() {
+	public GregorianCalendar getActivityEndDate() { // Tobias
 		return selectedActivity.getEndDate();
+	}
+
+	public void addWorkerToProject(String name) throws NoProjectIsSelected, UserNotLoggedIn { // Tobias
+		if (isEmployeeLoggedIn()) {
+			if (hasProjectBeenSelected()) {
+				Employee worker = searchEmployee(name);
+				selectedProject.addWorker(worker);
+			}
+		}
+	}
+
+	public void addWorkerToActivity(String name) throws NoProjectIsSelected, NoActivityIsSelectedException, UserNotLoggedIn { // Tobias
+		if (isEmployeeLoggedIn()) {
+			if (hasProjectBeenSelected()) {
+				if (hasActivityBeenSelected()) {
+					Employee worker = searchEmployee(name);
+					selectedActivity.addWorker(worker);
+				}
+			}
+		}
 	}
 	
 	
