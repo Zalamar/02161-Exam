@@ -3,6 +3,9 @@ package project_management.app;
 import java.util.ArrayList;
 import java.util.List;
 
+import project_management.app.exceptions.ActivityNotFoundException;
+import project_management.app.exceptions.NoActivityIsSelectedException;
+import project_management.app.exceptions.NoActivityWithNameException;
 import project_management.app.exceptions.NoProjectIsSelected;
 import project_management.app.exceptions.NoProjectWithThatName;
 import project_management.app.exceptions.TheProjectAlreadyHaveAManager;
@@ -14,6 +17,7 @@ public class ManagementTool {
 	private List<Employee> employeeList = new ArrayList<Employee>();
 	private Employee employeeLoggedIn = null;
 	private Project selectedProject = null;
+	private Activity selectedActivity = null;
 
 	public void creatProject(String string) throws UserNotLoggedIn { // Alex
 		if (isEmployeeLoggedIn()) {
@@ -115,7 +119,65 @@ public class ManagementTool {
 		projectList.remove(selectedProject);
 		selectedProject = null;
 	}
+	
+	private boolean hasProjectBeenSelected() throws NoProjectIsSelected { // Tobias
+		if (selectedProject != null) {
+			return true;
+		} else {
+			throw new NoProjectIsSelected();
+		}
+	}
+	
+	public boolean isthereAnActivityWithThisName(String activityName) throws NoProjectIsSelected, NoActivityWithNameException { // Tobias
+		if (hasProjectBeenSelected()) {
+			for (Activity a : selectedProject.getActivityList()) {
+				if (a.getName().equals(activityName)) {
+					return true;
+				}
+			}
+		}
+		throw new NoActivityWithNameException();
+	}
 
+	public void selectActivity(String activityName) throws UserNotLoggedIn, NoProjectIsSelected, ActivityNotFoundException { // Tobias
+		if (isEmployeeLoggedIn() && hasProjectBeenSelected()) {
+			List<Activity> activityList = selectedProject.getActivityList();
+			for (Activity a : activityList) {
+				if (a.getName().equals(activityName)) {
+					selectedActivity  = a;
+				}
+			}
+			if (selectedActivity == null) {
+				throw new ActivityNotFoundException();
+			}
+		}
+	}
 
+	public void deleteActivity() throws UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException, ActivityNotFoundException { // Tobias
+		if(isEmployeeLoggedIn()) {
+			if (hasProjectBeenSelected()) { 
+				if (hasActivityBeenSelected()) {
+					if (!selectedProject.deleteActivity(selectedActivity)) {
+						throw new ActivityNotFoundException();
+					}
+					selectedActivity = null;
+				}
+			}
+		}
+	}
+
+	private boolean hasActivityBeenSelected() throws NoActivityIsSelectedException { // Tobias
+		if (selectedActivity != null) {
+			return true;
+		} else {
+			throw new NoActivityIsSelectedException();
+		}
+	}
+
+	public Activity getSelectedActivity() {
+		return selectedActivity;
+	}
+	
+	
 
 }

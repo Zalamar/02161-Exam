@@ -49,5 +49,13 @@ public class Project {
 	public void removeManager() {
 		manager = null;
 	}
+	
+	public List<Activity> getActivityList() { // Tobias
+		return activityList;
+	}
+
+	public boolean deleteActivity(Activity selectedActivity) { // Tobias
+		return activityList.remove(selectedActivity);
+	}
 
 }
