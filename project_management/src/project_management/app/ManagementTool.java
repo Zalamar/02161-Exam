@@ -193,12 +193,16 @@ public class ManagementTool {
 		return selectedActivity.getEstimatedTime();
 	}
 
-	public void addActivityStartDate(GregorianCalendar date) {
-		selectedActivity.setStartDate(date);
+	public void addActivityStartDate(GregorianCalendar date) throws UserNotLoggedIn {
+		if (isEmployeeLoggedIn()) {
+			selectedActivity.setStartDate(date);
+		}
 	}
 
-	public void addActivityEndDate(GregorianCalendar date) {
-		selectedActivity.setEndDate(date);
+	public void addActivityEndDate(GregorianCalendar date) throws UserNotLoggedIn {
+		if (isEmployeeLoggedIn()) {
+			selectedActivity.setEndDate(date);
+		}
 	}
 
 	public GregorianCalendar getActivityStartDate() {

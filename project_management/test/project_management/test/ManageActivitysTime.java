@@ -57,7 +57,11 @@ public class ManageActivitysTime {
 		
 		date.clear(Calendar.MILLISECOND);
 		
-	    managementTool.addActivityStartDate(date);
+		try {
+			managementTool.addActivityStartDate(date);
+		} catch (UserNotLoggedIn e) {
+			errorMessage = e.getMessage();
+		}
 	}
 	
 	@When("^a worker added the end date (\\d+)$")
@@ -73,7 +77,11 @@ public class ManageActivitysTime {
 		
 		date.clear(Calendar.MILLISECOND);
 		
-	    managementTool.addActivityEndDate(date);
+		try {
+			managementTool.addActivityEndDate(date);
+		} catch (UserNotLoggedIn e) {
+			errorMessage = e.getMessage();
+		}
 	}
 	
 	@Then("^there are a start date (\\d+)$")

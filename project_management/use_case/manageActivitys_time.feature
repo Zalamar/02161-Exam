@@ -28,27 +28,14 @@ Scenario: Set the starter and end time of a project
 	Then there are a start date 221118 
 	And there are a end date 241118 
 	
-#Scenario: try to add start time when not logged in 
-#	Given the project mananger is logged out 
-#	When a project manager selecets the project "011001" 
-#	And a project manager selecets an activity "001"
-#	And a project manager added the start date 221118 
-#	Then I get the error message "No user is logged in" 
-#	
-#Scenario: try to add end time when not logged in 
-#	Given the project mananger is logged out 
-#	And a project manager added the start date 221118 
-#	When a project manager selecets the project "011001" 
-#	And a project manager selecets an activity "001"
-#	And a project manager added the end date 241118 
-#	Then I get the error message "No user is logged in" 
-#	
-#Scenario: Lets a worker add time to a activity
-#	Given the project mananger is logged out 
-#	And a worker is logged in
-#	When a worker selecets the project "011001" 
-#	And a worker selecets an activity "001"
-#	And a worker added the start date 221118 
-#	And a worker added the end date 241118 
-#	Then there are a start date 221118 
-#	And there are a start date 241118 
+Scenario: try to add start time when not logged in 
+	When a worker selecets an activity "001"
+	And a worker is logged out
+	And a worker added the start date 221118 
+	Then I get the manageActivityTime error message "No user is logged in" 
+	
+Scenario: try to add end time when not logged in 
+	When a worker selecets an activity "001"
+	And a worker is logged out
+	And a worker added the end date 241118 
+	Then I get the manageActivityTime error message "No user is logged in" 
