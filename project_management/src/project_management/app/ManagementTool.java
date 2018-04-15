@@ -47,6 +47,8 @@ public class ManagementTool {
 
 	public void logout() { // Alex
 		employeeLoggedIn = null;
+		selectedActivity = null;
+		selectedProject = null;
 	}
 
 	public void selectProject(String name) throws NoProjectWithThatName { // Alex
