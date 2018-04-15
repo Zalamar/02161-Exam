@@ -13,6 +13,7 @@ import project_management.app.exceptions.NoProjectIsSelected;
 import project_management.app.exceptions.NoProjectWithThatName;
 import project_management.app.exceptions.TheProjectAlreadyHaveAManager;
 import project_management.app.exceptions.UserNotLoggedIn;
+import project_management.app.exceptions.workerNotOnProjectException;
 
 public class ManagementTool {
 
@@ -224,15 +225,27 @@ public class ManagementTool {
 		}
 	}
 
-	public void addWorkerToActivity(String name) throws NoProjectIsSelected, NoActivityIsSelectedException, UserNotLoggedIn { // Tobias
+	public void addWorkerToActivity(String name) throws NoProjectIsSelected, NoActivityIsSelectedException, UserNotLoggedIn, workerNotOnProjectException { // Tobias
 		if (isEmployeeLoggedIn()) {
 			if (hasProjectBeenSelected()) {
 				if (hasActivityBeenSelected()) {
-					Employee worker = searchEmployee(name);
-					selectedActivity.addWorker(worker);
+					if(workerIsOnProject(name)) {
+						Employee worker = searchEmployee(name);
+						selectedActivity.addWorker(worker);
+					}
 				}
 			}
 		}
+	}
+
+	private boolean workerIsOnProject(String name) throws workerNotOnProjectException { // Tobias
+		List<Employee> workerList = selectedProject.getWorkerList();
+		for (Employee e : workerList) {
+			if (e.getUsername().equals(name)) {
+				return true;
+			}
+		}
+		throw new workerNotOnProjectException(); // Not part of use_case
 	}
 	
 	

@@ -63,4 +63,8 @@ public class Project {
 		workerList.add(worker);
 	}
 
+	public List<Employee> getWorkerList() { // Tobias
+		return workerList;
+	}
+
 }
