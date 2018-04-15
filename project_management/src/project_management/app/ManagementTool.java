@@ -13,6 +13,7 @@ import project_management.app.exceptions.NoProjectIsSelected;
 import project_management.app.exceptions.NoProjectWithThatName;
 import project_management.app.exceptions.TheProjectAlreadyHaveAManager;
 import project_management.app.exceptions.UserNotLoggedIn;
+import project_management.app.exceptions.startDateAfterEndDateException;
 import project_management.app.exceptions.workerNotOnProjectException;
 
 public class ManagementTool {
@@ -246,6 +247,22 @@ public class ManagementTool {
 			}
 		}
 		throw new workerNotOnProjectException(); // Not part of use_case
+	}
+
+	public void addPersonalActivity(String name, GregorianCalendar startDate, GregorianCalendar endDate) throws UserNotLoggedIn, startDateAfterEndDateException { // Tobias
+		if (isEmployeeLoggedIn()) {
+			employeeLoggedIn.addPersonalActivity(name, startDate, endDate);
+		}
+	}
+
+	public Employee getEmployeeLoggedIn() { // Tobias
+		return employeeLoggedIn;
+	}
+
+	public void addPersonalActivity(String name, GregorianCalendar date) throws UserNotLoggedIn {
+		if (isEmployeeLoggedIn()) {
+			employeeLoggedIn.addPersonalActivity(name, date);
+		}
 	}
 	
 	
