@@ -22,15 +22,87 @@ public class RegisterUsedTime {
 		this.managementTool = managementTool;
 	}
 	
-	@Given("^a worker is register in the company$")
-	
-	@Given("^a worker is logged in$")
-	
-	@Given("^a project is created named \"011001\"$")
-	
-	@Given("^an activity \"001\" is added to the project$")
+	@Given("^an activity \"([^\"]*)\" is added to the project$")
+	public void anActivityIsAddedToTheProject(String arg1) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
 
 	@Given("^a project manager is added to the project$")
+	public void aProjectManagerIsAddedToTheProject() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Given("^the worker is added to the acitivity$")
+	public void theWorkerIsAddedToTheAcitivity() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@When("^a worker selecets the activity \"([^\"]*)\"$")
+	public void aWorkerSelecetsTheActivity(String arg1) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@When("^a worker adds his used time (\\d+) the activity$")
+	public void aWorkerAddsHisUsedTimeTheActivity(int arg1) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Then("^there are time register$")
+	public void thereAreTimeRegister() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
 	
-	@Given("^the worker is added to the activity$")
+	@When("^a worker adds his used time the activity$")
+	public void aWorkerAddsHisUsedTimeTheActivity() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Given("^deselects the activity and project$")
+	public void deselectsTheActivityAndProject() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@When("^a worker edits a register time, adds (\\d+)$")
+	public void aWorkerEditsARegisterTimeAdds(int arg1) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Then("^the time is (\\d+)$")
+	public void theTimeIs(int arg1) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@When("^a worker edits a register time$")
+	public void aWorkerEditsARegisterTime() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Given("^another project is created named \"([^\"]*)\"$")
+	public void anotherProjectIsCreatedNamed(String arg1) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Given("^an activity (\\d+) is added to the new project$")
+	public void anActivityIsAddedToTheNewProject(int arg1) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+
+	@Then("^there are time register on the new activity$")
+	public void thereAreTimeRegisterOnTheNewActivity() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
 }

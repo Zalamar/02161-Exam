@@ -1,6 +1,5 @@
 package project_management.app;
 
-import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
