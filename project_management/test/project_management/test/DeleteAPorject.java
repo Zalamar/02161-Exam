@@ -35,6 +35,6 @@ public class DeleteAPorject {
 
 	@Then("^there are no project \"([^\"]*)\"$")
 	public void thereAreNoProject(String name) throws Exception {
-		assertFalse(managementTool.isthereAProjectWithIsName(name));
+		assertFalse(managementTool.isthereAProjectWithThisName(name));
 	}
 }

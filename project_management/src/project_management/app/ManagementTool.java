@@ -37,7 +37,7 @@ public class ManagementTool {
 		employeeList.add(new Employee(username, name));
 	}
 
-	public boolean isthereAProjectWithIsName(String name) { // Alex
+	public boolean isthereAProjectWithThisName(String name) { // Alex
 		for (Project p : projectList) {
 			if (p.getName().equals(name)) {
 				return true;
@@ -53,7 +53,7 @@ public class ManagementTool {
 	}
 
 	public void selectProject(String name) throws NoProjectWithThatName { // Alex
-		if (isthereAProjectWithIsName(name)) {
+		if (isthereAProjectWithThisName(name)) {
 			for (Project p : projectList) {
 				if (p.getName().equals(name)) {
 					selectedProject = p;
