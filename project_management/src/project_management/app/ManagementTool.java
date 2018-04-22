@@ -23,7 +23,7 @@ public class ManagementTool {
 	private Project selectedProject = null;
 	private Activity selectedActivity = null;
 
-	public void creatProject(String string) throws UserNotLoggedIn { // Alex
+	public void createProject(String string) throws UserNotLoggedIn { // Alex
 		if (isEmployeeLoggedIn()) {
 			projectList.add(new Project(string));
 		}
