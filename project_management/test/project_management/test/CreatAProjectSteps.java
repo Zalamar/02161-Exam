@@ -18,12 +18,9 @@ import project_management.app.ManagementTool;
 import project_management.app.exceptions.UserNotLoggedIn;
 
 
-
-
 public class CreatAProjectSteps {
 
 	private ManagementTool managementTool;
-	public static String errorMessage;
 	
 	public CreatAProjectSteps(ManagementTool managementTool) { 
 		this.managementTool = managementTool;
@@ -59,12 +56,9 @@ public class CreatAProjectSteps {
 	    try {
 	    	managementTool.createProject(name);
 	    } catch (UserNotLoggedIn e) {
-	    	errorMessage = e.getMessage();
+	    	ErrorMessage.errorMessage = e.getMessage();
 	    }
 	}
 
-	@Then("^I get the error message \"([^\"]*)\"$")
-	public void iGetTheErrorMessage(String errorMessage) throws Exception {
-	    assertEquals(errorMessage, this.errorMessage);
-	}
+	
 }
