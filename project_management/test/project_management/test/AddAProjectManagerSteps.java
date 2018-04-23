@@ -38,11 +38,11 @@ public class AddAProjectManagerSteps {
 		try {
 			managementTool.addProjectManager(name);
 		} catch (TheProjectAlreadyHaveAManager e) {
-			CreatAProjectSteps.errorMessage = e.getMessage();
+			ErrorMessage.errorMessage = e.getMessage();
 		} catch (UserNotLoggedIn e) {
-			CreatAProjectSteps.errorMessage = e.getMessage();
+			ErrorMessage.errorMessage = e.getMessage();
 		} catch (NoProjectIsSelected e) {
-			CreatAProjectSteps.errorMessage = e.getMessage();
+			ErrorMessage.errorMessage = e.getMessage();
 		}
 	}
 
@@ -61,9 +61,9 @@ public class AddAProjectManagerSteps {
 		try {
 			managementTool.removeProjectManager();
 		} catch (UserNotLoggedIn e) {
-			CreatAProjectSteps.errorMessage = e.getMessage();
+			ErrorMessage.errorMessage = e.getMessage();
 		} catch (NoProjectIsSelected e) {
-			CreatAProjectSteps.errorMessage = e.getMessage();
+			ErrorMessage.errorMessage = e.getMessage();
 		}
 	}
 

@@ -1,6 +1,5 @@
 package project_management.app;
 
-
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -80,7 +79,8 @@ public class ManagementTool {
 		}
 	}
 
-	public void addProjectManager(String name) throws TheProjectAlreadyHaveAManager, UserNotLoggedIn, NoProjectIsSelected { // Alex
+	public void addProjectManager(String name)
+			throws TheProjectAlreadyHaveAManager, UserNotLoggedIn, NoProjectIsSelected { // Alex
 		if (selectedProject != null) {
 			if (!selectedProject.hasAManager() && isEmployeeLoggedIn()) {
 				selectedProject.addManager(searchEmployee(name));
@@ -121,11 +121,13 @@ public class ManagementTool {
 		}
 	}
 
-	public void deleteProject(String name) throws NoProjectWithThatName { // Alex
-		projectList.remove(selectedProject);
-		selectedProject = null;
+	public void deleteProject(String name) throws NoProjectWithThatName, UserNotLoggedIn { // Alex
+		if (isEmployeeLoggedIn()) {
+			projectList.remove(selectedProject);
+			selectedProject = null;
+		}
 	}
-	
+
 	private boolean hasProjectBeenSelected() throws NoProjectIsSelected { // Tobias
 		if (selectedProject != null) {
 			return true;
@@ -133,8 +135,9 @@ public class ManagementTool {
 			throw new NoProjectIsSelected();
 		}
 	}
-	
-	public boolean isthereAnActivityWithThisName(String activityName) throws NoProjectIsSelected, NoActivityWithNameException { // Tobias
+
+	public boolean isthereAnActivityWithThisName(String activityName)
+			throws NoProjectIsSelected, NoActivityWithNameException { // Tobias
 		if (hasProjectBeenSelected()) {
 			for (Activity a : selectedProject.getActivityList()) {
 				if (a.getName().equals(activityName)) {
@@ -145,12 +148,13 @@ public class ManagementTool {
 		throw new NoActivityWithNameException();
 	}
 
-	public void selectActivity(String activityName) throws UserNotLoggedIn, NoProjectIsSelected, ActivityNotFoundException { // Tobias
+	public void selectActivity(String activityName)
+			throws UserNotLoggedIn, NoProjectIsSelected, ActivityNotFoundException { // Tobias
 		if (isEmployeeLoggedIn() && hasProjectBeenSelected()) {
 			List<Activity> activityList = selectedProject.getActivityList();
 			for (Activity a : activityList) {
 				if (a.getName().equals(activityName)) {
-					selectedActivity  = a;
+					selectedActivity = a;
 				}
 			}
 			if (selectedActivity == null) {
@@ -159,9 +163,10 @@ public class ManagementTool {
 		}
 	}
 
-	public void deleteActivity() throws UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException, ActivityNotFoundException { // Tobias
-		if(isEmployeeLoggedIn()) {
-			if (hasProjectBeenSelected()) { 
+	public void deleteActivity()
+			throws UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException, ActivityNotFoundException { // Tobias
+		if (isEmployeeLoggedIn()) {
+			if (hasProjectBeenSelected()) {
 				if (hasActivityBeenSelected()) {
 					if (!selectedProject.deleteActivity(selectedActivity)) {
 						throw new ActivityNotFoundException();
@@ -185,7 +190,7 @@ public class ManagementTool {
 	}
 
 	public void addTimeToActivity(int activityTime) throws UserNotLoggedIn { // Tobias
-		if(isEmployeeLoggedIn()) {
+		if (isEmployeeLoggedIn()) {
 			selectedActivity.addTime(activityTime);
 		} else {
 			throw new UserNotLoggedIn();
@@ -225,11 +230,12 @@ public class ManagementTool {
 		}
 	}
 
-	public void addWorkerToActivity(String name) throws NoProjectIsSelected, NoActivityIsSelectedException, UserNotLoggedIn, workerNotOnProjectException { // Tobias
+	public void addWorkerToActivity(String name)
+			throws NoProjectIsSelected, NoActivityIsSelectedException, UserNotLoggedIn, workerNotOnProjectException { // Tobias
 		if (isEmployeeLoggedIn()) {
 			if (hasProjectBeenSelected()) {
 				if (hasActivityBeenSelected()) {
-					if(workerIsOnProject(name)) {
+					if (workerIsOnProject(name)) {
 						Employee worker = searchEmployee(name);
 						selectedActivity.addWorker(worker);
 					}
@@ -248,7 +254,8 @@ public class ManagementTool {
 		throw new workerNotOnProjectException(); // Not part of use_case
 	}
 
-	public void addPersonalActivity(String name, GregorianCalendar startDate, GregorianCalendar endDate) throws UserNotLoggedIn, startDateAfterEndDateException { // Tobias
+	public void addPersonalActivity(String name, GregorianCalendar startDate, GregorianCalendar endDate)
+			throws UserNotLoggedIn, startDateAfterEndDateException { // Tobias
 		if (isEmployeeLoggedIn()) {
 			employeeLoggedIn.addPersonalActivity(name, startDate, endDate);
 		}
@@ -263,7 +270,5 @@ public class ManagementTool {
 			employeeLoggedIn.addPersonalActivity(name, date);
 		}
 	}
-	
-	
 
 }

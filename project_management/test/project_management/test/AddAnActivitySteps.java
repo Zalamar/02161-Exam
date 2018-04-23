@@ -28,7 +28,7 @@ public class AddAnActivitySteps {
 	
 	@Given("^a project is created named \"([^\"]*)\"$")
 	public void aProjectIsCreatedNamed(String name) throws Exception {
-		 managementTool.creatProject(name);
+		 managementTool.createProject(name);
 	}
 
 	@When("^a worker selecets the project \"([^\"]*)\"$")
@@ -36,7 +36,7 @@ public class AddAnActivitySteps {
 		try {
 			managementTool.selectProject(name);
 		} catch (NoProjectWithThatName e) {
-	    	CreatAProjectSteps.errorMessage = e.getMessage();
+			ErrorMessage.errorMessage = e.getMessage();
 	    }
 	}
 
@@ -45,9 +45,9 @@ public class AddAnActivitySteps {
 	    try {
 	    	managementTool.addAnActivity(name);
 	    } catch (UserNotLoggedIn e) {
-	    	CreatAProjectSteps.errorMessage = e.getMessage();
+	    	ErrorMessage.errorMessage = e.getMessage();
 	    } catch (NoProjectIsSelected e) {
-	    	CreatAProjectSteps.errorMessage = e.getMessage();
+	    	ErrorMessage.errorMessage = e.getMessage();
 	    }
 	}
 
