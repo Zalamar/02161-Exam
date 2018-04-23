@@ -28,7 +28,7 @@ public class AddAnActivitySteps {
 	
 	@Given("^a project is created named \"([^\"]*)\"$")
 	public void aProjectIsCreatedNamed(String name) throws Exception {
-		 managementTool.creatProject(name);
+		 managementTool.createProject(name);
 	}
 
 	@When("^a worker selecets the project \"([^\"]*)\"$")

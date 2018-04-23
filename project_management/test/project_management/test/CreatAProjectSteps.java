@@ -41,7 +41,7 @@ public class CreatAProjectSteps {
 
 	@When("^the worker creat a project \"([^\"]*)\"$")
 	public void theWorkerCreatAProject(String name) throws Exception {
-	    managementTool.creatProject(name);
+	    managementTool.createProject(name);
 	}
 
 	@Then("^the project \"([^\"]*)\" is created$")
@@ -57,7 +57,7 @@ public class CreatAProjectSteps {
 	@When("^they try to creat a project \"([^\"]*)\"$")
 	public void theyTryToCreatAProject(String name) throws Exception {
 	    try {
-	    	managementTool.creatProject(name);
+	    	managementTool.createProject(name);
 	    } catch (UserNotLoggedIn e) {
 	    	errorMessage = e.getMessage();
 	    }
