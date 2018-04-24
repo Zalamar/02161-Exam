@@ -28,8 +28,8 @@ public class ManagementTool {
 		}
 	}
 
-	public void login(String name) { // Alex
-		employeeLoggedIn = searchEmployee(name);
+	public void login(String username) { // Alex
+		employeeLoggedIn = searchEmployee(username);
 	}
 
 	public void addWorker(String username, String name) { // Alex

@@ -26,7 +26,10 @@ public class Main {
 
 		System.out.println("Enter username");
 		inputString = reader.next();
-
+		
+		//Du skal huske at oprette en bruger først
+		managementTool.addWorker(inputString, "Alex");
+		//Kig her!!!!!
 		managementTool.login(inputString);
 
 		while (quit == false) {
