@@ -1,7 +1,6 @@
 package project_management.app;
 
-import project_management.app.exceptions.NoProjectWithThatName;
-import project_management.app.exceptions.UserNotLoggedIn;
+import project_management.app.exceptions.*;
 
 import java.util.Scanner;
 
@@ -12,11 +11,11 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String []args) throws UserNotLoggedIn, NoProjectWithThatName {
+	public static void main(String []args) throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, TheProjectAlreadyHaveAManager, ActivityNotFoundException {
 
 		ManagementTool managementTool = new ManagementTool();
 
-		managementTool.addWorker("Hans Hansen", "haha");
+		managementTool.addWorker("haha", "Hans Hansen");
 
 		Scanner reader = new Scanner(System.in);
 
@@ -84,24 +83,48 @@ public class Main {
 					}
 					else {
 						while (back == false) {
-							System.out.printf("1. Add project manager\n2. Add an activity\n3. Remove an activity\n4. Add time to an activity\n");
-							System.out.printf("5. Register used time\n");
-							System.out.printf("6. Back");
+							System.out.printf("1. Add project manager\n2. Add an activity\n3. Select activity\n");
+							System.out.printf("4. Back");
 
 							selector = reader.nextInt();
 
 							switch (selector) {
-								case 1:
+								case 1: // Add project manager
+									System.out.printf("Enter username for project manager\n");
+									inputString = reader.next();
+									managementTool.addProjectManager(inputString);
 									break;
-								case 2:
+								case 2: // Add activity
+									System.out.printf("Enter activity ID\n");
+									inputString = reader.next();
+									managementTool.addAnActivity(inputString);
 									break;
-								case 3:
+								case 3: // Remove activity
+									System.out.printf("Enter activity ID\n");
+									inputString = reader.next();
+
+									managementTool.selectActivity(inputString);
+
+									while (back == false) {
+										System.out.printf("1. Register used time\n2. See remaining time\n");
+										System.out.printf("3. Back");
+
+										selector = reader.nextInt();
+
+										switch (selector) {
+											case 1:
+												break;
+											case 2:
+												break;
+											case 3:
+												back = true;
+												break;
+										}
+
+									}
+									back = false;
 									break;
-								case 4:
-									break;
-								case 5:
-									break;
-								case 6: // Back
+								case 4: // Back
 									back = true;
 									break;
 							}
