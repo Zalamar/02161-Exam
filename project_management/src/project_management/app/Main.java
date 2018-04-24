@@ -1,5 +1,8 @@
 package project_management.app;
 
+import project_management.app.exceptions.NoProjectWithThatName;
+import project_management.app.exceptions.UserNotLoggedIn;
+
 import java.util.Scanner;
 
 // import project_management.app.Activity;
@@ -9,64 +12,101 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String []args){
-		
+	public static void main(String []args) throws UserNotLoggedIn, NoProjectWithThatName {
+
+		ManagementTool managementTool = new ManagementTool();
+
+		managementTool.addWorker("Hans Hansen", "haha");
+
 		Scanner reader = new Scanner(System.in);
-		
+
 		int selector = 0;
 		String inputString = "";
-		
+
 		boolean quit = false;
 		boolean back = false;
-		
+
 		System.out.println("Enter username");
 		inputString = reader.next();
+
+		managementTool.login(inputString);
 		
 		while (quit == false) {
 			System.out.printf("1. Create project\n2. Select project\n3. Quit\n");
-			
-			
+
+
 			selector = reader.nextInt();
-			
+
 			switch(selector) {
 				case 1: // Create project
 					System.out.printf("Enter project name\n");
 					inputString = reader.next();
-					//Project.createProject(inputString);
+					managementTool.createProject(inputString);
 					break;
 				case 2: // Select project
 					System.out.printf("Enter project ID\n");
 					inputString = reader.next();
-					
-					//Project.selectProject(inputString);
-					
-					while (back == false) {
-						System.out.printf("1. Add project manager\n2. Add an activity\n3. Remove an activity\n4. Add time to an activity\n");
-						System.out.printf("5. Assign a worker to an activity\n6. Register used time\n");
-						System.out.printf("7. See report\n8. Back");
-						
-						selector = reader.nextInt();
-						
-						switch(selector) {
-							case 1:
-								break;
-							case 2:
-								break;
-							case 3:
-								break;
-							case 4:
-								break;
-							case 5:
-								break;
-							case 6:
-								break;
-							case 7:
-								break;
-							case 8: // Back
-								back = true;
-								break;
+
+					managementTool.selectProject(inputString);
+
+					if (managementTool.isProjectManager()) {
+						while (back == false) {
+							System.out.printf("2. Add an activity\n3. Remove an activity\n4. Add time to an activity\n");
+							System.out.printf("5. Assign a worker to an activity\n6. Register used time\n");
+							System.out.printf("7. See report\n8. Back");
+
+							selector = reader.nextInt();
+
+							switch (selector) {
+								case 1:
+									break;
+								case 2:
+									break;
+								case 3:
+									break;
+								case 4:
+									break;
+								case 5:
+									break;
+								case 6:
+									break;
+								case 7:
+									break;
+								case 8: // Back
+									back = true;
+									break;
+							}
 						}
-						
+					}
+					else {
+						while (back == false) {
+							System.out.printf("1. Add project manager\n2. Add an activity\n3. Remove an activity\n4. Add time to an activity\n");
+							System.out.printf("5. Assign a worker to an activity\n6. Register used time\n");
+							System.out.printf("7. See report\n8. Back");
+
+							selector = reader.nextInt();
+
+							switch (selector) {
+								case 1:
+									break;
+								case 2:
+									break;
+								case 3:
+									break;
+								case 4:
+									break;
+								case 5:
+									break;
+								case 6:
+									break;
+								case 7:
+									break;
+								case 8: // Back
+									back = true;
+									break;
+							}
+						}
+
 					}
 					quit = false;
 					break;
@@ -74,8 +114,8 @@ public class Main {
 					quit = true;
 					break;
 			}
-				
-			
+
+
 		}
 	}
 }

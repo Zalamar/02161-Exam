@@ -92,6 +92,16 @@ public class ManagementTool {
 		}
 	}
 
+	public boolean isProjectManager() {
+		String username = employeeLoggedIn.getUsername();
+		if (selectedProject.hasAManager() && (selectedProject.getManager()).getUsername().equals(username)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	private boolean isEmployeeLoggedIn() throws UserNotLoggedIn { // Alex
 		if (employeeLoggedIn != null) {
 			return true;
