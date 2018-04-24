@@ -51,9 +51,9 @@ public class Main {
 
 					if (managementTool.isProjectManager()) {
 						while (back == false) {
-							System.out.printf("2. Add an activity\n3. Remove an activity\n4. Add time to an activity\n");
-							System.out.printf("5. Assign a worker to an activity\n6. Register used time\n");
-							System.out.printf("7. See report\n8. Back");
+							System.out.printf("1. Add an activity\n2. Remove an activity\n3. Add time to an activity\n");
+							System.out.printf("4. Assign a worker to an activity\n5. Register used time\n6. See activities missing time registration\n7. See remaining time\n");
+							System.out.printf("8. Delete project\n9. See report\n10. Back");
 
 							selector = reader.nextInt();
 
@@ -72,7 +72,11 @@ public class Main {
 									break;
 								case 7:
 									break;
-								case 8: // Back
+								case 8:
+									break;
+								case 9:
+									break;
+								case 10: // Back
 									back = true;
 									break;
 							}
@@ -81,8 +85,8 @@ public class Main {
 					else {
 						while (back == false) {
 							System.out.printf("1. Add project manager\n2. Add an activity\n3. Remove an activity\n4. Add time to an activity\n");
-							System.out.printf("5. Assign a worker to an activity\n6. Register used time\n");
-							System.out.printf("7. See report\n8. Back");
+							System.out.printf("5. Register used time\n");
+							System.out.printf("6. Back");
 
 							selector = reader.nextInt();
 
@@ -97,11 +101,7 @@ public class Main {
 									break;
 								case 5:
 									break;
-								case 6:
-									break;
-								case 7:
-									break;
-								case 8: // Back
+								case 6: // Back
 									back = true;
 									break;
 							}
