@@ -64,10 +64,8 @@ public class ManagementTool {
 	}
 
 	public void addAnActivity(String name) throws UserNotLoggedIn, NoProjectIsSelected { // Alex
-		if (isEmployeeLoggedIn() && selectedProject != null) {
+		if (isEmployeeLoggedIn() && hasProjectBeenSelected()) {
 			selectedProject.addActivity(new Activity(name));
-		} else {
-			throw new NoProjectIsSelected();
 		}
 	}
 
@@ -79,16 +77,14 @@ public class ManagementTool {
 		}
 	}
 
-	public void addProjectManager(String name)
+	public void addProjectManager(String username)
 			throws TheProjectAlreadyHaveAManager, UserNotLoggedIn, NoProjectIsSelected { // Alex
-		if (selectedProject != null) {
+		if (hasProjectBeenSelected()) {
 			if (!selectedProject.hasAManager() && isEmployeeLoggedIn()) {
-				selectedProject.addManager(searchEmployee(name));
+				selectedProject.addManager(searchEmployee(username));
 			} else {
 				throw new TheProjectAlreadyHaveAManager();
 			}
-		} else {
-			throw new NoProjectIsSelected();
 		}
 	}
 
@@ -110,9 +106,9 @@ public class ManagementTool {
 		}
 	}
 
-	private Employee searchEmployee(String name) { // Alex
+	private Employee searchEmployee(String username) { // Alex
 		for (Employee e : employeeList) {
-			if (e.getUsername().equals(name)) {
+			if (e.getUsername().equals(username)) {
 				return e;
 			}
 		}
@@ -124,10 +120,8 @@ public class ManagementTool {
 	}
 
 	public void removeProjectManager() throws UserNotLoggedIn, NoProjectIsSelected { // Alex
-		if (isEmployeeLoggedIn() && selectedProject != null) {
+		if (isEmployeeLoggedIn() && hasProjectBeenSelected()) {
 			selectedProject.removeManager();
-		} else {
-			throw new NoProjectIsSelected();
 		}
 	}
 
