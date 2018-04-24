@@ -92,8 +92,7 @@ public class ManagementTool {
 		String username = employeeLoggedIn.getUsername();
 		if (selectedProject.hasAManager() && (selectedProject.getManager()).getUsername().equals(username)) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -196,8 +195,6 @@ public class ManagementTool {
 	public void addTimeToActivity(int activityTime) throws UserNotLoggedIn { // Tobias
 		if (isEmployeeLoggedIn()) {
 			selectedActivity.addTime(activityTime);
-		} else {
-			throw new UserNotLoggedIn();
 		}
 	}
 
@@ -226,32 +223,24 @@ public class ManagementTool {
 	}
 
 	public void addWorkerToProject(String name) throws NoProjectIsSelected, UserNotLoggedIn { // Tobias
-		if (isEmployeeLoggedIn()) {
-			if (hasProjectBeenSelected()) {
-				Employee worker = searchEmployee(name);
-				selectedProject.addWorker(worker);
-			}
+		if (isEmployeeLoggedIn() && hasProjectBeenSelected()) {
+			Employee worker = searchEmployee(name);
+			selectedProject.addWorker(worker);
 		}
 	}
 
-	public void addWorkerToActivity(String name)
+	public void addWorkerToActivity(String username)
 			throws NoProjectIsSelected, NoActivityIsSelectedException, UserNotLoggedIn, workerNotOnProjectException { // Tobias
-		if (isEmployeeLoggedIn()) {
-			if (hasProjectBeenSelected()) {
-				if (hasActivityBeenSelected()) {
-					if (workerIsOnProject(name)) {
-						Employee worker = searchEmployee(name);
-						selectedActivity.addWorker(worker);
-					}
-				}
-			}
+		if (isEmployeeLoggedIn() && hasProjectBeenSelected() && hasActivityBeenSelected() && workerIsOnProject(username)) {
+			Employee worker = searchEmployee(username);
+			selectedActivity.addWorker(worker);
 		}
 	}
 
-	private boolean workerIsOnProject(String name) throws workerNotOnProjectException { // Tobias
+	private boolean workerIsOnProject(String username) throws workerNotOnProjectException { // Tobias
 		List<Employee> workerList = selectedProject.getWorkerList();
 		for (Employee e : workerList) {
-			if (e.getUsername().equals(name)) {
+			if (e.getUsername().equals(username)) {
 				return true;
 			}
 		}
