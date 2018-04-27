@@ -54,7 +54,9 @@ public class ManageActivitysTimeSteps {
 			managementTool.addActivityStartDate(date);
 		} catch (UserNotLoggedIn e) {
 			errorMessage = e.getMessage();
-		}
+		} catch (NoActivityIsSelectedException e) {
+			errorMessage = e.getMessage();
+		} 
 	}
 	
 	@When("^a worker added the end date (\\d+)$")
@@ -67,7 +69,9 @@ public class ManageActivitysTimeSteps {
 			managementTool.addActivityEndDate(date);
 		} catch (UserNotLoggedIn e) {
 			errorMessage = e.getMessage();
-		}
+		} catch (NoActivityIsSelectedException e) {
+			errorMessage = e.getMessage();
+		} 
 	}
 
 	private GregorianCalendar makeDate(String dateString) {
