@@ -26,7 +26,7 @@ public class Employee {
 	}
 
 	public void addPersonalActivity(String activityName, GregorianCalendar startDate, GregorianCalendar endDate) throws startDateAfterEndDateException { // Tobias
-		if (startDate.after(endDate)) {
+		if (startDate.before(endDate)) {
 			Activity newActivity = new Activity(activityName);
 			newActivity.setStartDate(startDate);
 			newActivity.setEndDate(endDate);
