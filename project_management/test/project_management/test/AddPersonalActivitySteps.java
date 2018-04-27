@@ -27,31 +27,26 @@ public class AddPersonalActivitySteps {
 		this.managementTool = managementTool;
 	}
 	
+	private GregorianCalendar makeDate(String dateString) { //Alex
+		String day = dateString.substring(0, 2);
+		String month = dateString.substring(2, 4);
+		String year = "20" + dateString.substring(4, 6);
+		GregorianCalendar date = new GregorianCalendar();
+		date.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
+
+		date.clear(Calendar.MILLISECOND);
+		return date;
+	}
+	
 	@When("^a worker adds an activity \"([^\"]*)\" with start time (\\d+) and end time (\\d+)$")
 	public void aWorkerAddsAnActivityWithStartTimeAndEndTime(String arg1, int arg2, int arg3) throws Exception {
 		// Start date, client side handled
 		String date1String = Integer.toString(arg2);
-		
-		String day = date1String.substring(0, 1);
-		String month = date1String.substring(2, 3);
-		String year = "20" + date1String.substring(4, 5);
-		
-		GregorianCalendar date1 = new GregorianCalendar();
-		date1.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
-		
-		date1.clear(Calendar.MILLISECOND);
+		GregorianCalendar date1 = makeDate(date1String);
 		
 		// End date, client side handled
 		String date2String = Integer.toString(arg3);
-		
-		day = date2String.substring(0, 1);
-		month = date2String.substring(2, 3);
-		year = "20" + date2String.substring(4, 5);
-		
-		GregorianCalendar date2 = new GregorianCalendar();
-		date2.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
-		
-		date2.clear(Calendar.MILLISECOND);
+		GregorianCalendar date2 = makeDate(date2String);
 		
 		try {
 			managementTool.addPersonalActivity(arg1, date1, date2);
@@ -65,29 +60,10 @@ public class AddPersonalActivitySteps {
 	@Then("^he has an activity called \"([^\"]*)\" and time (\\d+) till (\\d+)$")
 	public void heHasAnActivityCalledAndTimeTill(String arg1, int arg2, int arg3) throws Exception {
 	    List<Activity> personalActivityList = managementTool.getEmployeeLoggedIn().getPersonalActivityList();
-	    
 	    String date1String = Integer.toString(arg2);
-		
-		String day = date1String.substring(0, 1);
-		String month = date1String.substring(2, 3);
-		String year = "20" + date1String.substring(4, 5);
-		
-		GregorianCalendar date1 = new GregorianCalendar();
-		date1.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
-		
-		date1.clear(Calendar.MILLISECOND);
-		
+	    GregorianCalendar date1 = makeDate(date1String);
 		String date2String = Integer.toString(arg3);
-		
-		day = date2String.substring(0, 1);
-		month = date2String.substring(2, 3);
-		year = "20" + date2String.substring(4, 5);
-		
-		GregorianCalendar date2 = new GregorianCalendar();
-		date2.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
-		
-		date2.clear(Calendar.MILLISECOND);
-	    
+		GregorianCalendar date2 = makeDate(date2String);
 	    for (Activity a : personalActivityList) {
 	    	if (a.getName().equals(arg1)) {
 	    		assertEquals(a.getStartDate(), date1);
@@ -105,14 +81,7 @@ public class AddPersonalActivitySteps {
 	public void whenAWorkerAddsAnActivityWithStartTime(String arg1, int arg2) throws Exception {
 		String dateString = Integer.toString(arg2);
 		
-		String day = dateString.substring(0, 1);
-		String month = dateString.substring(2, 3);
-		String year = "20" + dateString.substring(4, 5);
-		
-		GregorianCalendar date = new GregorianCalendar();
-		date.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
-		
-		date.clear(Calendar.MILLISECOND);
+		GregorianCalendar date = makeDate(dateString);
 		
 		try {
 			managementTool.addPersonalActivity(arg1, date);
@@ -127,14 +96,7 @@ public class AddPersonalActivitySteps {
 	    
 	    String dateString = Integer.toString(arg2);
 		
-		String day = dateString.substring(0, 1);
-		String month = dateString.substring(2, 3);
-		String year = "20" + dateString.substring(4, 5);
-		
-		GregorianCalendar date = new GregorianCalendar();
-		date.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
-		
-		date.clear(Calendar.MILLISECOND);
+	    GregorianCalendar date = makeDate(dateString);
 	    
 	    for (Activity a : personalActivityList) {
 	    	if (a.getName().equals(arg1)) {
