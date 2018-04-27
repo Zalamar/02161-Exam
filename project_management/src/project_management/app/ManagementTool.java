@@ -202,14 +202,14 @@ public class ManagementTool {
 		return selectedActivity.getEstimatedTime();
 	}
 
-	public void addActivityStartDate(GregorianCalendar date) throws UserNotLoggedIn { // Tobias
-		if (isEmployeeLoggedIn()) {
+	public void addActivityStartDate(GregorianCalendar date) throws UserNotLoggedIn, NoActivityIsSelectedException { // Tobias
+		if (isEmployeeLoggedIn() && hasActivityBeenSelected()) {
 			selectedActivity.setStartDate(date);
 		}
 	}
 
-	public void addActivityEndDate(GregorianCalendar date) throws UserNotLoggedIn { // Tobias
-		if (isEmployeeLoggedIn()) {
+	public void addActivityEndDate(GregorianCalendar date) throws UserNotLoggedIn, NoActivityIsSelectedException { // Tobias
+		if (isEmployeeLoggedIn() && hasActivityBeenSelected()) {
 			selectedActivity.setEndDate(date);
 		}
 	}
