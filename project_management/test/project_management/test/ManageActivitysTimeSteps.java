@@ -48,14 +48,7 @@ public class ManageActivitysTimeSteps {
 	public void aWorkerAddedTheStartDate(int arg1) throws Exception { // All of this will be handled client side
 		String dateString = Integer.toString(arg1);
 		
-		String day = dateString.substring(0, 1);
-		String month = dateString.substring(2, 3);
-		String year = "20" + dateString.substring(4, 5);
-		
-		GregorianCalendar date = new GregorianCalendar();
-		date.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
-		
-		date.clear(Calendar.MILLISECOND);
+		GregorianCalendar date = makeDate(dateString);
 		
 		try {
 			managementTool.addActivityStartDate(date);
@@ -68,14 +61,7 @@ public class ManageActivitysTimeSteps {
 	public void aWorkerAddedTheEndDate(int arg1) throws Exception { // Again client side
 		String dateString = Integer.toString(arg1);
 		
-		String day = dateString.substring(0, 1);
-		String month = dateString.substring(2, 3);
-		String year = "20" + dateString.substring(4, 5);
-		
-		GregorianCalendar date = new GregorianCalendar();
-		date.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
-		
-		date.clear(Calendar.MILLISECOND);
+		GregorianCalendar date = makeDate(dateString);
 		
 		try {
 			managementTool.addActivityEndDate(date);
@@ -83,19 +69,24 @@ public class ManageActivitysTimeSteps {
 			errorMessage = e.getMessage();
 		}
 	}
-	
-	@Then("^there are a start date (\\d+)$")
-	public void thereAreAStartDate(int arg1) throws Exception {
-		String dateString = Integer.toString(arg1);
-		
-		String day = dateString.substring(0, 1);
-		String month = dateString.substring(2, 3);
-		String year = "20" + dateString.substring(4, 5);
+
+	private GregorianCalendar makeDate(String dateString) {
+		String day = dateString.substring(0, 2);
+		String month = dateString.substring(2, 4);
+		String year = "20" + dateString.substring(4, 6);
 		
 		GregorianCalendar date = new GregorianCalendar();
 		date.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
 		
 		date.clear(Calendar.MILLISECOND);
+		return date;
+	}
+	
+	@Then("^there are a start date (\\d+)$")
+	public void thereAreAStartDate(int arg1) throws Exception {
+		String dateString = Integer.toString(arg1);
+		
+		GregorianCalendar date = makeDate(dateString);
 		
 		assertEquals(date, managementTool.getActivityStartDate());
 	}
@@ -104,14 +95,7 @@ public class ManageActivitysTimeSteps {
 	public void thereAreAEndDate(int arg1) throws Exception {
 		String dateString = Integer.toString(arg1);
 		
-		String day = dateString.substring(0, 1);
-		String month = dateString.substring(2, 3);
-		String year = "20" + dateString.substring(4, 5);
-		
-		GregorianCalendar date = new GregorianCalendar();
-		date.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), 0, 0, 0);
-		
-		date.clear(Calendar.MILLISECOND);
+		GregorianCalendar date = makeDate(dateString);
 		
 		assertEquals(date, managementTool.getActivityEndDate());
 	}
