@@ -39,13 +39,13 @@ public class AddPersonalActivitySteps {
 	}
 	
 	@When("^a worker adds an activity \"([^\"]*)\" with start time (\\d+) and end time (\\d+)$")
-	public void aWorkerAddsAnActivityWithStartTimeAndEndTime(String arg1, int arg2, int arg3) throws Exception {
+	public void aWorkerAddsAnActivityWithStartTimeAndEndTime(String arg1, String arg2, String arg3) throws Exception {
 		// Start date, client side handled
-		String date1String = Integer.toString(arg2);
+		String date1String = arg2;
 		GregorianCalendar date1 = makeDate(date1String);
 		
 		// End date, client side handled
-		String date2String = Integer.toString(arg3);
+		String date2String = arg3;
 		GregorianCalendar date2 = makeDate(date2String);
 		
 		try {
@@ -58,11 +58,11 @@ public class AddPersonalActivitySteps {
 	}
 	
 	@Then("^he has an activity called \"([^\"]*)\" and time (\\d+) till (\\d+)$")
-	public void heHasAnActivityCalledAndTimeTill(String arg1, int arg2, int arg3) throws Exception {
+	public void heHasAnActivityCalledAndTimeTill(String arg1, String arg2, String arg3) throws Exception {
 	    List<Activity> personalActivityList = managementTool.getEmployeeLoggedIn().getPersonalActivityList();
-	    String date1String = Integer.toString(arg2);
+	    String date1String = arg2;
 	    GregorianCalendar date1 = makeDate(date1String);
-		String date2String = Integer.toString(arg3);
+		String date2String = arg3;
 		GregorianCalendar date2 = makeDate(date2String);
 	    for (Activity a : personalActivityList) {
 	    	if (a.getName().equals(arg1)) {
@@ -78,8 +78,8 @@ public class AddPersonalActivitySteps {
 	}
 	
 	@When("^When a worker adds an activity \"([^\"]*)\" with start time (\\d+)$")
-	public void whenAWorkerAddsAnActivityWithStartTime(String arg1, int arg2) throws Exception {
-		String dateString = Integer.toString(arg2);
+	public void whenAWorkerAddsAnActivityWithStartTime(String arg1, String arg2) throws Exception {
+		String dateString = arg2;
 		
 		GregorianCalendar date = makeDate(dateString);
 		
@@ -91,10 +91,10 @@ public class AddPersonalActivitySteps {
 	}
 	
 	@Then("^he has an activity called \"([^\"]*)\" and time (\\d+)$")
-	public void heHasAnActivityCalledAndTime(String arg1, int arg2) throws Exception {
+	public void heHasAnActivityCalledAndTime(String arg1, String arg2) throws Exception {
 		List<Activity> personalActivityList = managementTool.getEmployeeLoggedIn().getPersonalActivityList();
 	    
-	    String dateString = Integer.toString(arg2);
+	    String dateString = arg2;
 		
 	    GregorianCalendar date = makeDate(dateString);
 	    

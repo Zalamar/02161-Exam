@@ -79,13 +79,11 @@ public class ManagementTool {
 
 	public void addProjectManager(String username)
 			throws TheProjectAlreadyHaveAManager, UserNotLoggedIn, NoProjectIsSelected { // Alex
-		if (hasProjectBeenSelected()) {
-			if (!selectedProject.hasAManager() && isEmployeeLoggedIn()) {
+		if (hasProjectBeenSelected() && !selectedProject.hasAManager() && isEmployeeLoggedIn()) {
 				selectedProject.addManager(searchEmployee(username));
 			} else {
 				throw new TheProjectAlreadyHaveAManager();
 			}
-		}
 	}
 
 	public boolean isProjectManager() {
@@ -231,7 +229,8 @@ public class ManagementTool {
 
 	public void addWorkerToActivity(String username)
 			throws NoProjectIsSelected, NoActivityIsSelectedException, UserNotLoggedIn, workerNotOnProjectException { // Tobias
-		if (isEmployeeLoggedIn() && hasProjectBeenSelected() && hasActivityBeenSelected() && workerIsOnProject(username)) {
+		if (isEmployeeLoggedIn() && hasProjectBeenSelected() && hasActivityBeenSelected()
+				&& workerIsOnProject(username)) {
 			Employee worker = searchEmployee(username);
 			selectedActivity.addWorker(worker);
 		}
