@@ -6,12 +6,13 @@ Background:
 	Given a worker is register in the company 
 	And a worker is logged in 
 	And a project is created named "011001" 
+	And a worker selecets the project "011001"
 	And an activity "001" is added to the project 
 	And a project manager is added to the project 
 	And the worker is added to the acitivity 
 	
 Scenario: Add used time to the activity he on 
-	When a worker selecets the project "011001" 
+	When a worker selecets the project "011001"
 	And  a worker selecets the activity "001"
 	And a worker adds his used time 10 the activity 
 	Then there are time register 

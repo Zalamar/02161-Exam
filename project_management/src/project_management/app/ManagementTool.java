@@ -269,7 +269,6 @@ public class ManagementTool {
 		hasProjectBeenSelected();
 		hasActivityBeenSelected();
 		procent /= 100;
-		System.out.println(procent);
 		List<List<String>> availableWorkers = new ArrayList<List<String>>();
 		int lenghtOffSelectedActivity = daysBetween(selectedActivity);
 		for (Employee employee : employeeList) {
