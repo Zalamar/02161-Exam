@@ -279,11 +279,7 @@ public class ManagementTool {
 			if (daysOff <= (double) lenghtOffSelectedActivity * procent) {
 				List<String> line = new ArrayList<String>();
 				line.add(employee.getUsername());
-				if (daysOff == 1) {
-					line.add(daysOff + " day off");
-				} else {
-					line.add(daysOff + " days off");
-				}
+				line.add("" + daysOff);
 				availableWorkers.add(line);
 			}
 		}
@@ -346,8 +342,18 @@ public class ManagementTool {
 	}
 
 	public void deselectProject() { // Alex
-		selectedActivity = null;
+		deselectActivity();
 		selectedProject = null;
+	}
+
+	public void deselectActivity() {
+		selectedActivity = null;
+	}
+
+	public List<String> unregisterActivitys() throws UserNotLoggedIn, NoProjectIsSelected {
+		isEmployeeLoggedIn();
+		hasProjectBeenSelected();
+		return null;
 	}
 
 }

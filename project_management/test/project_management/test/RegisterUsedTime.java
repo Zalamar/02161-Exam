@@ -27,6 +27,12 @@ public class RegisterUsedTime {
 	public RegisterUsedTime(ManagementTool managementTool) {
 		this.managementTool = managementTool;
 	}
+	
+	@Given("^a worker adds an worker to the activity \"([^\"]*)\"$")
+	public void aWorkerAddsAnWorkerToTheActivity(String arg1) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
 
 	@When("^a worker adds his used time (\\d+) the activity$")
 	public void aWorkerAddsHisUsedTimeTheActivity(int arg1) throws Exception {
@@ -64,8 +70,8 @@ public class RegisterUsedTime {
 	    throw new PendingException();
 	}
 
-	@When("^a worker edits a register time$")
-	public void aWorkerEditsARegisterTime() throws Exception {
+	@When("^a worker try to edits a register time, adds (\\d+)$")
+	public void aWorkerTryToEditsARegisterTimeAdds(int arg1) throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new PendingException();
 	}
