@@ -28,12 +28,6 @@ public class RegisterUsedTime {
 		this.managementTool = managementTool;
 	}
 
-	@Given("^the worker is added to the acitivity$")
-	public void theWorkerIsAddedToTheAcitivity() throws Exception {
-	    
-	    throw new PendingException();
-	}
-
 	@When("^a worker adds his used time (\\d+) the activity$")
 	public void aWorkerAddsHisUsedTimeTheActivity(int arg1) throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
