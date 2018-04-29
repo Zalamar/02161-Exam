@@ -27,28 +27,10 @@ public class RegisterUsedTime {
 	public RegisterUsedTime(ManagementTool managementTool) {
 		this.managementTool = managementTool;
 	}
-	
-	@Given("^an activity \"([^\"]*)\" is added to the project$")
-	public void anActivityIsAddedToTheProject(String name) throws Exception {
-		project.searchActivitys((String) activity.getName()); 		// virker det? <---------------------
-	    throw new PendingException();
-	}
-
-	@Given("^a project manager is added to the project$")
-	public void aProjectManagerIsAddedToTheProject(String name) throws Exception {
-	    managementTool.addProjectManager(name);
-	    throw new PendingException();
-	}
 
 	@Given("^the worker is added to the acitivity$")
 	public void theWorkerIsAddedToTheAcitivity() throws Exception {
 	    
-	    throw new PendingException();
-	}
-
-	@When("^a worker selecets the activity \"([^\"]*)\"$")
-	public void aWorkerSelecetsTheActivity(String arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
 	    throw new PendingException();
 	}
 
