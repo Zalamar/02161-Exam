@@ -55,8 +55,8 @@ public class RegisterUsedTime {
 	}
 
 	@When("^a worker adds his used time (\\d+) the activity$")
-	public void aWorkerAddsHisUsedTimeTheActivity(int arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
+	public void aWorkerAddsHisUsedTimeTheActivity(int usedTime) throws Exception {
+	    activity.addUsedTime(usedTime); // <----------------- Should be "add used time" not "set used time"
 	    throw new PendingException();
 	}
 
