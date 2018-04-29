@@ -206,7 +206,7 @@ public class ManagementTool {
 		}
 	}
 
-	public void addActivityEndDate(GregorianCalendar date) throws UserNotLoggedIn, NoActivityIsSelectedException { // Tobias
+	public void addActivityEndDate(GregorianCalendar date) throws UserNotLoggedIn, NoActivityIsSelectedException, startDateAfterEndDateException { // Tobias
 		if (isEmployeeLoggedIn() && hasActivityBeenSelected()) {
 			selectedActivity.setEndDate(date);
 		}

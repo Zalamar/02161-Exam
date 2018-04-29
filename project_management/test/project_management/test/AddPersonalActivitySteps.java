@@ -38,7 +38,7 @@ public class AddPersonalActivitySteps {
 		return date;
 	}
 	
-	@When("^a worker adds an activity \"([^\"]*)\" with start time (\\d+) and end time (\\d+)$")
+	@When("^a worker adds an activity \"([^\"]*)\" with start time \"([^\"]*)\" and end time \"([^\"]*)\"$")
 	public void aWorkerAddsAnActivityWithStartTimeAndEndTime(String arg1, String arg2, String arg3) throws Exception {
 		// Start date, client side handled
 		String date1String = arg2;
@@ -57,7 +57,7 @@ public class AddPersonalActivitySteps {
 		}
 	}
 	
-	@Then("^he has an activity called \"([^\"]*)\" and time (\\d+) till (\\d+)$")
+	@Then("^he has an activity called \"([^\"]*)\" and time \"([^\"]*)\" till \"([^\"]*)\"$")
 	public void heHasAnActivityCalledAndTimeTill(String arg1, String arg2, String arg3) throws Exception {
 	    List<Activity> personalActivityList = managementTool.getEmployeeLoggedIn().getPersonalActivityList();
 	    String date1String = arg2;
@@ -77,7 +77,7 @@ public class AddPersonalActivitySteps {
 	    assertEquals(arg1, errorMessage);
 	}
 	
-	@When("^When a worker adds an activity \"([^\"]*)\" with start time (\\d+)$")
+	@When("^When a worker adds an activity \"([^\"]*)\" with start time \"([^\"]*)\"$")
 	public void whenAWorkerAddsAnActivityWithStartTime(String arg1, String arg2) throws Exception {
 		String dateString = arg2;
 		
@@ -90,7 +90,7 @@ public class AddPersonalActivitySteps {
 		}
 	}
 	
-	@Then("^he has an activity called \"([^\"]*)\" and time (\\d+)$")
+	@Then("^he has an activity called \"([^\"]*)\" and time \"([^\"]*)\"$")
 	public void heHasAnActivityCalledAndTime(String arg1, String arg2) throws Exception {
 		List<Activity> personalActivityList = managementTool.getEmployeeLoggedIn().getPersonalActivityList();
 	    

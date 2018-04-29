@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import project_management.app.exceptions.startDateAfterEndDateException;
+
 public class Activity {
 
 	private String name;
@@ -11,7 +13,7 @@ public class Activity {
 	private GregorianCalendar startDate;
 	private GregorianCalendar endDate;
 	private List<Employee> workerList = new ArrayList<Employee>();
-	
+
 	public Activity(String name) {
 		this.name = name;
 	}
@@ -40,10 +42,14 @@ public class Activity {
 		return endDate;
 	}
 
-	public void setEndDate(GregorianCalendar endDate) { // Tobias
-		this.endDate = endDate;
+	public void setEndDate(GregorianCalendar endDate) throws startDateAfterEndDateException { // Tobias
+		if (startDate.before(endDate)) {
+			this.endDate = endDate;
+		} else {
+			throw new startDateAfterEndDateException();
+		}
 	}
-	
+
 	public void setStartDate(GregorianCalendar startDate) { // Tobias
 		this.startDate = startDate;
 	}

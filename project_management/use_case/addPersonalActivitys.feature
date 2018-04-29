@@ -4,11 +4,11 @@ Feature: Add Personal Activitys
 	
 Background: 
 	Given a worker is register in the company 
-	And a worker is logged in 
+	And a worker is logged in
 	
 Scenario: The worker adds an activity 
 	When a worker adds an activity "Holiday" with start time "091118" and end time "161118" 
-	Then he has an activity called "Holiday" and time 091118 till 161118 
+	Then he has an activity called "Holiday" and time "091118" till "161118" 
 	
 Scenario: Try to do it when logged out 
 	Given a worker is logged out 
