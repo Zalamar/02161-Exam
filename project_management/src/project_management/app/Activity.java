@@ -13,7 +13,8 @@ public class Activity {
 	private GregorianCalendar startDate = null;
 	private GregorianCalendar endDate = null;
 	private List<Employee> workerList = new ArrayList<Employee>();
-
+	private int usedTime = 0;
+	
 	public Activity(String name) {
 		this.name = name;
 	}
@@ -65,6 +66,10 @@ public class Activity {
 			}
 		}
 		return null;
+	}
+	
+	public void setUsedTime (int usedTime) { // Oliver
+		this.usedTime = usedTime;
 	}
 
 }

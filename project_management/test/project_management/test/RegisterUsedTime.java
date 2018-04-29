@@ -1,5 +1,8 @@
 package project_management.test;
-
+/**
+ * @author Oliver
+ *
+ */
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -23,20 +26,20 @@ public class RegisterUsedTime {
 	}
 	
 	@Given("^an activity \"([^\"]*)\" is added to the project$")
-	public void anActivityIsAddedToTheProject(String arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
+	public void anActivityIsAddedToTheProject(String name) throws Exception {
+		 managementTool.addAnActivity(name);
 	    throw new PendingException();
 	}
 
 	@Given("^a project manager is added to the project$")
-	public void aProjectManagerIsAddedToTheProject() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
+	public void aProjectManagerIsAddedToTheProject(String name) throws Exception {
+	    managementTool.addProjectManager(name);
 	    throw new PendingException();
 	}
 
 	@Given("^the worker is added to the acitivity$")
 	public void theWorkerIsAddedToTheAcitivity() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
+	    
 	    throw new PendingException();
 	}
 
