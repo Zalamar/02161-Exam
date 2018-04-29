@@ -10,8 +10,8 @@ public class Activity {
 
 	private String name;
 	private int estimatedTime = 0;
-	private GregorianCalendar startDate;
-	private GregorianCalendar endDate;
+	private GregorianCalendar startDate = null;
+	private GregorianCalendar endDate = null;
 	private List<Employee> workerList = new ArrayList<Employee>();
 
 	public Activity(String name) {

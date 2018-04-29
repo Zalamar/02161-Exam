@@ -1,5 +1,7 @@
 package project_management.test;
 
+//Alex
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -19,6 +21,7 @@ import project_management.app.exceptions.ActivityNotFoundException;
 import project_management.app.exceptions.NoActivityIsSelectedException;
 import project_management.app.exceptions.NoProjectIsSelected;
 import project_management.app.exceptions.NoProjectWithThatName;
+import project_management.app.exceptions.NoWorkerAvailble;
 import project_management.app.exceptions.TheProjectAlreadyHaveAManager;
 import project_management.app.exceptions.UserNotLoggedIn;
 import project_management.app.exceptions.startDateAfterEndDateException;
@@ -26,6 +29,7 @@ import project_management.app.exceptions.startDateAfterEndDateException;
 public class SeeAvalibleWorkers {
 
 	private ManagementTool managementTool;
+	private List<List<String>> availableWorkers;
 
 	public SeeAvalibleWorkers(ManagementTool managementTool) {
 		this.managementTool = managementTool;
@@ -97,12 +101,65 @@ public class SeeAvalibleWorkers {
 
 	@When("^the project manager selects the project \"([^\"]*)\" and acticity \"([^\"]*)\"$")
 	public void theProjectManagerSelectsTheProjectAndActicity(String nameP, String nameA) throws Exception {
+		managementTool.selectProject(nameP);
+		managementTool.selectActivity(nameA);
+
+	}
+
+	@When("^the project manager selects see available workers$")
+	public void theProjectManagerSelectsSeeAvailableWorkers() throws Exception {
+		availableWorkers = managementTool.getWhosAvailable();
+	}
+
+	@Then("^he will se whos is avalible$")
+	public void heWillSeWhosIsAvalible(List<List<String>> testLines) throws Exception {
+		int i = 0;
+		for (List<String> line : testLines) {
+			assertEquals(line, availableWorkers.get(i));
+			i++;
+		}
+	}
+
+	@Given("^they all have more personal activity$")
+	public void theyAllHaveMorePersonalActivity(List<List<String>> activitys) throws Exception {
+		theyAllHaveAnPersonalActivity(activitys);
+	}
+
+	@When("^the trys project manager selects see available workers$")
+	public void theTrysProjectManagerSelectsSeeAvailableWorkers() throws Exception {
 		try {
-			managementTool.selectProject(nameP);
-			managementTool.selectActivity(nameA);
-		} catch (ActivityNotFoundException e) {
+			availableWorkers = managementTool.getWhosAvailable();
+		} catch (NoWorkerAvailble e) {
 			ErrorMessage.errorMessage = e.getMessage();
-		} catch (NoProjectWithThatName e) {
+		} catch (UserNotLoggedIn e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		} catch (NoProjectIsSelected e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		} catch (NoActivityIsSelectedException e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		}
+	}
+
+	@When("^that no project mangager is logged in$")
+	public void thatNoProjectMangagerIsLoggedIn() throws Exception {
+		managementTool.logout();
+	}
+
+	@When("^the project manager deselects the project$")
+	public void theProjectManagerDeselectsThePorject() throws Exception {
+		managementTool.deselectProject();
+	}
+
+	@When("^the project manager selects see available workers, with (\\d+) % off limit$")
+	public void theProjectManagerSelectsSeeAvailableWorkersWithOffLimit(int number) throws Exception {
+		availableWorkers = managementTool.getWhosAvailable(number);
+	}
+	
+	@When("^the trys project manager selects see available workers, with (\\d+) % days off$")
+	public void theTrysProjectManagerSelectsSeeAvailableWorkersWithDaysOff(int number) throws Exception {
+		try {
+			availableWorkers = managementTool.getWhosAvailable(number);
+		} catch (NoWorkerAvailble e) {
 			ErrorMessage.errorMessage = e.getMessage();
 		}
 	}

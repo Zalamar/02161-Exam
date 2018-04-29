@@ -1,6 +1,7 @@
 package project_management.app;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import project_management.app.exceptions.NoActivityIsSelectedException;
 import project_management.app.exceptions.NoActivityWithNameException;
 import project_management.app.exceptions.NoProjectIsSelected;
 import project_management.app.exceptions.NoProjectWithThatName;
+import project_management.app.exceptions.NoWorkerAvailble;
 import project_management.app.exceptions.TheProjectAlreadyHaveAManager;
 import project_management.app.exceptions.UserNotLoggedIn;
 import project_management.app.exceptions.startDateAfterEndDateException;
@@ -47,8 +49,7 @@ public class ManagementTool {
 
 	public void logout() { // Alex
 		employeeLoggedIn = null;
-		selectedActivity = null;
-		selectedProject = null;
+		deselectProject();
 	}
 
 	public void selectProject(String name) throws NoProjectWithThatName { // Alex
@@ -80,10 +81,10 @@ public class ManagementTool {
 	public void addProjectManager(String username)
 			throws TheProjectAlreadyHaveAManager, UserNotLoggedIn, NoProjectIsSelected { // Alex
 		if (hasProjectBeenSelected() && !selectedProject.hasAManager() && isEmployeeLoggedIn()) {
-				selectedProject.addManager(searchEmployee(username));
-			} else {
-				throw new TheProjectAlreadyHaveAManager();
-			}
+			selectedProject.addManager(searchEmployee(username));
+		} else {
+			throw new TheProjectAlreadyHaveAManager();
+		}
 	}
 
 	public boolean isProjectManager() {
@@ -206,7 +207,8 @@ public class ManagementTool {
 		}
 	}
 
-	public void addActivityEndDate(GregorianCalendar date) throws UserNotLoggedIn, NoActivityIsSelectedException, startDateAfterEndDateException { // Tobias
+	public void addActivityEndDate(GregorianCalendar date)
+			throws UserNotLoggedIn, NoActivityIsSelectedException, startDateAfterEndDateException { // Tobias
 		if (isEmployeeLoggedIn() && hasActivityBeenSelected()) {
 			selectedActivity.setEndDate(date);
 		}
@@ -261,6 +263,93 @@ public class ManagementTool {
 		if (isEmployeeLoggedIn()) {
 			employeeLoggedIn.addPersonalActivity(name, date);
 		}
+	}
+	
+	public List<List<String>> getWhosAvailable(double procent) throws UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException, NoWorkerAvailble {
+		isEmployeeLoggedIn();
+		hasProjectBeenSelected();
+		hasActivityBeenSelected();
+		procent /= 100;
+		System.out.println(procent);
+		List<List<String>> availableWorkers = new ArrayList<List<String>>();
+		int lenghtOffSelectedActivity = daysBetween(selectedActivity);
+		for (Employee employee : employeeList) {
+			int daysOff = 0;
+			for (Activity activity : employee.getPersonalActivityList()) {
+				daysOff += getTheNumberOfDays(lenghtOffSelectedActivity, activity);
+			}
+			if (daysOff <= (double) lenghtOffSelectedActivity * procent) {
+				List<String> line = new ArrayList<String>();
+				line.add(employee.getUsername());
+				if (daysOff == 1) {
+					line.add(daysOff + " day off");
+				} else {
+					line.add(daysOff + " days off");
+				}
+				availableWorkers.add(line);
+			}
+		}
+		if (availableWorkers.size() > 0) {
+			return availableWorkers;
+		} else {
+			throw new NoWorkerAvailble();
+		}
+	}
+
+	public List<List<String>> getWhosAvailable() throws NoWorkerAvailble, UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException { // Alex
+		return getWhosAvailable(75);
+	}
+
+	private int getTheNumberOfDays(int lenghtOffSelectedActivity, Activity activity) {
+		int days = 0;
+		if (startsBeforeSelected(activity) && endsAfterSelected(activity)) {
+			days += lenghtOffSelectedActivity;
+		} else if (startsAfterSelected(activity)) {
+			days += 0;
+		} else if (endsBeforeSelected(activity)) {
+			days += 0;
+		} else if (startsBeforeSelected(activity)) {
+			days += daysBetween(selectedActivity.getStartDate(), activity.getEndDate());
+		} else if (endsAfterSelected(activity)) {
+			days += daysBetween(activity.getStartDate(), selectedActivity.getEndDate());
+		} else {
+			days += (isThereAEndDate(activity)) ? daysBetween(activity) : 1;
+		}
+		return days;
+	}
+
+	private boolean endsBeforeSelected(Activity activity) {
+		return isThereAEndDate(activity) && activity.getEndDate().before(selectedActivity.getStartDate());
+	}
+
+	private boolean startsAfterSelected(Activity activity) {
+		return activity.getStartDate().after(selectedActivity.getEndDate());
+	}
+
+	private boolean isThereAEndDate(Activity activity) { // Alex
+		return activity.getEndDate() != null;
+	}
+
+	private boolean endsAfterSelected(Activity activity) {// Alex
+		return isThereAEndDate(activity) && activity.getEndDate().after(selectedActivity.getEndDate());
+	}
+
+	private boolean startsBeforeSelected(Activity activity) {// Alex
+		return activity.getStartDate().before(selectedActivity.getStartDate());
+	}
+
+	private int daysBetween(Activity activity) {// Alex
+		return daysBetween(activity.getStartDate(), activity.getEndDate());
+	}
+
+	private int daysBetween(GregorianCalendar gregorianCalendar, GregorianCalendar gregorianCalendar2) { // Alex
+		return (int) ((gregorianCalendar2.getTime().getTime() - gregorianCalendar.getTime().getTime())
+				/ (1000 * 60 * 60 * 24)) + 1;
+	}
+
+	public void deselectProject() { // Alex
+		selectedActivity = null;
+		selectedProject = null;
 	}
 
 }
