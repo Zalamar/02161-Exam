@@ -14,20 +14,23 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import project_management.app.Activity;
 import project_management.app.ManagementTool;
+import project_management.app.Project;
 import project_management.app.exceptions.UserNotLoggedIn;
 
 public class RegisterUsedTime {
 
 	private ManagementTool managementTool;
-	
+	private Project project;
+	private Activity activity;
 	public RegisterUsedTime(ManagementTool managementTool) {
 		this.managementTool = managementTool;
 	}
 	
 	@Given("^an activity \"([^\"]*)\" is added to the project$")
 	public void anActivityIsAddedToTheProject(String name) throws Exception {
-		 managementTool.addAnActivity(name);
+		project.searchActivitys((String) activity.getName()); 		// virker det? <---------------------
 	    throw new PendingException();
 	}
 
