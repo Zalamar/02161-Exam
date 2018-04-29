@@ -15,6 +15,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import project_management.app.Activity;
+import project_management.app.Employee;
 import project_management.app.ManagementTool;
 import project_management.app.Project;
 import project_management.app.exceptions.UserNotLoggedIn;
@@ -24,6 +25,7 @@ public class RegisterUsedTime {
 	private ManagementTool managementTool;
 	private Project project;
 	private Activity activity;
+	private Employee employee;
 	public RegisterUsedTime(ManagementTool managementTool) {
 		this.managementTool = managementTool;
 	}
@@ -41,14 +43,14 @@ public class RegisterUsedTime {
 	}
 
 	@Given("^the worker is added to the acitivity$")
-	public void theWorkerIsAddedToTheAcitivity() throws Exception {
-	    
+	public void theWorkerIsAddedToTheAcitivity(String worker) throws Exception {
+	    activity.searchWorkerList(employee.getUsername());
 	    throw new PendingException();
 	}
 
 	@When("^a worker selecets the activity \"([^\"]*)\"$")
-	public void aWorkerSelecetsTheActivity(String arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
+	public void aWorkerSelecetsTheActivity(String activityName) throws Exception {
+	    managementTool.selectActivity(activityName);
 	    throw new PendingException();
 	}
 
