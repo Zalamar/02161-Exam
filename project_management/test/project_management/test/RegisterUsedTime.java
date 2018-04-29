@@ -29,14 +29,14 @@ public class RegisterUsedTime {
 	}
 	
 	@Given("^an activity \"([^\"]*)\" is added to the project$")
-	public void anActivityIsAddedToTheProject(String name) throws Exception {
-		project.searchActivitys((String) activity.getName()); 		// virker det? <---------------------
+	public void anActivityIsAddedToTheProject(String activityname) throws Exception {
+		project.searchActivitys(activityname); 		// virker det? <---------------------
 	    throw new PendingException();
 	}
 
 	@Given("^a project manager is added to the project$")
-	public void aProjectManagerIsAddedToTheProject(String name) throws Exception {
-	    managementTool.addProjectManager(name);
+	public void aProjectManagerIsAddedToTheProject() throws Exception {
+	    project.hasAManager();
 	    throw new PendingException();
 	}
 
