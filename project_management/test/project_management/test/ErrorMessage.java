@@ -13,4 +13,9 @@ public class ErrorMessage {
 	    errorMessage = "";
 	}
 
+	@Then("^I get no errors$")
+	public void iGetNoErrors() throws Exception {
+	    assertEquals(errorMessage, "");
+	}
+	
 }

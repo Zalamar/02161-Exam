@@ -244,7 +244,7 @@ public class ManagementTool {
 				return true;
 			}
 		}
-		throw new workerNotOnProjectException(); // Not part of use_case
+		throw new workerNotOnProjectException();
 	}
 
 	public void addPersonalActivity(String name, GregorianCalendar startDate, GregorianCalendar endDate)
@@ -361,6 +361,10 @@ public class ManagementTool {
 
 	public List<List<String>> getUsedTime() {
 		return selectedActivity.getUsedTime();
+	}
+	
+	public void removeWorker(String username) { // Tobias
+		selectedProject.removeWorker(username);
 	}
 
 }

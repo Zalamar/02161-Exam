@@ -83,4 +83,14 @@ public class Project {
 		return workerList;
 	}
 
+	public void removeWorker(String username) { // Tobias
+		Employee removedWorker = null;
+		for (Employee e : workerList) {
+			if (e.getUsername().equals(username)) {
+				removedWorker = e;
+			}
+		}
+		workerList.remove(removedWorker);
+	}
+
 }
