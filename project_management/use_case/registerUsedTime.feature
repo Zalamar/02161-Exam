@@ -9,6 +9,7 @@ Background:
 	And a worker selecets the project "011001" 
 	And a worker add an activity "001" to the project 
 	And a project manager "AAAA" is added to the project 
+	And a worker is added to the project
 	And a worker adds an worker to the activity "001"
 	
 Scenario: Add used time to the activity he on 

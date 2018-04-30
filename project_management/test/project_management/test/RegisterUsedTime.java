@@ -30,8 +30,9 @@ public class RegisterUsedTime {
 	}
 	
 	@Given("^a worker adds an worker to the activity \"([^\"]*)\"$")
-	public void aWorkerAddsAnWorkerToTheActivity(String username) throws Exception {
-		managementTool.addWorkerToActivity(username);
+	public void aWorkerAddsAnWorkerToTheActivity(String activity) throws Exception {
+		managementTool.selectActivity(activity);
+		managementTool.addWorkerToActivity("AAAA");
 	}
 
 	@When("^a worker adds his used time (\\d+) the activity$")
