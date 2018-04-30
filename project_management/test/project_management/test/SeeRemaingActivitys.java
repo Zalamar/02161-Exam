@@ -25,6 +25,7 @@ public class SeeRemaingActivitys {
 
 	private ManagementTool managementTool;
 	private List<String> unregisterActivitys;
+	private String message = "";
 
 	public SeeRemaingActivitys(ManagementTool managementTool) {
 		this.managementTool = managementTool;
@@ -37,23 +38,29 @@ public class SeeRemaingActivitys {
 
 	@When("^a worker clicks See unregister time used on activitys$")
 	public void aWorkerClicksSeeUnregisterTimeUsedOnActivitys() throws Exception {
-		unregisterActivitys = managementTool.unregisterActivitys();
+		unregisterActivitys = managementTool.seeUnregisterActivitys();
+	    throw new PendingException();
 	}
 
 	@Then("^a worker sees$")
 	public void aWorkerSees(List<String> arg1) throws Exception {
 		assertEquals(arg1, unregisterActivitys);
 	}
+	
+	@Then("^a worker sees \"([^\"]*)\"$")
+	public void aWorkerSees(String arg1) throws Exception {
+		assertEquals(arg1, message);
+	}
 
 	@When("^a worker try to click see unregister time used on activitys$")
 	public void aWorkerTryToClickSeeUnregisterTimeUsedOnActivitys() throws Exception {
 		try {
-		unregisterActivitys = managementTool.unregisterActivitys();
+		unregisterActivitys = managementTool.seeUnregisterActivitys();
 		} catch (UserNotLoggedIn e) {
 			ErrorMessage.errorMessage = e.getMessage();
 		} catch (NoProjectIsSelected e) {
 			ErrorMessage.errorMessage = e.getMessage();
-		}
+		} 
 	}
 
 	@Given("^a worker makes (\\d+) more activitys in project \"([^\"]*)\"$")

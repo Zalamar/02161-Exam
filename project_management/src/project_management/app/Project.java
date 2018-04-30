@@ -33,6 +33,18 @@ public class Project {
 
 	public void addManager(Employee e) {
 		manager = e;
+		if (!isEmployeeOnList(e.getUsername())) {
+			workerList.add(e);
+		}
+	}
+
+	public boolean isEmployeeOnList(String username) {
+		for (Employee employee : workerList) {
+			if (employee.getUsername().equals(username)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Employee getManager() {
@@ -50,7 +62,7 @@ public class Project {
 	public void removeManager() {
 		manager = null;
 	}
-	
+
 	public List<Activity> getActivityList() { // Tobias
 		return activityList;
 	}
@@ -60,7 +72,11 @@ public class Project {
 	}
 
 	public void addWorker(Employee worker) { // Tobias
-		workerList.add(worker);
+		if (!isEmployeeOnList(worker.getUsername())) {
+			workerList.add(worker);
+		} else {
+
+		}
 	}
 
 	public List<Employee> getWorkerList() { // Tobias

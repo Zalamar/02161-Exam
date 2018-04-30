@@ -295,21 +295,19 @@ public class ManagementTool {
 	}
 
 	private int getTheNumberOfDays(int lenghtOffSelectedActivity, Activity activity) {
-		int days = 0;
 		if (startsBeforeSelected(activity) && endsAfterSelected(activity)) {
-			days += lenghtOffSelectedActivity;
+			return lenghtOffSelectedActivity;
 		} else if (startsAfterSelected(activity)) {
-			days += 0;
+			return 0;
 		} else if (endsBeforeSelected(activity)) {
-			days += 0;
+			return 0;
 		} else if (startsBeforeSelected(activity)) {
-			days += daysBetween(selectedActivity.getStartDate(), activity.getEndDate());
+			return daysBetween(selectedActivity.getStartDate(), activity.getEndDate());
 		} else if (endsAfterSelected(activity)) {
-			days += daysBetween(activity.getStartDate(), selectedActivity.getEndDate());
+			return daysBetween(activity.getStartDate(), selectedActivity.getEndDate());
 		} else {
-			days += (isThereAEndDate(activity)) ? daysBetween(activity) : 1;
+			return (isThereAEndDate(activity)) ? daysBetween(activity) : 1;
 		}
-		return days;
 	}
 
 	private boolean endsBeforeSelected(Activity activity) {
@@ -346,11 +344,11 @@ public class ManagementTool {
 		selectedProject = null;
 	}
 
-	public void deselectActivity() {
+	public void deselectActivity() { // Alex
 		selectedActivity = null;
 	}
 
-	public List<String> unregisterActivitys() throws UserNotLoggedIn, NoProjectIsSelected {
+	public List<String> seeUnregisterActivitys() throws UserNotLoggedIn, NoProjectIsSelected { 
 		isEmployeeLoggedIn();
 		hasProjectBeenSelected();
 		return null;

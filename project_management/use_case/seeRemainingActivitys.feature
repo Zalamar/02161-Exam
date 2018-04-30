@@ -39,7 +39,7 @@ Scenario: See they remaining activitys that are missing timed used, when no more
 	And  a worker selecets an activity "002" 
 	And a worker adds his used time 10 the activity
 	When a worker try to click see unregister time used on activitys
-	Then a worker sees "No activitys are missing register used time"
+	Then a worker sees "No activity's are missing register used time"
 
 Scenario: See they remaining activitys that are missing timed used, on more then 1 actvity
 	Given a worker makes 10 more activitys in project "011001"
