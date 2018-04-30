@@ -57,22 +57,14 @@ Scenario: Try to edit an allready registered time when not logged in
 	And a worker selecets an activity "001" 
 	And a worker try to edits a register time, adds 3 
 	Then I get the error message "No user is logged in" 
-#	
-#Scenario: Register time on an activity the worker is not on 
-#	Given another project is created named "011002" 
-#	And a worker selecets the project "011002" 
-#	And a worker add an activity "021" to the project 
-#	When a worker selecets the project "011002" 
-#	And a worker selecets an activity "021" 
-#	And a worker adds his used time 10 the activity 
-#	Then there are time register on the new activity
-#		| AAAA | 10 |
-#	And I get no errors 
-#	
-#Scenario: 
-#	Try to register time on an activity the worker is not on, when no one is logged in 
-#	Given that no worker is logged in 
-#	When a worker selecets the project "011001" 
-#	And a worker selecets an activity "001" 
-#	When a worker adds his used time 10 the activity 
-#	Then I get the error message "No user is logged in"
+	
+Scenario: Register time on an activity the worker is not on 
+	Given another project is created named "011002" 
+	And a worker selecets the project "011002" 
+	And a worker add an activity "021" to the project 
+	When a worker selecets the project "011002" 
+	And a worker selecets an activity "021" 
+	And a worker adds his used time 10 the activity 
+	Then there are time register on the new activity
+		| AAAA | 10 |
+	And I get no errors 

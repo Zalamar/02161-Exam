@@ -81,17 +81,12 @@ public class RegisterUsedTime {
 	}
 
 	@Given("^another project is created named \"([^\"]*)\"$")
-	public void anotherProjectIsCreatedNamed(String arg1) throws Exception {
-
-	}
-
-	@Given("^an activity (\\d+) is added to the new project$")
-	public void anActivityIsAddedToTheNewProject(int arg1) throws Exception {
-
+	public void anotherProjectIsCreatedNamed(String name) throws Exception {
+		managementTool.createProject(name);
 	}
 
 	@Then("^there are time register on the new activity$")
-	public void thereAreTimeRegisterOnTheNewActivity() throws Exception {
-
+	public void thereAreTimeRegisterOnTheNewActivity(List<List<String>> arg1) throws Exception {
+		assertEquals(arg1, managementTool.getUsedTime());
 	}
 }
