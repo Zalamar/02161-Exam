@@ -13,7 +13,8 @@ Background:
 Scenario: Add worker to an activity 
 	When a worker selecets an activity "001"
 	And a worker adds an worker to the activity 
-	Then the worker is added to the activity 
+	Then the worker is added to the activity
+	And I get no errors
 	
 Scenario: try to add a worker to the activity when no on is logged in 
 	When a worker selecets the project "011001" 

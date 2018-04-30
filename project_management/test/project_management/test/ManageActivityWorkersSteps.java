@@ -53,6 +53,5 @@ public class ManageActivityWorkersSteps {
 	public void iGetTheManageActivityWorkersErrorMessage(String arg1) throws Exception {
 	    assertEquals(errorMessage, arg1);
 	}
-
 	
 }
