@@ -354,7 +354,7 @@ public class ManagementTool {
 		return null;
 	}
 
-	public void removeWorker(String username) {
+	public void removeWorker(String username) { // Tobias
 		selectedProject.removeWorker(username);
 	}
 

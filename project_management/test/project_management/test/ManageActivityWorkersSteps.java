@@ -1,19 +1,14 @@
 package project_management.test;
 
-import static org.junit.Assert.assertEquals;
-
 /**
  * @author Tobias
  *
  */
+
+import static org.junit.Assert.assertEquals;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-
-/**
- * @author Tobias
- *
- */
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
