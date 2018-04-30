@@ -87,5 +87,5 @@ Scenario: Try to do it, when he wants 0 days off
 	Given the project manager selecets the project "011001" 
 	And the project manager adds the start time "010418" and end time "300418" to the activity "001" 
 	When the project manager selects the project "011001" and acticity "001" 
-	And the project manager try to see available workers, with 0 % days off 
+	And the project manager try to see available workers, with 0 % days off
 	Then I get the error message "No worker is available" 
