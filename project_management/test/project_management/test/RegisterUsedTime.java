@@ -1,9 +1,11 @@
 package project_management.test;
+
 /**
  * @author Oliver
  *
  */
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -15,14 +17,16 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import project_management.app.ManagementTool;
-import project_management.app.exceptions.UserNotLoggedIn;
+import project_management.app.exceptions.*;
+
 public class RegisterUsedTime {
 
 	private ManagementTool managementTool;
+
 	public RegisterUsedTime(ManagementTool managementTool) {
 		this.managementTool = managementTool;
 	}
-	
+
 	@Given("^a worker adds an worker to the activity \"([^\"]*)\"$")
 	public void aWorkerAddsAnWorkerToTheActivity(String activity) throws Exception {
 		managementTool.selectActivity(activity);
@@ -31,53 +35,63 @@ public class RegisterUsedTime {
 
 	@When("^a worker adds his used time (\\d+) the activity$")
 	public void aWorkerAddsHisUsedTimeTheActivity(int usedTime) throws Exception {
-	    managementTool.addUsedTime(usedTime);
+		try {
+			managementTool.addUsedTime(usedTime);
+		} catch (UserNotLoggedIn e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		} catch (NoActivityIsSelectedException e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		} catch (NoProjectIsSelected e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		}
 	}
 
 	@Then("^there are time register$")
 	public void thereAreTimeRegister(List<List<String>> arg1) throws Exception {
-	    assertEquals(arg1, managementTool.getUsedTime());
+		assertEquals(arg1, managementTool.getUsedTime());
 	}
 
 	@Given("^deselects the activity and project$")
 	public void deselectsTheActivityAndProject() throws Exception {
-	    managementTool.deselectActivity();
-	    managementTool.deselectProject();
+		managementTool.deselectActivity();
+		managementTool.deselectProject();
 	}
 
 	@When("^a worker edits a register time, adds (\\d+)$")
 	public void aWorkerEditsARegisterTimeAdds(int arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+		managementTool.addUsedTime(arg1);
 	}
 
 	@Then("^the time is (\\d+)$")
 	public void theTimeIs(int arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+		assertEquals("" + arg1, managementTool.getUsedTime().get(0).get(1));
 	}
 
 	@When("^a worker try to edits a register time, adds (\\d+)$")
-	public void aWorkerTryToEditsARegisterTimeAdds(int arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void aWorkerTryToEditsARegisterTimeAdds(int usedTime) throws Exception {
+		try {
+			managementTool.addUsedTime(usedTime);
+		} catch (UserNotLoggedIn e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		} catch (NoActivityIsSelectedException e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		} catch (NoProjectIsSelected e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		}
 	}
 
 	@Given("^another project is created named \"([^\"]*)\"$")
 	public void anotherProjectIsCreatedNamed(String arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+
 	}
 
 	@Given("^an activity (\\d+) is added to the new project$")
 	public void anActivityIsAddedToTheNewProject(int arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+
 	}
 
 	@Then("^there are time register on the new activity$")
 	public void thereAreTimeRegisterOnTheNewActivity() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+
 	}
 }

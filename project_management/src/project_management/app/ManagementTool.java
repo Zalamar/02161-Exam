@@ -354,7 +354,10 @@ public class ManagementTool {
 		return null;
 	}
 
-	public void addUsedTime(int usedTime) {
+	public void addUsedTime(int usedTime) throws UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException {
+		isEmployeeLoggedIn();
+		hasProjectBeenSelected();
+		hasActivityBeenSelected();
 		selectedActivity.addUsedTime(usedTime, employeeLoggedIn.getUsername());
 		
 	}

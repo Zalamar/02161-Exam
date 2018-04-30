@@ -28,6 +28,8 @@ public class RemoveActivitySteps {
 	    	managementTool.selectActivity(arg1);
 	    } catch (ActivityNotFoundException e) {
 	    	errorMessage = e.getMessage();
+	    } catch (UserNotLoggedIn e) {
+	    	ErrorMessage.errorMessage = e.getMessage();
 	    }
 	}
 	
