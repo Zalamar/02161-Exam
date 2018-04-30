@@ -29,10 +29,10 @@ Scenario: The project manager will see the available workers
 	When the project manager selects the project "011001" and acticity "001" 
 	And the project manager selects see available workers 
 	Then he will se whos is avalible 
-		| AAAA | 1 day off |
-		| AAAB | 1 day off |
-		| AAAD | 3 days off |
-		| AAAE | 10 days off|
+		| AAAA | 1 |
+		| AAAB | 1 |
+		| AAAD | 3 |
+		| AAAE | 10|
 		
 Scenario: See none are available because of they have no time 
 	Given they all have more personal activity 
@@ -79,9 +79,9 @@ The project manager will see the available workers out from how many procent day
 	When the project manager selects the project "011001" and acticity "001" 
 	And the project manager selects see available workers, with 10 % off limit 
 	Then he will se whos is avalible 
-		| AAAA | 1 day off |
-		| AAAB | 1 day off |
-		| AAAD | 3 days off |
+		| AAAA | 1 |
+		| AAAB | 1 |
+		| AAAD | 3 |
 		
 Scenario: Try to do it, when he wants 0 days off 
 	Given the project manager selecets the project "011001" 

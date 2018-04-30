@@ -154,7 +154,7 @@ public class SeeAvalibleWorkers {
 	public void theProjectManagerSelectsSeeAvailableWorkersWithOffLimit(int number) throws Exception {
 		availableWorkers = managementTool.getWhosAvailable(number);
 	}
-	
+
 	@When("^the trys project manager selects see available workers, with (\\d+) % days off$")
 	public void theTrysProjectManagerSelectsSeeAvailableWorkersWithDaysOff(int number) throws Exception {
 		try {
