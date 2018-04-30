@@ -68,8 +68,8 @@ public class Activity {
 		return null;
 	}
 	
-	public void addUsedTime (int usedTime) { // Oliver ................... <.< ???
-		this.usedTime = usedTime;
+	public void addUsedTime (int usedTime) { // Oliver
+		this.usedTime += usedTime;
 	}
 
 }

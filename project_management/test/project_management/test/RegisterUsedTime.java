@@ -15,28 +15,28 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import project_management.app.Activity;
+import project_management.app.Employee;
 import project_management.app.ManagementTool;
 import project_management.app.Project;
 import project_management.app.exceptions.UserNotLoggedIn;
-
 public class RegisterUsedTime {
 
 	private ManagementTool managementTool;
 	private Project project;
+	private Employee employee;
 	private Activity activity;
 	public RegisterUsedTime(ManagementTool managementTool) {
 		this.managementTool = managementTool;
 	}
 	
 	@Given("^a worker adds an worker to the activity \"([^\"]*)\"$")
-	public void aWorkerAddsAnWorkerToTheActivity(String arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void aWorkerAddsAnWorkerToTheActivity(String username) throws Exception {
+		managementTool.addWorkerToActivity(username);
 	}
 
 	@When("^a worker adds his used time (\\d+) the activity$")
-	public void aWorkerAddsHisUsedTimeTheActivity(int arg1) throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
+	public void aWorkerAddsHisUsedTimeTheActivity(int usedTime) throws Exception {
+	    activity.addUsedTime(usedTime);
 	    throw new PendingException();
 	}
 
@@ -45,17 +45,11 @@ public class RegisterUsedTime {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new PendingException();
 	}
-	
-	@When("^a worker adds his used time the activity$")
-	public void aWorkerAddsHisUsedTimeTheActivity() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
-	}
 
 	@Given("^deselects the activity and project$")
 	public void deselectsTheActivityAndProject() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	    managementTool.deselectActivity();
+	    managementTool.deselectProject();
 	}
 
 	@When("^a worker edits a register time, adds (\\d+)$")
