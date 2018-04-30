@@ -13,8 +13,8 @@ public class Activity {
 	private GregorianCalendar startDate = null;
 	private GregorianCalendar endDate = null;
 	private List<Employee> workerList = new ArrayList<Employee>();
-	private int usedTime = 0;
-	
+	private List<List<String>> listOfUsedTime = new ArrayList<List<String>>();
+
 	public Activity(String name) {
 		this.name = name;
 	}
@@ -67,9 +67,32 @@ public class Activity {
 		}
 		return null;
 	}
-	
-	public void addUsedTime (int usedTime) { // Oliver
-		this.usedTime += usedTime;
+
+	public void addUsedTime(int usedTime, String username) { // Oliver
+		List<String> line = getLine(username);
+		if (line != null) {
+			int newUsedTime = usedTime + Integer.parseInt(line.get(1));
+			String newUsedTimeString1 = Integer.toString(newUsedTime);
+			line.set(1, newUsedTimeString1);
+		} else {
+			List<String> tempLine = new ArrayList<String>();
+			tempLine.add(0, username);
+			tempLine.add(1, "" + usedTime);
+			listOfUsedTime.add(tempLine);
+		}
+	}
+
+	private List<String> getLine(String username) {
+		for (List<String> line : listOfUsedTime) {
+			if (line.get(0).equals(username)) {
+				return line;
+			}
+		}
+		return null;
+	}
+
+	public List<List<String>> getUsedTime() {
+		return this.listOfUsedTime;
 	}
 
 }

@@ -354,6 +354,15 @@ public class ManagementTool {
 		return null;
 	}
 
+	public void addUsedTime(int usedTime) {
+		selectedActivity.addUsedTime(usedTime, employeeLoggedIn.getUsername());
+		
+	}
+
+	public List<List<String>> getUsedTime() {
+		return selectedActivity.getUsedTime();
+	}
+	
 	public void removeWorker(String username) { // Tobias
 		selectedProject.removeWorker(username);
 	}

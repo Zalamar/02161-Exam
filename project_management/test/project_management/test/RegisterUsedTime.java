@@ -14,17 +14,11 @@ import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import project_management.app.Activity;
-import project_management.app.Employee;
 import project_management.app.ManagementTool;
-import project_management.app.Project;
 import project_management.app.exceptions.UserNotLoggedIn;
 public class RegisterUsedTime {
 
 	private ManagementTool managementTool;
-	private Project project;
-	private Employee employee;
-	private Activity activity;
 	public RegisterUsedTime(ManagementTool managementTool) {
 		this.managementTool = managementTool;
 	}
@@ -37,14 +31,12 @@ public class RegisterUsedTime {
 
 	@When("^a worker adds his used time (\\d+) the activity$")
 	public void aWorkerAddsHisUsedTimeTheActivity(int usedTime) throws Exception {
-	    activity.addUsedTime(usedTime);
-	    throw new PendingException();
+	    managementTool.addUsedTime(usedTime);
 	}
 
 	@Then("^there are time register$")
-	public void thereAreTimeRegister() throws Exception {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+	public void thereAreTimeRegister(List<List<String>> arg1) throws Exception {
+	    assertEquals(arg1, managementTool.getUsedTime());
 	}
 
 	@Given("^deselects the activity and project$")
