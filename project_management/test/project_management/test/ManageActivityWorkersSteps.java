@@ -19,12 +19,14 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import project_management.app.ManagementTool;
+import project_management.app.exceptions.NoActivityIsSelectedException;
+import project_management.app.exceptions.NoProjectIsSelected;
 import project_management.app.exceptions.UserNotLoggedIn;
+import project_management.app.exceptions.workerNotOnProjectException;
 
 public class ManageActivityWorkersSteps {
 	
 	private ManagementTool managementTool;
-	private String errorMessage;
 	
 	public ManageActivityWorkersSteps(ManagementTool managementTool) {
 		this.managementTool = managementTool;
@@ -40,7 +42,13 @@ public class ManageActivityWorkersSteps {
 		try {
 			managementTool.addWorkerToActivity("AAAA");
 		} catch (UserNotLoggedIn e) {
-			errorMessage = e.getMessage();
+			ErrorMessage.errorMessage = e.getMessage();
+		} catch (NoProjectIsSelected e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		} catch (workerNotOnProjectException e) {
+			ErrorMessage.errorMessage = e.getMessage();
+		} catch (NoActivityIsSelectedException e) {
+			ErrorMessage.errorMessage = e.getMessage();
 		}
 	}
 	
@@ -49,9 +57,14 @@ public class ManageActivityWorkersSteps {
 	    assertNotNull(managementTool.getSelectedActivity().searchWorkerList("AAAA"));
 	}
 	
-	@Then("^I get the manageActivityWorkers error message \"([^\"]*)\"$")
-	public void iGetTheManageActivityWorkersErrorMessage(String arg1) throws Exception {
-	    assertEquals(errorMessage, arg1);
+	@When("^a worker deselecets a project$")
+	public void aWorkerDeselecetsAProject() throws Exception {
+	    managementTool.deselectProject();
+	}
+	
+	@When("^a worker is removed from project$")
+	public void aWorkerIsRemovedFromProject() throws Exception {
+	    managementTool.removeWorker("AAAA");
 	}
 	
 }
