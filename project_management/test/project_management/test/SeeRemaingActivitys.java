@@ -19,14 +19,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import project_management.app.ManagementTool;
-import project_management.app.exceptions.ActivityNotFoundException;
-import project_management.app.exceptions.NoActivityIsSelectedException;
-import project_management.app.exceptions.NoProjectIsSelected;
-import project_management.app.exceptions.NoProjectWithThatName;
-import project_management.app.exceptions.NoWorkerAvailble;
-import project_management.app.exceptions.TheProjectAlreadyHaveAManager;
-import project_management.app.exceptions.UserNotLoggedIn;
-import project_management.app.exceptions.startDateAfterEndDateException;
+import project_management.app.exceptions.*;
 
 public class SeeRemaingActivitys {
 

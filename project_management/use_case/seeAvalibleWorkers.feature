@@ -43,7 +43,7 @@ Scenario: See none are available because of they have no time
 	And the project manager selecets the project "011001" 
 	And the project manager adds the start time "010418" and end time "020418" to the activity "001" 
 	When the project manager selects the project "011001" and acticity "001" 
-	And the trys project manager selects see available workers 
+	And the project manager try to see available workers 
 	Then I get the error message "No worker is available" 
 	
 Scenario: Try whne logged out 
@@ -52,7 +52,7 @@ Scenario: Try whne logged out
 	And the project manager adds the start time "010418" and end time "300418" to the activity "001" 
 	When the project manager selects the project "011001" and acticity "001" 
 	And that no project mangager is logged in 
-	And the trys project manager selects see available workers 
+	And the project manager try to see available workers 
 	Then I get the error message "No user is logged in" 
 	
 Scenario: try when no project is selected 
@@ -60,7 +60,7 @@ Scenario: try when no project is selected
 	And the project manager selecets the project "011001" 
 	And the project manager adds the start time "010418" and end time "300418" to the activity "001" 
 	When the project manager deselects the project 
-	And the trys project manager selects see available workers 
+	And the project manager try to see available workers 
 	Then I get the error message "No project is selected" 
 	
 Scenario: try when no project is selected 
@@ -69,7 +69,7 @@ Scenario: try when no project is selected
 	And the project manager adds the start time "010418" and end time "300418" to the activity "001" 
 	When the project manager deselects the project 
 	And the project manager selecets the project "011001" 
-	And the trys project manager selects see available workers 
+	And the project manager try to see available workers 
 	Then I get the error message "No activity is selected" 
 	
 Scenario:
@@ -87,5 +87,5 @@ Scenario: Try to do it, when he wants 0 days off
 	Given the project manager selecets the project "011001" 
 	And the project manager adds the start time "010418" and end time "300418" to the activity "001" 
 	When the project manager selects the project "011001" and acticity "001" 
-	And the trys project manager selects see available workers, with 0 % days off 
+	And the project manager try to see available workers, with 0 % days off 
 	Then I get the error message "No worker is available" 

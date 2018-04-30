@@ -292,6 +292,7 @@ public class ManagementTool {
 
 	public List<List<String>> getWhosAvailable() throws NoWorkerAvailble, UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException { // Alex
 		return getWhosAvailable(75);
+		return null;
 	}
 
 	private int getTheNumberOfDays(int lenghtOffSelectedActivity, Activity activity) {

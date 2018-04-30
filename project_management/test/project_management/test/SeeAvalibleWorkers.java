@@ -125,7 +125,7 @@ public class SeeAvalibleWorkers {
 		theyAllHaveAnPersonalActivity(activitys);
 	}
 
-	@When("^the trys project manager selects see available workers$")
+	@When("^the project manager try to see available workers$")
 	public void theTrysProjectManagerSelectsSeeAvailableWorkers() throws Exception {
 		try {
 			availableWorkers = managementTool.getWhosAvailable();
