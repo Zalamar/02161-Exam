@@ -129,9 +129,8 @@ public class Main {
 									break;
 							}
 						}
-
 					}
-					quit = false;
+					back = false;
 					break;
 				case 3: // Quit
 					quit = true;
