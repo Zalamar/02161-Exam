@@ -122,7 +122,7 @@ public class ManagementTool {
 		}
 	}
 
-	public void deleteProject(String name) throws UserNotLoggedIn, NoProjectIsSelected { // Alex
+	public void deleteProject() throws UserNotLoggedIn, NoProjectIsSelected { // Alex
 		if (isEmployeeLoggedIn() && hasProjectBeenSelected()) {
 			projectList.remove(selectedProject);
 			selectedProject = null;

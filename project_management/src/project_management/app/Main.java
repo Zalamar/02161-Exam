@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String []args) throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, TheProjectAlreadyHaveAManager, ActivityNotFoundException {
+	public static void main(String []args) throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, TheProjectAlreadyHaveAManager, ActivityNotFoundException, NoActivityIsSelectedException, workerNotOnProjectException {
 
 		ManagementTool managementTool = new ManagementTool();
 
@@ -21,6 +21,7 @@ public class Main {
 
 		int selector = 0;
 		String inputString = "";
+		int inputInt = 0;
 
 		boolean quit = false;
 		boolean back = false;
@@ -48,43 +49,82 @@ public class Main {
 
 					managementTool.selectProject(inputString);
 
+					// Project manager
 					if (managementTool.isProjectManager()) {
 						while (back == false) {
-							System.out.printf("1. Add an activity\n2. Remove an activity\n3. Add time to an activity\n");
-							System.out.printf("4. Assign a worker to an activity\n5. Register used time\n6. See activities missing time registration\n7. See remaining time\n");
-							System.out.printf("8. Delete project\n9. See report\n10. Back");
+
+							System.out.printf("1. Add an activity\n2. Select an activity\n");
+							System.out.printf("3. See activities missing time registration\n");
+							System.out.printf("4. See report\n5. Remove project\n6. Back\n");
 
 							selector = reader.nextInt();
 
 							switch (selector) {
-								case 1:
+								case 1: // Add activity
+									System.out.printf("Enter activity ID\n");
+									inputString = reader.next();
+									managementTool.addAnActivity(inputString);
 									break;
-								case 2:
+								case 2: // Select activity
+									System.out.printf("Enter activity ID\n");
+									inputString = reader.next();
+
+									managementTool.selectActivity(inputString);
+
+									while (back == false) {
+										System.out.printf("1. Add used time\n2. Edit used time\n3. See remaining time\n");
+										System.out.printf("4. Assign a worker to this activity\n");
+										System.out.printf("5. Remove activity\n6. Back\n");
+
+										selector = reader.nextInt();
+
+										switch (selector) {
+											case 1: // Add used time
+												System.out.printf("Enter used time\n");
+												inputInt = reader.nextInt();
+												managementTool.addUsedTime(inputInt);
+												break;
+											case 2: // mangler funktion
+												System.out.printf("\nmangler\n");//"Currently you have %d hours registered for this activity\n", managementTool.getUsedTime());
+												break;
+											case 3: // mangler funktion
+												System.out.printf("\nmangler\n");
+												break;
+											case 4: // Add worker to activity
+												System.out.printf("Enter the worker's username\n");
+												inputString = reader.next();
+												managementTool.addWorkerToActivity(inputString);
+												break;
+											case 5: // Remove activity
+												managementTool.deleteActivity();
+												back = true;
+												break;
+											case 6: // back
+												back = true;
+												break;
+										}
+
+									}
+									back = false;
 									break;
-								case 3:
+								case 4: // See report
+									System.out.printf("Everything's on fire\n");
 									break;
-								case 4:
+								case 5: // Remove project
+									managementTool.deleteProject();
+									back = true;
 									break;
-								case 5:
-									break;
-								case 6:
-									break;
-								case 7:
-									break;
-								case 8:
-									break;
-								case 9:
-									break;
-								case 10: // Back
+								case 6: // Back
 									back = true;
 									break;
 							}
 						}
 					}
+					// Not a project manager
 					else {
 						while (back == false) {
-							System.out.printf("1. Add project manager\n2. Add an activity\n3. Select activity\n");
-							System.out.printf("4. Back");
+							System.out.printf("1. Add project manager\n2. Add an activity\n3. Select an activity\n");
+							System.out.printf("4. Back\n");
 
 							selector = reader.nextInt();
 
@@ -99,24 +139,31 @@ public class Main {
 									inputString = reader.next();
 									managementTool.addAnActivity(inputString);
 									break;
-								case 3: // Remove activity
+								case 3: // Select activity
 									System.out.printf("Enter activity ID\n");
 									inputString = reader.next();
 
 									managementTool.selectActivity(inputString);
 
 									while (back == false) {
-										System.out.printf("1. Register used time\n2. See remaining time\n");
-										System.out.printf("3. Back");
+										System.out.printf("1. Add used time\n2. Edit used time\n3. See remaining time\n");
+										System.out.printf("4. Back\n");
 
 										selector = reader.nextInt();
 
 										switch (selector) {
-											case 1:
+											case 1: // Add used time
+												System.out.printf("Enter used time\n");
+												inputInt = reader.nextInt();
+												managementTool.addUsedTime(inputInt);
 												break;
-											case 2:
+											case 2: // mangler funktion
+												System.out.printf("\nmangler\n");//"Currently you have %d hours registered for this activity\n", managementTool.getUsedTime());
 												break;
-											case 3:
+											case 3: // mangler funktion
+												System.out.printf("\nmangler\n");
+												break;
+											case 4: // Back
 												back = true;
 												break;
 										}
