@@ -31,7 +31,7 @@ public class DeleteAPorject {
 	@When("^the worker delete the project \"([^\"]*)\"$")
 	public void theWorkerDeleteTheProject(String name) throws Exception {
 		try {
-			managementTool.deleteProject(name);
+			managementTool.deleteProject();
 		} catch (UserNotLoggedIn e) {
 			ErrorMessage.errorMessage = e.getMessage();
 		}
