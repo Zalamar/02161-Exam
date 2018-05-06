@@ -1,5 +1,10 @@
 package project_management.app;
 
+/**
+ * @author Nikolaj
+ *
+ */
+
 import project_management.app.exceptions.*;
 
 import java.util.Scanner;
@@ -224,10 +229,10 @@ public class Main {
 									
 
 									while (back == false) {
-										System.out.printf("1. Add used time\n2. See used time\n3. See remaining time\n");
-										System.out.printf("4. Set start date\n5. Set end date\n");
-										System.out.printf("6. See start and end date\n");
-										System.out.printf("7. Back\n");
+										System.out.printf("1. Add used time\n2. See used time\n");
+										System.out.printf("3. Set start date\n4. Set end date\n");
+										System.out.printf("5. See start and end date\n");
+										System.out.printf("6. Back\n");
 
 										selector = reader.nextInt();
 
@@ -240,10 +245,7 @@ public class Main {
 											case 2: // See used time
 												System.out.printf("%f\n", managementTool.getUsedTime(managementTool.getEmployeeLoggedIn().getUsername()));
 												break;
-											case 3: // mangler funktion
-												System.out.printf("\nmangler\n");
-												break;
-											case 4: // set start date
+											case 3: // set start date
 												System.out.printf("Enter year\n");
 												temp1 = reader.nextInt();
 												System.out.printf("Enter month number\n");
@@ -253,7 +255,7 @@ public class Main {
 												GregorianCalendar startDate = new GregorianCalendar(temp1, temp2, temp3);
 												managementTool.addActivityStartDate(startDate);
 												break;
-											case 5: // set end date
+											case 4: // set end date
 												System.out.printf("Enter year\n");
 												temp1 = reader.nextInt();
 												System.out.printf("Enter month number\n");
@@ -267,14 +269,14 @@ public class Main {
 													System.out.println(e.getMessage());
 												}
 												break;
-											case 6: // see start and end date
+											case 5: // see start and end date
 												System.out.printf("\nStart date:\n");
 												System.out.println(managementTool.getActivityStartDate().getTime());
 												System.out.printf("End date:\n");
 												System.out.println(managementTool.getActivityEndDate().getTime());
 												System.out.printf("\n");
 												break;
-											case 7: // Back
+											case 6: // Back
 												back = true;
 												break;
 										}
