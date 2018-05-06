@@ -22,7 +22,8 @@ import project_management.app.exceptions.*;
 public class RegisterUsedTime {
 
 	private ManagementTool managementTool;
-
+	private int usedTime;
+	
 	public RegisterUsedTime(ManagementTool managementTool) {
 		this.managementTool = managementTool;
 	}
@@ -88,5 +89,15 @@ public class RegisterUsedTime {
 	@Then("^there are time register on the new activity$")
 	public void thereAreTimeRegisterOnTheNewActivity(List<List<String>> arg1) throws Exception {
 		assertEquals(arg1, managementTool.getUsedTime());
+	}
+	
+	@When("^a worker wants to see workers \"([^\"]*)\" used time$")
+	public void aWorkerWantsToSeeWorkersUsedTime(String username) throws Exception {
+	    usedTime = managementTool.getUsedTime(username);
+	}
+
+	@Then("^he sees time (\\d+)$")
+	public void heSeesTime(int time) throws Exception {
+	    assertEquals(time, usedTime);
 	}
 }

@@ -68,3 +68,11 @@ Scenario: Register time on an activity the worker is not on
 	Then there are time register on the new activity
 		| AAAA | 10 |
 	And I get no errors 
+	
+Scenario: See a signel workers used time on an activity
+	Given a worker selecets the project "011001" 
+	And a worker selecets an activity "001" 
+	And a worker adds his used time 10 the activity 
+	When a worker wants to see workers "AAAA" used time
+	Then he sees time 10
+	And I get no errors
