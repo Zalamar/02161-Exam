@@ -22,7 +22,7 @@ public class Main {
 
 		int selector = 0;
 		String inputString = "";
-		int inputInt = 0;
+		double inputDouble = 0;
 
 		boolean quit = false;
 		boolean back = false;
@@ -89,15 +89,11 @@ public class Main {
 										switch (selector) {
 											case 1: // Add used time
 												System.out.printf("Enter used time\n");
-												inputInt = reader.nextInt();
-												try {
-												managementTool.addUsedTime(inputInt);
-												} catch (workerNotOnProjectException e) {
-													System.out.println(e.getMessage());
-												}
+												inputDouble = reader.nextDouble();
+												managementTool.addUsedTime(inputDouble);
 												break;
 											case 2: // mangler funktion
-												System.out.printf("\nmangler\n");//"Currently you have %d hours registered for this activity\n", managementTool.getUsedTime());
+												System.out.printf("%d\n", managementTool.getUsedTime(managementTool.getEmployeeLoggedIn().getUsername()));
 												break;
 											case 3: // mangler funktion
 												System.out.printf("\nmangler\n");
@@ -105,7 +101,11 @@ public class Main {
 											case 4: // Add worker to activity
 												System.out.printf("Enter the worker's username\n");
 												inputString = reader.next();
+												try {
 												managementTool.addWorkerToActivity(inputString);
+												} catch (workerNotOnProjectException e) {
+													System.out.println(e.getMessage());
+												}
 												break;
 											case 5: // Remove activity
 												managementTool.deleteActivity();
@@ -168,7 +168,7 @@ public class Main {
 									
 
 									while (back == false) {
-										System.out.printf("1. Add used time\n2. Edit used time\n3. See remaining time\n");
+										System.out.printf("1. Add used time\n2. See used time\n3. See remaining time\n");
 										System.out.printf("4. Back\n");
 
 										selector = reader.nextInt();
@@ -176,11 +176,11 @@ public class Main {
 										switch (selector) {
 											case 1: // Add used time
 												System.out.printf("Enter used time\n");
-												inputInt = reader.nextInt();
-												managementTool.addUsedTime(inputInt);
+												inputDouble = reader.nextDouble();
+												managementTool.addUsedTime(inputDouble);
 												break;
-											case 2: // mangler funktion
-												System.out.printf("\nmangler\n");//"Currently you have %d hours registered for this activity\n", managementTool.getUsedTime());
+											case 2: // See used time
+												System.out.printf("%d\n", managementTool.getUsedTime(managementTool.getEmployeeLoggedIn().getUsername()));
 												break;
 											case 3: // mangler funktion
 												System.out.printf("\nmangler\n");
@@ -215,5 +215,6 @@ public class Main {
 
 
 		}
+		reader.close();
 	}
 }
