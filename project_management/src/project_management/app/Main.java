@@ -51,8 +51,10 @@ public class Main {
 				case 2: // Select project
 					System.out.printf("Enter project ID\n");
 					inputString = reader.next();
-
+						
+					try {
 					managementTool.selectProject(inputString);
+
 
 					// Project manager
 					if (managementTool.isProjectManager()) {
@@ -73,7 +75,8 @@ public class Main {
 								case 2: // Select activity
 									System.out.printf("Enter activity ID\n");
 									inputString = reader.next();
-
+									
+									try {
 									managementTool.selectActivity(inputString);
 
 									while (back == false) {
@@ -87,7 +90,11 @@ public class Main {
 											case 1: // Add used time
 												System.out.printf("Enter used time\n");
 												inputInt = reader.nextInt();
+												try {
 												managementTool.addUsedTime(inputInt);
+												} catch (workerNotOnProjectException e) {
+													System.out.println(e.getMessage());
+												}
 												break;
 											case 2: // mangler funktion
 												System.out.printf("\nmangler\n");//"Currently you have %d hours registered for this activity\n", managementTool.getUsedTime());
@@ -109,6 +116,9 @@ public class Main {
 												break;
 										}
 
+									}
+									} catch (ActivityNotFoundException e) {
+										System.out.println(e.getMessage());
 									}
 									back = false;
 									break;
@@ -137,7 +147,11 @@ public class Main {
 								case 1: // Add project manager
 									System.out.printf("Enter username for project manager\n");
 									inputString = reader.next();
+									try {
 									managementTool.addProjectManager(inputString);
+									} catch (TheProjectAlreadyHaveAManager e) {
+										System.out.println(e.getMessage());
+									}
 									break;
 								case 2: // Add activity
 									System.out.printf("Enter activity ID\n");
@@ -146,9 +160,12 @@ public class Main {
 									break;
 								case 3: // Select activity
 									System.out.printf("Enter activity ID\n");
+									
 									inputString = reader.next();
 
-									managementTool.selectActivity(inputString);
+									try {
+										managementTool.selectActivity(inputString);
+									
 
 									while (back == false) {
 										System.out.printf("1. Add used time\n2. Edit used time\n3. See remaining time\n");
@@ -174,6 +191,10 @@ public class Main {
 										}
 
 									}
+									
+									} catch (ActivityNotFoundException e) {
+										System.out.println(e.getMessage());
+									}
 									back = false;
 									break;
 								case 4: // Back
@@ -181,6 +202,9 @@ public class Main {
 									break;
 							}
 						}
+					}
+					} catch (NoProjectWithThatName e) {
+						System.out.println(e.getMessage());
 					}
 					back = false;
 					break;
