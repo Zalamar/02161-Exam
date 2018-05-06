@@ -1,5 +1,10 @@
 package project_management.app;
 
+/**
+ * @author Nikolaj
+ *
+ */
+
 import project_management.app.exceptions.*;
 
 import java.util.Scanner;

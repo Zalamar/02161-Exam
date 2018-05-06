@@ -6,7 +6,6 @@ import java.util.List;
 
 import project_management.app.exceptions.ActivityNotFoundException;
 import project_management.app.exceptions.NoActivityIsSelectedException;
-import project_management.app.exceptions.NoActivityWithNameException;
 import project_management.app.exceptions.NoProjectIsSelected;
 import project_management.app.exceptions.NoProjectWithThatName;
 import project_management.app.exceptions.NoWorkerAvailble;
@@ -135,18 +134,6 @@ public class ManagementTool {
 		} else {
 			throw new NoProjectIsSelected();
 		}
-	}
-
-	public boolean isthereAnActivityWithThisName(String activityName)
-			throws NoProjectIsSelected, NoActivityWithNameException { // Tobias
-		if (hasProjectBeenSelected()) {
-			for (Activity a : selectedProject.getActivityList()) {
-				if (a.getName().equals(activityName)) {
-					return true;
-				}
-			}
-		}
-		throw new NoActivityWithNameException();
 	}
 
 	public void selectActivity(String activityName)
