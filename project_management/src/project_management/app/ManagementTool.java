@@ -277,10 +277,7 @@ public class ManagementTool {
 				daysOff += getTheNumberOfDays(lenghtOffSelectedActivity, activity);
 			}
 			if (daysOff <= (double) lenghtOffSelectedActivity * procent) {
-				List<String> line = new ArrayList<String>();
-				line.add(employee.getUsername());
-				line.add("" + daysOff);
-				availableWorkers.add(line);
+                addAvailableWorkerToList(availableWorkers, daysOff, employee);
 			}
 		}
 
@@ -304,10 +301,7 @@ public class ManagementTool {
                         }
                     }
                     if (!workerAlreadyInList && daysOff <= (double) lenghtOffSelectedActivity * procent) {
-                        List<String> line = new ArrayList<String>();
-                        line.add(e.getUsername());
-                        line.add("" + daysOff);
-                        availableWorkers.add(line);
+                        addAvailableWorkerToList(availableWorkers, daysOff, e);
                     }
                     if (removeLine) {
                         availableWorkers.remove(lineToRemove);
@@ -323,7 +317,14 @@ public class ManagementTool {
 		}
 	}
 
-	public List<List<String>> getWhosAvailable() throws NoWorkerAvailble, UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException { // Alex
+    private void addAvailableWorkerToList(List<List<String>> availableWorkers, int daysOff, Employee e) {
+        List<String> line = new ArrayList<String>();
+        line.add(e.getUsername());
+        line.add("" + daysOff);
+        availableWorkers.add(line);
+    }
+
+    public List<List<String>> getWhosAvailable() throws NoWorkerAvailble, UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException { // Alex
 		return getWhosAvailable(75);
 	}
 
