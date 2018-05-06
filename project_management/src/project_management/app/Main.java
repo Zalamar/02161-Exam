@@ -21,6 +21,7 @@ public class Main {
 		ManagementTool managementTool = new ManagementTool();
 
 		managementTool.addWorker("haha", "Hans Hansen");
+		managementTool.addWorker("lala", "Lars Larsen");
 
 		Scanner reader = new Scanner(System.in);
 
@@ -67,8 +68,8 @@ public class Main {
 						while (back == false) {
 
 							System.out.printf("1. Add an activity\n2. Select an activity\n");
-							System.out.printf("3. See activities missing time registration\n");
-							System.out.printf("4. See report\n5. Remove project\n6. Back\n");
+							//System.out.printf("3. See activities missing time registration\n");
+							System.out.printf("3. See report\n4. Remove project\n5. Back\n");
 
 							selector = reader.nextInt();
 
@@ -104,7 +105,7 @@ public class Main {
 											case 2: // See used time
 												System.out.printf("%f\n", managementTool.getUsedTime(managementTool.getEmployeeLoggedIn().getUsername()));
 												break;
-											case 3: // See all used tinme
+											case 3: // See all used time
 												System.out.println(managementTool.getUsedTime());
 												break;
 											case 4: // Add worker to activity
@@ -169,14 +170,14 @@ public class Main {
 									}
 									back = false;
 									break;
-								case 4: // See report
+								case 3: // See report
 									System.out.printf("Everything's on fire\n");
 									break;
-								case 5: // Remove project
+								case 4: // Remove project
 									managementTool.deleteProject();
 									back = true;
 									break;
-								case 6: // Back
+								case 5: // Back
 									back = true;
 									break;
 							}
