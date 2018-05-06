@@ -106,6 +106,6 @@ public class RegisterUsedTime {
 	@Then("^he sees time (\\d+)\\.(\\d+)$")
 	public void heSeesTime(int time1, int time2) throws Exception {
 		double time = time1 + time2/10;
-		assertEquals(time, usedTime, 0.1);
+		assertEquals(time, usedTime, 0.01);
 	}
 }
