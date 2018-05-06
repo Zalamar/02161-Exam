@@ -277,12 +277,39 @@ public class ManagementTool {
 				daysOff += getTheNumberOfDays(lenghtOffSelectedActivity, activity);
 			}
 			if (daysOff <= (double) lenghtOffSelectedActivity * procent) {
-				List<String> line = new ArrayList<String>();
-				line.add(employee.getUsername());
-				line.add("" + daysOff);
-				availableWorkers.add(line);
+                addAvailableWorkerToList(availableWorkers, daysOff, employee);
 			}
 		}
+
+		int daysOff;
+		for (Project p : projectList) { // Tobias
+		    for (Activity a : p.getActivityList()) {
+		        daysOff = daysBetween(a);
+		        for (Employee e : a.getWorkerList()) {
+		            boolean workerAlreadyInList = false;
+                    List<String> lineToRemove = new ArrayList<String>();
+                    boolean removeLine = false;
+		            for (List<String> line : availableWorkers) {
+		                if (line.contains(e.getUsername())) {
+		                    if (Integer.parseInt(line.get(1)) + daysOff <= (double) lenghtOffSelectedActivity * procent) {
+                                line.set(1, Integer.parseInt(line.get(1)) + daysOff + "");
+                            } else {
+		                        lineToRemove = line;
+		                        removeLine = true;
+                            }
+		                    workerAlreadyInList = true;
+                        }
+                    }
+                    if (!workerAlreadyInList && daysOff <= (double) lenghtOffSelectedActivity * procent) {
+                        addAvailableWorkerToList(availableWorkers, daysOff, e);
+                    }
+                    if (removeLine) {
+                        availableWorkers.remove(lineToRemove);
+                    }
+                }
+            }
+        }
+
 		if (availableWorkers.size() > 0) {
 			return availableWorkers;
 		} else {
@@ -290,7 +317,14 @@ public class ManagementTool {
 		}
 	}
 
-	public List<List<String>> getWhosAvailable() throws NoWorkerAvailble, UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException { // Alex
+    private void addAvailableWorkerToList(List<List<String>> availableWorkers, int daysOff, Employee e) {
+        List<String> line = new ArrayList<String>();
+        line.add(e.getUsername());
+        line.add("" + daysOff);
+        availableWorkers.add(line);
+    }
+
+    public List<List<String>> getWhosAvailable() throws NoWorkerAvailble, UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException { // Alex
 		return getWhosAvailable(75);
 	}
 

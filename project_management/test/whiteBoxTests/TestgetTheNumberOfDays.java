@@ -21,26 +21,27 @@ public class TestgetTheNumberOfDays {
 
 	Activity activity = new Activity("TestA2");
 	ManagementTool managementTool = new ManagementTool();
-	
-	private void start() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+
+	private void start() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException,
+			NoActivityIsSelectedException, startDateAfterEndDateException {
 		managementTool.addWorker("AAAA", "Alex");
 		managementTool.login("AAAA");
 		managementTool.createProject("test");
 		managementTool.selectProject("test");
 		managementTool.addAnActivity("testA");
 		managementTool.selectActivity("testA");
-		
+
 		GregorianCalendar date = new GregorianCalendar();
 		date.set(2018, 6, 10, 0, 0, 0);
 		date.clear(Calendar.MILLISECOND);
 		managementTool.addActivityStartDate(date);
-		
+
 		GregorianCalendar date2 = new GregorianCalendar();
 		date2.set(2018, 6, 20, 0, 0, 0);
 		date2.clear(Calendar.MILLISECOND);
 		managementTool.addActivityEndDate(date2);
-		}
-	
+	}
+
 	private void testCases(int days, int startDate, int endDate) throws startDateAfterEndDateException {
 		GregorianCalendar date = new GregorianCalendar();
 		date.set(2018, 6, startDate, 0, 0, 0);
@@ -52,7 +53,7 @@ public class TestgetTheNumberOfDays {
 		activity.setEndDate(date2);
 		assertEquals(days, managementTool.getTheNumberOfDays(10, activity));
 	}
-	
+
 	private void testCase2(int days, int startDate) {
 		Activity activity2 = new Activity("Test3");
 		GregorianCalendar date = new GregorianCalendar();
@@ -61,27 +62,30 @@ public class TestgetTheNumberOfDays {
 		activity2.setStartDate(date);
 		assertEquals(days, managementTool.getTheNumberOfDays(10, activity2));
 	}
-	
+
 	@Test
-	public void testInput1() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+	public void testInput1() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
 		start();
 		int days = 4;
 		int startDate = 12;
 		int endDate = 15;
 		testCases(days, startDate, endDate);
 	}
-	
+
 	@Test
-	public void testInput2() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+	public void testInput2() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
 		start();
 		int days = 9;
 		int startDate = 12;
 		int endDate = 21;
 		testCases(days, startDate, endDate);
 	}
-	
+
 	@Test
-	public void testInpu3() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+	public void testInpu3() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
 		start();
 		int days = 5;
 		int startDate = 9;
@@ -90,16 +94,18 @@ public class TestgetTheNumberOfDays {
 	}
 
 	@Test
-	public void testInput4() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+	public void testInput4() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
 		start();
 		int days = 0;
 		int startDate = 6;
 		int endDate = 9;
 		testCases(days, startDate, endDate);
-	}	
+	}
 
 	@Test
-	public void testInput5() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+	public void testInput5() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
 		start();
 		int days = 0;
 		int startDate = 21;
@@ -108,7 +114,8 @@ public class TestgetTheNumberOfDays {
 	}
 
 	@Test
-	public void testInput6() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+	public void testInput6() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
 		start();
 		int days = 10;
 		int startDate = 9;
@@ -117,7 +124,8 @@ public class TestgetTheNumberOfDays {
 	}
 
 	@Test
-	public void testInput7() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+	public void testInput7() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
 		start();
 		int days = 1;
 		int startDate = 12;
@@ -125,7 +133,8 @@ public class TestgetTheNumberOfDays {
 	}
 
 	@Test
-	public void testInput8() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+	public void testInput8() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
 		start();
 		int days = 0;
 		int startDate = 9;
