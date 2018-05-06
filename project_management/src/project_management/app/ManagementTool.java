@@ -348,13 +348,7 @@ public class ManagementTool {
 		selectedActivity = null;
 	}
 
-	public List<String> seeUnregisterActivitys() throws UserNotLoggedIn, NoProjectIsSelected { 
-		isEmployeeLoggedIn();
-		hasProjectBeenSelected();
-		return null;
-	}
-
-	public void addUsedTime(int usedTime) throws UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException {
+	public void addUsedTime(int usedTime) throws UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException { //Oliver
 		isEmployeeLoggedIn();
 		hasProjectBeenSelected();
 		hasActivityBeenSelected();
@@ -362,7 +356,7 @@ public class ManagementTool {
 		
 	}
 
-	public List<List<String>> getUsedTime() {
+	public List<List<String>> getUsedTime() { //Oliver
 		return selectedActivity.getUsedTime();
 	}
 	

@@ -82,7 +82,7 @@ public class Activity {
 		}
 	}
 
-	private List<String> getLine(String username) {
+	private List<String> getLine(String username) { //Oliver
 		for (List<String> line : listOfUsedTime) {
 			if (line.get(0).equals(username)) {
 				return line;
@@ -91,7 +91,7 @@ public class Activity {
 		return null;
 	}
 
-	public List<List<String>> getUsedTime() {
+	public List<List<String>> getUsedTime() { //Oliver
 		return this.listOfUsedTime;
 	}
 
