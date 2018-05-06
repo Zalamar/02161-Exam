@@ -138,6 +138,7 @@ public class ManagementTool {
 
 	public void selectActivity(String activityName)
 			throws UserNotLoggedIn, NoProjectIsSelected, ActivityNotFoundException { // Tobias
+	    assert activityName != null;
 		if (isEmployeeLoggedIn() && hasProjectBeenSelected()) {
 			List<Activity> activityList = selectedProject.getActivityList();
 			for (Activity a : activityList) {
