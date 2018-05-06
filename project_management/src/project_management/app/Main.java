@@ -20,9 +20,9 @@ import java.util.List;
 
 public class Main {
 
-	public static void main(String[] args)
-			throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, TheProjectAlreadyHaveAManager,
-			ActivityNotFoundException, NoActivityIsSelectedException, workerNotOnProjectException {
+	public static void main(String[] args) throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
+			TheProjectAlreadyHaveAManager, ActivityNotFoundException, NoActivityIsSelectedException,
+			workerNotOnProjectException, NoWorkerExitingEception {
 
 		ManagementTool managementTool = new ManagementTool();
 

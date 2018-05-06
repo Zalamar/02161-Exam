@@ -43,6 +43,8 @@ public class AddAProjectManagerSteps {
 			ErrorMessage.errorMessage = e.getMessage();
 		} catch (NoProjectIsSelected e) {
 			ErrorMessage.errorMessage = e.getMessage();
+		} catch (NoWorkerExitingEception e) {
+			ErrorMessage.errorMessage = e.getMessage();
 		}
 	}
 

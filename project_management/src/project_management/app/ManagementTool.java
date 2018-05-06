@@ -9,6 +9,7 @@ import project_management.app.exceptions.NoActivityIsSelectedException;
 import project_management.app.exceptions.NoProjectIsSelected;
 import project_management.app.exceptions.NoProjectWithThatName;
 import project_management.app.exceptions.NoWorkerAvailble;
+import project_management.app.exceptions.NoWorkerExitingEception;
 import project_management.app.exceptions.TheProjectAlreadyHaveAManager;
 import project_management.app.exceptions.UserNotLoggedIn;
 import project_management.app.exceptions.startDateAfterEndDateException;
@@ -77,9 +78,14 @@ public class ManagementTool {
 	}
 
 	public void addProjectManager(String username)
-			throws TheProjectAlreadyHaveAManager, UserNotLoggedIn, NoProjectIsSelected { // Alex
+			throws TheProjectAlreadyHaveAManager, UserNotLoggedIn, NoProjectIsSelected, NoWorkerExitingEception { // Alex
 		if (hasProjectBeenSelected() && !selectedProject.hasAManager() && isEmployeeLoggedIn()) {
-			selectedProject.addManager(searchEmployee(username));
+			Employee e = searchEmployee(username);
+			if(e != null) {
+				selectedProject.addManager(e);
+			} else {
+				throw new NoWorkerExitingEception();
+			}
 		} else {
 			throw new TheProjectAlreadyHaveAManager();
 		}

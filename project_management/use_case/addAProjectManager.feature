@@ -46,3 +46,7 @@ Scenario: Remove a project manager when not logged in
 	And a worker remove a project manager 
 	Then I get the error message "No user is logged in" 
 
+Scenario: Add a non existing worker
+	When a worker selecets the project "011001" 
+	And a worker assign the project a project manager "AAAB"
+	Then I get the error message "No employee with this name"
