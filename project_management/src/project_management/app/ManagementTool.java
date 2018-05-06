@@ -151,6 +151,8 @@ public class ManagementTool {
 
 	public void selectActivity(String activityName)
 			throws UserNotLoggedIn, NoProjectIsSelected, ActivityNotFoundException { // Tobias
+		//precondition
+		assert(true);
 		if (isEmployeeLoggedIn() && hasProjectBeenSelected()) {
 			List<Activity> activityList = selectedProject.getActivityList();
 			for (Activity a : activityList) {
@@ -265,6 +267,8 @@ public class ManagementTool {
 	}
 	
 	public List<List<String>> getWhosAvailable(double procent) throws UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException, NoWorkerAvailble {
+		//precondition
+		assert(0<=procent&& procent<=100);
 		isEmployeeLoggedIn();
 		hasProjectBeenSelected();
 		hasActivityBeenSelected();
@@ -329,6 +333,8 @@ public class ManagementTool {
 	}
 
 	public int getTheNumberOfDays(int lenghtOffSelectedActivity, Activity activity) {
+		//precondition
+		assert(lenghtOffSelectedActivity>=0);
 		if (startsBeforeSelected(activity) && endsAfterSelected(activity)) { //1
 			return lenghtOffSelectedActivity;
 		} else if (startsAfterSelected(activity)) { //2
