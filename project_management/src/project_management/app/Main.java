@@ -86,11 +86,12 @@ public class Main {
 									managementTool.selectActivity(inputString);
 
 									while (back == false) {
-										System.out.printf("1. Add used time\n2. See used time\n3. See remaining time\n");
+										System.out.printf("1. Add used time\n2. See own used time\n3. See all used time\n");
 										System.out.printf("4. Assign a worker to this activity\n");
 										System.out.printf("5. Set start date\n6. Set end date\n");
 										System.out.printf("7. See start and end date\n");
-										System.out.printf("8. Remove activity\n9. Back\n");
+										System.out.printf("8. See who's available\n");
+										System.out.printf("9. Remove activity\n10. Back\n");
 
 										selector = reader.nextInt();
 
@@ -101,10 +102,10 @@ public class Main {
 												managementTool.addUsedTime(inputDouble);
 												break;
 											case 2: // See used time
-												System.out.printf("%d\n", managementTool.getUsedTime(managementTool.getEmployeeLoggedIn().getUsername()));
+												System.out.printf("%f\n", managementTool.getUsedTime(managementTool.getEmployeeLoggedIn().getUsername()));
 												break;
-											case 3: // mangler funktion
-												System.out.printf("\nmangler\n");
+											case 3: // See all used tinme
+												System.out.println(managementTool.getUsedTime());
 												break;
 											case 4: // Add worker to activity
 												System.out.printf("Enter the worker's username\n");
@@ -146,11 +147,18 @@ public class Main {
 												System.out.println(managementTool.getActivityEndDate().getTime());
 												System.out.printf("\n");
 												break;
-											case 8: // Remove activity
+											case 8: // See who's available
+											try {
+												System.out.println(managementTool.getWhosAvailable());
+											} catch (NoWorkerAvailble e) {
+												System.out.println(e.getMessage());
+											}
+												break;
+											case 9: // Remove activity
 												managementTool.deleteActivity();
 												back = true;
 												break;
-											case 9: // back
+											case 10: // back
 												back = true;
 												break;
 										}
@@ -221,7 +229,7 @@ public class Main {
 												managementTool.addUsedTime(inputDouble);
 												break;
 											case 2: // See used time
-												System.out.printf("%d\n", managementTool.getUsedTime(managementTool.getEmployeeLoggedIn().getUsername()));
+												System.out.printf("%f\n", managementTool.getUsedTime(managementTool.getEmployeeLoggedIn().getUsername()));
 												break;
 											case 3: // mangler funktion
 												System.out.printf("\nmangler\n");
