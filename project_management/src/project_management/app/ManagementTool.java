@@ -294,18 +294,18 @@ public class ManagementTool {
 		return getWhosAvailable(75);
 	}
 
-	private int getTheNumberOfDays(int lenghtOffSelectedActivity, Activity activity) {
-		if (startsBeforeSelected(activity) && endsAfterSelected(activity)) {
+	public int getTheNumberOfDays(int lenghtOffSelectedActivity, Activity activity) {
+		if (startsBeforeSelected(activity) && endsAfterSelected(activity)) { //1
 			return lenghtOffSelectedActivity;
-		} else if (startsAfterSelected(activity)) {
+		} else if (startsAfterSelected(activity)) { //2
 			return 0;
-		} else if (endsBeforeSelected(activity)) {
+		} else if (endsBeforeSelected(activity)) { //3
 			return 0;
-		} else if (startsBeforeSelected(activity)) {
+		} else if (startsBeforeSelected(activity)) { //4
 			return daysBetween(selectedActivity.getStartDate(), activity.getEndDate());
-		} else if (endsAfterSelected(activity)) {
+		} else if (endsAfterSelected(activity)) { //5
 			return daysBetween(activity.getStartDate(), selectedActivity.getEndDate());
-		} else {
+		} else { //5
 			return (isThereAEndDate(activity)) ? daysBetween(activity) : 1;
 		}
 	}
