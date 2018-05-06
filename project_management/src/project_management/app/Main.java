@@ -67,8 +67,8 @@ public class Main {
 						while (back == false) {
 
 							System.out.printf("1. Add an activity\n2. Select an activity\n");
-							//System.out.printf("3. See activities missing time registration\n");
-							System.out.printf("3. See report\n4. Remove project\n5. Back\n");
+							System.out.printf("3. Add worker to this project\n");
+							System.out.printf("4. See report\n5. Remove project\n6. Back\n");
 
 							selector = reader.nextInt();
 
@@ -169,14 +169,23 @@ public class Main {
 									}
 									back = false;
 									break;
-								case 3: // See report
+								case 3: // add worker to project	
+									System.out.printf("Enter username\n");
+									inputString = reader.next();
+									try {
+										managementTool.addWorkerToProject(inputString);
+									} catch (UserNotLoggedIn e) {
+										System.out.println(e.getMessage());
+									}
+									break;
+								case 4: // See report
 									System.out.printf("Everything's on fire\n");
 									break;
-								case 4: // Remove project
+								case 5: // Remove project
 									managementTool.deleteProject();
 									back = true;
 									break;
-								case 5: // Back
+								case 6: // Back
 									back = true;
 									break;
 							}
