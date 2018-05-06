@@ -22,7 +22,7 @@ import project_management.app.exceptions.*;
 public class RegisterUsedTime {
 
 	private ManagementTool managementTool;
-	private int usedTime;
+	private double usedTime;
 	
 	public RegisterUsedTime(ManagementTool managementTool) {
 		this.managementTool = managementTool;
@@ -34,8 +34,14 @@ public class RegisterUsedTime {
 		managementTool.addWorkerToActivity("AAAA");
 	}
 
-	@When("^a worker adds his used time (\\d+) the activity$")
-	public void aWorkerAddsHisUsedTimeTheActivity(int usedTime) throws Exception {
+	@When("^a worker adds his used time (\\d+) h and (\\d+) min the activity$")
+	public void aWorkerAddsHisUsedTimeHAndMinTheActivity(int hours, int min) throws Exception {
+		double usedTime;
+		if(min < 15 || min > 45) {
+			usedTime = hours;
+		} else {
+			usedTime = hours + 0.5;
+		}
 		try {
 			managementTool.addUsedTime(usedTime);
 		} catch (UserNotLoggedIn e) {
@@ -63,9 +69,10 @@ public class RegisterUsedTime {
 		managementTool.addUsedTime(arg1);
 	}
 
-	@Then("^the time is (\\d+)$")
-	public void theTimeIs(int arg1) throws Exception {
-		assertEquals("" + arg1, managementTool.getUsedTime().get(0).get(1));
+	@Then("^the time is (\\d+)\\.(\\d+)$")
+	public void theTimeIs(int time1, int time2) throws Exception {
+		double time = time1 + time2/10;
+		assertEquals("" + time, managementTool.getUsedTime().get(0).get(1));
 	}
 
 	@When("^a worker try to edits a register time, adds (\\d+)$")
@@ -96,8 +103,9 @@ public class RegisterUsedTime {
 	    usedTime = managementTool.getUsedTime(username);
 	}
 
-	@Then("^he sees time (\\d+)$")
-	public void heSeesTime(int time) throws Exception {
-	    assertEquals(time, usedTime);
+	@Then("^he sees time (\\d+)\\.(\\d+)$")
+	public void heSeesTime(int time1, int time2) throws Exception {
+		double time = time1 + time2/10;
+		assertEquals(time, usedTime, 0.1);
 	}
 }

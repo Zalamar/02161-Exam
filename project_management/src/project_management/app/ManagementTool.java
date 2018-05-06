@@ -348,7 +348,7 @@ public class ManagementTool {
 		selectedActivity = null;
 	}
 
-	public void addUsedTime(int usedTime) throws UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException { //Oliver
+	public void addUsedTime(double usedTime) throws UserNotLoggedIn, NoProjectIsSelected, NoActivityIsSelectedException { //Oliver
 		isEmployeeLoggedIn();
 		hasProjectBeenSelected();
 		hasActivityBeenSelected();
@@ -360,7 +360,7 @@ public class ManagementTool {
 		return selectedActivity.getUsedTime();
 	}
 	
-	public int getUsedTime(String username) {
+	public double getUsedTime(String username) {
 		return selectedActivity.getUsedTime(username);
 	}
 	

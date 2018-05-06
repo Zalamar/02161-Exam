@@ -68,16 +68,16 @@ public class Activity {
 		return null;
 	}
 
-	public void addUsedTime(int usedTime, String username) { // Oliver
+	public void addUsedTime(double usedTime, String username) { // Oliver
 		List<String> line = getLine(username);
 		if (line != null) {
-			int newUsedTime = usedTime + Integer.parseInt(line.get(1));
-			String newUsedTimeString1 = Integer.toString(newUsedTime);
+			double newUsedTime = usedTime + Double.parseDouble(line.get(1));
+			String newUsedTimeString1 = Double.toString(newUsedTime);
 			line.set(1, newUsedTimeString1);
 		} else {
 			List<String> tempLine = new ArrayList<String>();
 			tempLine.add(0, username);
-			tempLine.add(1, "" + usedTime);
+			tempLine.add(1, Double.toString(usedTime));
 			listOfUsedTime.add(tempLine);
 		}
 	}
@@ -95,8 +95,8 @@ public class Activity {
 		return this.listOfUsedTime;
 	}
 
-	public int getUsedTime(String username) {
-		return Integer.parseInt(getLine(username).get(1));
+	public double getUsedTime(String username) {
+		return Double.parseDouble(getLine(username).get(1));
 	}
 
 }
