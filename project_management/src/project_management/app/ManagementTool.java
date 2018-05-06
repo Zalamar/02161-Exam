@@ -17,7 +17,7 @@ import project_management.app.exceptions.workerNotOnProjectException;
 
 public class ManagementTool {
 
-	private List<Project> projectList = new ArrayList<Project>();
+	private static List<Project> projectList = new ArrayList<Project>();
 	private List<Employee> employeeList = new ArrayList<Employee>();
 	private Employee employeeLoggedIn = null;
 	private Project selectedProject = null;
@@ -141,6 +141,14 @@ public class ManagementTool {
 			throw new NoProjectIsSelected();
 		}
 	}
+	
+	/*public static String returnListOfProjects() { // Oliver
+		String ListOfProjects = "";
+		for (int i = 0;i<projectList.size();i++) {
+			ListOfProjects = ListOfProjects+"\n"+projectList.toString();
+		}
+		return ListOfProjects;
+	}*/
 
 	public void selectActivity(String activityName)
 			throws UserNotLoggedIn, NoProjectIsSelected, ActivityNotFoundException { // Tobias
