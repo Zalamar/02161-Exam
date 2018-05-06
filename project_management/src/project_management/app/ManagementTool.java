@@ -285,7 +285,7 @@ public class ManagementTool {
 		}
 
 		int daysOff;
-		for (Project p : projectList) {
+		for (Project p : projectList) { // Tobias
 		    for (Activity a : p.getActivityList()) {
 		        daysOff = daysBetween(a);
 		        for (Employee e : a.getWorkerList()) {
