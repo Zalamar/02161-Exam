@@ -95,7 +95,7 @@ public class ManagementTool {
 		}
 	}
 
-	private boolean isEmployeeLoggedIn() throws UserNotLoggedIn { // Alex
+	public boolean isEmployeeLoggedIn() throws UserNotLoggedIn { // Alex
 		if (employeeLoggedIn != null) {
 			return true;
 		} else {

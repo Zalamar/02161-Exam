@@ -1,6 +1,7 @@
 package project_management.app;
 
 import project_management.app.exceptions.*;
+import project_management.test.ErrorMessage;
 
 import java.util.Scanner;
 
@@ -41,7 +42,11 @@ public class Main {
 				case 1: // Create project
 					System.out.printf("Enter project name\n");
 					inputString = reader.next();
-					managementTool.createProject(inputString);
+					try {
+						managementTool.createProject(inputString);
+				    } catch (UserNotLoggedIn e) {
+				    	System.out.println(e.getMessage());
+				    }
 					break;
 				case 2: // Select project
 					System.out.printf("Enter project ID\n");
