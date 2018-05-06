@@ -283,6 +283,39 @@ public class ManagementTool {
 				availableWorkers.add(line);
 			}
 		}
+
+		int daysOff;
+		for (Project p : projectList) {
+		    for (Activity a : p.getActivityList()) {
+		        daysOff = daysBetween(a);
+		        for (Employee e : a.getWorkerList()) {
+		            boolean workerAlreadyInList = false;
+                    List<String> lineToRemove = new ArrayList<String>();
+                    boolean removeLine = false;
+		            for (List<String> line : availableWorkers) {
+		                if (line.contains(e.getUsername())) {
+		                    if (Integer.parseInt(line.get(1)) + daysOff <= (double) lenghtOffSelectedActivity * procent) {
+                                line.set(1, Integer.parseInt(line.get(1)) + daysOff + "");
+                            } else {
+		                        lineToRemove = line;
+		                        removeLine = true;
+                            }
+		                    workerAlreadyInList = true;
+                        }
+                    }
+                    if (!workerAlreadyInList && daysOff <= (double) lenghtOffSelectedActivity * procent) {
+                        List<String> line = new ArrayList<String>();
+                        line.add(e.getUsername());
+                        line.add("" + daysOff);
+                        availableWorkers.add(line);
+                    }
+                    if (removeLine) {
+                        availableWorkers.remove(lineToRemove);
+                    }
+                }
+            }
+        }
+
 		if (availableWorkers.size() > 0) {
 			return availableWorkers;
 		} else {

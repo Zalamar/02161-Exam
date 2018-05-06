@@ -99,4 +99,7 @@ public class Activity {
 		return Double.parseDouble(getLine(username).get(1));
 	}
 
+	public List<Employee> getWorkerList() {
+		return workerList;
+	}
 }
