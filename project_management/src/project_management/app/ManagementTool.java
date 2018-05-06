@@ -387,7 +387,7 @@ public class ManagementTool {
 		return selectedActivity.getUsedTime();
 	}
 	
-	public double getUsedTime(String username) {
+	public double getUsedTime(String username) { //Oliver
 		return selectedActivity.getUsedTime(username);
 	}
 	
