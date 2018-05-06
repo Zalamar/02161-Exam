@@ -302,11 +302,11 @@ public class ManagementTool {
 		} else if (endsBeforeSelected(activity)) { //3
 			return 0;
 		} else if (startsBeforeSelected(activity)) { //4
-			return daysBetween(selectedActivity.getStartDate(), activity.getEndDate());
+			return isThereAEndDate(activity) ? daysBetween(selectedActivity.getStartDate(), activity.getEndDate()) : 0; //4.1
 		} else if (endsAfterSelected(activity)) { //5
 			return daysBetween(activity.getStartDate(), selectedActivity.getEndDate());
-		} else { //5
-			return (isThereAEndDate(activity)) ? daysBetween(activity) : 1;
+		} else { //6
+			return isThereAEndDate(activity) ? daysBetween(activity) : 1; //6.1
 		}
 	}
 
