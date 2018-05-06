@@ -61,7 +61,7 @@ public class Main {
 					}
 				
 				if (userLoggedIn == false) {
-					System.out.printf("There is no user with that username\n")
+					System.out.printf("There is no user with that username\n");
 				}
 				
 				while (userLoggedIn && quit == false) {
