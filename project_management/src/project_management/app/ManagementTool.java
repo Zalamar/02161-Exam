@@ -360,8 +360,14 @@ public class ManagementTool {
 		return selectedActivity.getUsedTime();
 	}
 	
+	public int getUsedTime(String username) {
+		return selectedActivity.getUsedTime(username);
+	}
+	
 	public void removeWorker(String username) { // Tobias
 		selectedProject.removeWorker(username);
 	}
+
+	
 
 }

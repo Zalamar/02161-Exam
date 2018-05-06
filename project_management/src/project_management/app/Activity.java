@@ -95,4 +95,8 @@ public class Activity {
 		return this.listOfUsedTime;
 	}
 
+	public int getUsedTime(String username) {
+		return Integer.parseInt(getLine(username).get(1));
+	}
+
 }
