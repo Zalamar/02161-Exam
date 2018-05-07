@@ -363,7 +363,7 @@ public class Main {
 		System.out.printf("Enter month number\n");
 		incorrectDate = true;
 		while (incorrectDate) {
-			month = reader.nextInt() - 1;
+			month = getSelectorNumber(reader) - 1;
 			if (month < 0) {
 				System.out.printf("The month cannot be below 1");
 			} else if (month > 11) {
