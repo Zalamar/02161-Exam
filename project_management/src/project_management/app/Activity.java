@@ -100,7 +100,11 @@ public class Activity {
 	}
 
 	public double getUsedTime(String username) {
-		return Double.parseDouble(getLine(username).get(1));
+		try {
+			return Double.parseDouble(getLine(username).get(1));
+		} catch (NullPointerException e) {
+			return 0;
+		}
 	}
 
 	public List<Employee> getWorkerList() {
