@@ -334,33 +334,23 @@ public class Main {
 	}
 
 	private static int getSelectorNumber(Scanner reader) {
-		String input = reader.nextLine();
-		int selector;
 		while (true) {
 			try {
-				selector = Integer.parseInt(input);
-				break;
+				return Integer.parseInt(inputString(reader));
 			} catch (NumberFormatException e) {
 				System.out.println("The input shall be only numbers and no letters");
-				input = reader.nextLine();
 			}
 		}
-		return selector;
 	}
-	
+
 	private static double getSelectorDouble(Scanner reader) {
-		String input = reader.nextLine();
-		double selector;
 		while (true) {
 			try {
-				selector = Double.parseDouble(input);
-				break;
+				return Double.parseDouble(inputString(reader));
 			} catch (NumberFormatException e) {
 				System.out.println("The input shall be only numbers and no letters");
-				input = reader.nextLine();
 			}
 		}
-		return selector;
 	}
 
 	private static void printListOfActivitys(ManagementTool managementTool) {
