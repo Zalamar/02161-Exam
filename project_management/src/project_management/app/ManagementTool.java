@@ -14,9 +14,11 @@ public class ManagementTool {
 	private Project selectedProject = null;
 	private Activity selectedActivity = null;
 
-	public void createProject(String string) throws UserNotLoggedIn { // Alex
-		if (isEmployeeLoggedIn()) {
-			projectList.add(new Project(string));
+	public void createProject(String name) throws UserNotLoggedIn, ProjectAlreadyExits { // Alex
+		if (isEmployeeLoggedIn() && !isthereAProjectWithThisName(name)) {
+			projectList.add(new Project(name));
+		} else {
+			throw new ProjectAlreadyExits();
 		}
 	}
 
@@ -54,7 +56,7 @@ public class ManagementTool {
 		}
 	}
 
-	public void addAnActivity(String name) throws UserNotLoggedIn, NoProjectIsSelected { // Alex
+	public void addAnActivity(String name) throws UserNotLoggedIn, NoProjectIsSelected, ActivityAlreadyExisting { // Alex
 		if (isEmployeeLoggedIn() && hasProjectBeenSelected()) {
 			selectedProject.addActivity(new Activity(name));
 		}

@@ -48,6 +48,8 @@ public class AddAnActivitySteps {
 	    	ErrorMessage.errorMessage = e.getMessage();
 	    } catch (NoProjectIsSelected e) {
 	    	ErrorMessage.errorMessage = e.getMessage();
+	    } catch (ActivityAlreadyExisting e) {
+	    	ErrorMessage.errorMessage = e.getMessage();
 	    }
 	}
 

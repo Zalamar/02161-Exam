@@ -20,7 +20,7 @@ public class Project {
 		return this.name;
 	}
 
-	public void addActivity(Activity activity) { // Alex
+	public void addActivity(Activity activity) throws ActivityAlreadyExisting { // Alex
 		if (!searchActivitys(activity.getName())) {
 			activityList.add(activity);
 		}

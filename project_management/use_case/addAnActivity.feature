@@ -9,7 +9,7 @@ Background:
 	
 Scenario: Add an activity to the project
 	When a worker selecets the project "011001"
-	When a worker add an activity "001" to the project
+	And a worker add an activity "001" to the project
 	Then the activity "001" is now in the project
 	
 Scenario: Try to creat one when not logged in
@@ -23,6 +23,7 @@ Scenario: Try to creat one when no project is selected
 	Then I get the error message "No project is selected"
 	
 Scenario: Try to creat an activity with the same name
-	When a worker add an activity "001" to the project
+	When a worker selecets the project "011001"
+	And a worker add an activity "001" to the project
 	And a worker add an activity "001" to the project
 	Then I get the error message "Activity already exiting"

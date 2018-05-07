@@ -15,6 +15,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import project_management.app.ManagementTool;
+import project_management.app.exceptions.ProjectAlreadyExits;
 import project_management.app.exceptions.UserNotLoggedIn;
 
 
@@ -56,6 +57,8 @@ public class CreatAProjectSteps {
 	    try {
 	    	managementTool.createProject(name);
 	    } catch (UserNotLoggedIn e) {
+	    	ErrorMessage.errorMessage = e.getMessage();
+	    } catch (ProjectAlreadyExits e) {
 	    	ErrorMessage.errorMessage = e.getMessage();
 	    }
 	}
