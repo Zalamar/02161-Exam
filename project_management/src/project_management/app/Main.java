@@ -337,13 +337,13 @@ public class Main {
 		reader.close();
 	}
 
-	private static String inputString(Scanner reader) {
+	private static String inputString(Scanner reader) { //Alex
 		String inputString;
 		inputString = reader.nextLine();
 		return inputString;
 	}
 
-	private static int getSelectorNumber(Scanner reader) {
+	private static int getSelectorNumber(Scanner reader) { //Alex
 		while (true) {
 			try {
 				return Integer.parseInt(inputString(reader));
@@ -353,7 +353,7 @@ public class Main {
 		}
 	}
 
-	private static double getSelectorDouble(Scanner reader) {
+	private static double getSelectorDouble(Scanner reader) { //Alex
 		while (true) {
 			try {
 				return Double.parseDouble(inputString(reader));
@@ -371,7 +371,7 @@ public class Main {
 		}
 	}
 
-	private static GregorianCalendar setDate(Scanner reader, ManagementTool managementTool) {
+	private static GregorianCalendar setDate(Scanner reader, ManagementTool managementTool) {//Tobias
 		int year = 0;
 		int month = 0;
 		int day = 0;
@@ -409,7 +409,7 @@ public class Main {
 		return new GregorianCalendar(year, month, day);
 	}
 
-	private static void showDate(ManagementTool managementTool) {
+	private static void showDate(ManagementTool managementTool) { //Nikolaj
 		GregorianCalendar startDate = managementTool.getActivityStartDate();
 		if (startDate != null) {
 			System.out.printf("\nStart date:\n");
