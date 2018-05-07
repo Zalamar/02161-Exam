@@ -234,6 +234,7 @@ public class Main {
 										managementTool.addAnActivity(inputString);
 										break;
 									case 3: // Select activity
+										printListOfActivitys(managementTool);
 										System.out.printf("Enter activity ID\n");
 
 										inputString = reader.next();
