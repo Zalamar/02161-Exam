@@ -82,6 +82,11 @@ public class Main {
 						}
 						break;
 					case 2: // Select project
+						System.out.println("List of projects");
+						List<String> listOfProjects = managementTool.returnListOfProjects();
+						for (String s : listOfProjects) {
+							System.out.println(s);
+						}
 						System.out.printf("Enter project ID\n");
 						inputString = reader.next();
 
@@ -105,6 +110,12 @@ public class Main {
 										managementTool.addAnActivity(inputString);
 										break;
 									case 2: // Select activity
+										System.out.println("List of activities:");
+										List<String> listOfActivities = managementTool.returnListOfActivities();
+										for (String s : listOfActivities) {
+											System.out.println(s);
+										}
+										
 										System.out.printf("Enter activity ID\n");
 										inputString = reader.next();
 
