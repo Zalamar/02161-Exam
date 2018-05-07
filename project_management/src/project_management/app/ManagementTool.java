@@ -52,13 +52,13 @@ public class ManagementTool {
 	}
 
 	public void selectProject(String name) throws NoProjectWithThatName { // Alex
-		if (isthereAProjectWithThisName(name)) {
-			for (Project p : projectList) {
-				if (p.getName().equals(name)) {
+		if (isthereAProjectWithThisName(name)) { //1
+			for (Project p : projectList) { //2
+				if (p.getName().equals(name)) { //3
 					selectedProject = p;
 				}
 			}
-		} else {
+		} else { //4
 			throw new NoProjectWithThatName();
 		}
 	}
