@@ -129,7 +129,7 @@ public class Main {
 												switch (selector) {
 												case 1: // Add used time
 													System.out.printf("Enter used time\n");
-													inputDouble = reader.nextDouble();
+													inputDouble = getSelectorDouble(reader);
 													managementTool.addUsedTime(inputDouble);
 													break;
 												case 2: // See used time
@@ -256,7 +256,7 @@ public class Main {
 												switch (selector) {
 												case 1: // Add used time
 													System.out.printf("Enter used time\n");
-													inputDouble = reader.nextDouble();
+													inputDouble = getSelectorDouble(reader);
 													managementTool.addUsedTime(inputDouble);
 													break;
 												case 2: // See used time
@@ -333,6 +333,21 @@ public class Main {
 		while (true) {
 			try {
 				selector = Integer.parseInt(input);
+				break;
+			} catch (NumberFormatException e) {
+				System.out.println("The input shall be only numbers and no letters");
+				input = reader.next();
+			}
+		}
+		return selector;
+	}
+	
+	private static double getSelectorDouble(Scanner reader) {
+		String input = reader.next();
+		double selector;
+		while (true) {
+			try {
+				selector = Double.parseDouble(input);
 				break;
 			} catch (NumberFormatException e) {
 				System.out.println("The input shall be only numbers and no letters");
