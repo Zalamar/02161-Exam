@@ -141,6 +141,14 @@ public class ManagementTool {
 			throw new NoProjectIsSelected();
 		}
 	}
+	
+	/*public static String returnListOfProjects() { // Oliver
+		String ListOfProjects = "";
+		for (int i = 0;i<projectList.size();i++) {
+			ListOfProjects = ListOfProjects+"\n"+projectList.toString();
+		}
+		return ListOfProjects;
+	}*/
 
 	public void selectActivity(String activityName)
 			throws UserNotLoggedIn, NoProjectIsSelected, ActivityNotFoundException { // Tobias

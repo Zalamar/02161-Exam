@@ -129,14 +129,13 @@ public class Main {
 													managementTool.addUsedTime(inputDouble);
 													break;
 												case 2: // See used time
-													if (managementTool.getUsedTime()==null) {
-														System.out.println("No registered used time");
-													}
-													else {
+														//System.out.println("No registered used time");
+													
+													
 													System.out.printf("%f\n", managementTool.getUsedTime(
 															managementTool.getEmployeeLoggedIn().getUsername()));
 													break;
-													}
+													
 												case 3: // See all used time
 													if (managementTool.getUsedTime()==null) {
 														System.out.println("No registered used time for anyone");
