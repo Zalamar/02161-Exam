@@ -337,18 +337,28 @@ public class ManagementTool {
 
 	public int getTheNumberOfDays(int lenghtOffSelectedActivity, Activity activity) {
 		//precondition
-		assert(lenghtOffSelectedActivity>=0);
+		assert lenghtOffSelectedActivity>=0 && activity!=null;
 		if (startsBeforeSelected(activity) && endsAfterSelected(activity)) { //1
 			return lenghtOffSelectedActivity;
 		} else if (startsAfterSelected(activity)) { //2
+			//postcondition
+			assert true;
 			return 0;
 		} else if (endsBeforeSelected(activity)) { //3
+			//postcondition
+			assert true;
 			return 0;
 		} else if (startsBeforeSelected(activity)) { //4
+			//postcondition
+			assert true;
 			return isThereAEndDate(activity) ? daysBetween(selectedActivity.getStartDate(), activity.getEndDate()) : 0; //4.1
 		} else if (endsAfterSelected(activity)) { //5
+			//postcondition
+			assert true;
 			return daysBetween(activity.getStartDate(), selectedActivity.getEndDate());
 		} else { //6
+			//postcondition
+			assert true;
 			return isThereAEndDate(activity) ? daysBetween(activity) : 1; //6.1
 		}
 	}

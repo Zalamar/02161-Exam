@@ -70,7 +70,7 @@ public class Activity {
 
 	public void addUsedTime(double usedTime, String username) { // Oliver
 		// precondition
-		assert usedTime!=0;
+		assert true;
 		List<String> line = getLine(username);	//1
 		if (line != null) {	//2							
 			double newUsedTime = usedTime + Double.parseDouble(line.get(1));
@@ -83,7 +83,7 @@ public class Activity {
 			listOfUsedTime.add(tempLine);
 		}
 		//postcondition
-		assert(true);
+		assert true;
 	}
 
 	private List<String> getLine(String username) { //Oliver
