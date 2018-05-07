@@ -163,25 +163,11 @@ public class Main {
 													}
 													break;
 												case 5: // set start date
-													System.out.printf("Enter year\n");
-													temp1 = reader.nextInt();
-													System.out.printf("Enter month number\n");
-													temp2 = reader.nextInt();
-													System.out.printf("Enter day of month\n");
-													temp3 = reader.nextInt();
-													GregorianCalendar startDate = new GregorianCalendar(temp1, temp2,
-															temp3);
+													GregorianCalendar startDate = setDate(reader);
 													managementTool.addActivityStartDate(startDate);
 													break;
 												case 6: // set end date
-													System.out.printf("Enter year\n");
-													temp1 = reader.nextInt();
-													System.out.printf("Enter month number\n");
-													temp2 = reader.nextInt();
-													System.out.printf("Enter day of month\n");
-													temp3 = reader.nextInt();
-													GregorianCalendar endDate = new GregorianCalendar(temp1, temp2,
-															temp3);
+													GregorianCalendar endDate = setDate(reader);
 													try {
 														managementTool.addActivityEndDate(endDate);
 													} catch (startDateAfterEndDateException e) {
@@ -189,11 +175,7 @@ public class Main {
 													}
 													break;
 												case 7: // see start and end date
-													System.out.printf("\nStart date:\n");
-													System.out.println(managementTool.getActivityStartDate().getTime());
-													System.out.printf("End date:\n");
-													System.out.println(managementTool.getActivityEndDate().getTime());
-													System.out.printf("\n");
+													showDate(managementTool);
 													break;
 												case 8: // See who's available
 													try {
@@ -290,25 +272,11 @@ public class Main {
 															managementTool.getEmployeeLoggedIn().getUsername()));
 													break;
 												case 3: // set start date
-													System.out.printf("Enter year\n");
-													temp1 = reader.nextInt();
-													System.out.printf("Enter month number\n");
-													temp2 = reader.nextInt();
-													System.out.printf("Enter day of month\n");
-													temp3 = reader.nextInt();
-													GregorianCalendar startDate = new GregorianCalendar(temp1, temp2,
-															temp3);
+													GregorianCalendar startDate = setDate(reader);
 													managementTool.addActivityStartDate(startDate);
 													break;
 												case 4: // set end date
-													System.out.printf("Enter year\n");
-													temp1 = reader.nextInt();
-													System.out.printf("Enter month number\n");
-													temp2 = reader.nextInt();
-													System.out.printf("Enter day of month\n");
-													temp3 = reader.nextInt();
-													GregorianCalendar endDate = new GregorianCalendar(temp1, temp2,
-															temp3);
+													GregorianCalendar endDate = setDate(reader);
 													try {
 														managementTool.addActivityEndDate(endDate);
 													} catch (startDateAfterEndDateException e) {
@@ -316,11 +284,7 @@ public class Main {
 													}
 													break;
 												case 5: // see start and end date
-													System.out.printf("\nStart date:\n");
-													System.out.println(managementTool.getActivityStartDate().getTime());
-													System.out.printf("End date:\n");
-													System.out.println(managementTool.getActivityEndDate().getTime());
-													System.out.printf("\n");
+													showDate(managementTool);
 													break;
 												case 6: // Back
 													back = true;
@@ -369,5 +333,33 @@ public class Main {
 
 		}
 		reader.close();
+	}
+
+	private static GregorianCalendar setDate(Scanner reader) {
+		int year;
+		int month;
+		int day;
+		System.out.printf("Enter year\n");
+		year = reader.nextInt();
+		System.out.printf("Enter month number\n");
+		month = reader.nextInt() - 1;
+		System.out.printf("Enter day of month\n");
+		day = reader.nextInt();
+		GregorianCalendar startDate = new GregorianCalendar(year, month, day);
+		return startDate;
+	}
+
+	private static void showDate(ManagementTool managementTool) {
+		GregorianCalendar startDate = managementTool.getActivityStartDate();
+		if (startDate != null) {
+			System.out.printf("\nStart date:\n");
+			System.out.println(managementTool.getActivityStartDate().getTime());
+		}
+		GregorianCalendar endDate = managementTool.getActivityEndDate();
+		if (endDate != null) {
+			System.out.printf("End date:\n");
+			System.out.println(endDate.getTime());
+		}
+		System.out.printf("\n");
 	}
 }
