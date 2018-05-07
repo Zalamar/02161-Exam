@@ -34,9 +34,6 @@ public class Main {
 		int selector = 0;
 		String inputString = "";
 		double inputDouble = 0;
-		int temp1 = 0;
-		int temp2 = 0;
-		int temp3 = 0;
 
 		boolean quit = false;
 		boolean back = false;
@@ -110,11 +107,7 @@ public class Main {
 										managementTool.addAnActivity(inputString);
 										break;
 									case 2: // Select activity
-										System.out.println("List of activities:");
-										List<String> listOfActivities = managementTool.returnListOfActivities();
-										for (String s : listOfActivities) {
-											System.out.println(s);
-										}
+										printListOfActivitys(managementTool);
 
 										System.out.printf("Enter activity ID\n");
 										inputString = reader.next();
@@ -236,7 +229,7 @@ public class Main {
 										}
 										break;
 									case 2: // Add activity
-										System.out.printf("Enter activity ID\n");
+										printListOfActivitys(managementTool);
 										inputString = reader.next();
 										managementTool.addAnActivity(inputString);
 										break;
@@ -329,6 +322,14 @@ public class Main {
 		reader.close();
 	}
 
+	private static void printListOfActivitys(ManagementTool managementTool) {
+		System.out.println("List of activities:");
+		List<String> listOfActivities = managementTool.returnListOfActivities();
+		for (String s : listOfActivities) {
+			System.out.println(s);
+		}
+	}
+
 	private static GregorianCalendar setDate(Scanner reader, ManagementTool managementTool) {
 		int year = 0;
 		int month = 0;
@@ -346,10 +347,10 @@ public class Main {
 		System.out.printf("Enter month number\n");
 		incorrectDate = true;
 		while (incorrectDate) {
-			month = reader.nextInt();
-			if (month < 1) {
+			month = reader.nextInt() - 1;
+			if (month < 0) {
 				System.out.printf("The month cannot be below 1");
-			} else if (month > 12) {
+			} else if (month > 11) {
 				System.out.printf("The month cannot be above 12");
 			} else {
 				incorrectDate = false;
@@ -361,7 +362,7 @@ public class Main {
 			day = reader.nextInt();
 			if (day < 1) {
 				System.out.printf("The day cannot be below 1");
-			} else if (day > 12) {
+			} else if (day > 31) {
 				System.out.printf("The day cannot be above 31");
 			} else {
 				incorrectDate = false;
