@@ -49,7 +49,7 @@ public class Main {
 			switch (selector) {
 			case 1: // Login
 				System.out.println("Enter username\n");
-				inputString = reader.next();
+				inputString = inputString(reader);
 				managementTool.login(inputString);
 
 				try {
@@ -71,7 +71,7 @@ public class Main {
 					switch (selector) {
 					case 1: // Create project
 						System.out.printf("Enter project name\n");
-						inputString = reader.next();
+						inputString = inputString(reader);
 						try {
 							managementTool.createProject(inputString);
 						} catch (UserNotLoggedIn e) {
@@ -85,7 +85,7 @@ public class Main {
 							System.out.println(s);
 						}
 						System.out.printf("Enter project ID\n");
-						inputString = reader.next();
+						inputString = inputString(reader);
 
 						try {
 							managementTool.selectProject(inputString);
@@ -103,14 +103,14 @@ public class Main {
 									switch (selector) {
 									case 1: // Add activity
 										System.out.printf("Enter activity ID\n");
-										inputString = reader.next();
+										inputString = inputString(reader);
 										managementTool.addAnActivity(inputString);
 										break;
 									case 2: // Select activity
 										printListOfActivitys(managementTool);
 
 										System.out.printf("Enter activity ID\n");
-										inputString = reader.next();
+										inputString = inputString(reader);
 
 										try {
 											managementTool.selectActivity(inputString);
@@ -144,7 +144,7 @@ public class Main {
 
 												case 4: // Add worker to activity
 													System.out.printf("Enter the worker's username\n");
-													inputString = reader.next();
+													inputString = inputString(reader);
 													try {
 														managementTool.addWorkerToActivity(inputString);
 													} catch (workerNotOnProjectException e) {
@@ -190,7 +190,7 @@ public class Main {
 										break;
 									case 3: // add worker to project
 										System.out.printf("Enter username\n");
-										inputString = reader.next();
+										inputString = inputString(reader);
 										try {
 											managementTool.addWorkerToProject(inputString);
 										} catch (UserNotLoggedIn e) {
@@ -222,7 +222,7 @@ public class Main {
 									switch (selector) {
 									case 1: // Add project manager
 										System.out.printf("Enter username for project manager\n");
-										inputString = reader.next();
+										inputString = inputString(reader);
 										try {
 											managementTool.addProjectManager(inputString);
 										} catch (TheProjectAlreadyHaveAManager e) {
@@ -233,14 +233,14 @@ public class Main {
 										break;
 									case 2: // Add activity
 										printListOfActivitys(managementTool);
-										inputString = reader.next();
+										inputString = inputString(reader);
 										managementTool.addAnActivity(inputString);
 										break;
 									case 3: // Select activity
 										printListOfActivitys(managementTool);
 										System.out.printf("Enter activity ID\n");
 
-										inputString = reader.next();
+										inputString = inputString(reader);
 
 										try {
 											managementTool.selectActivity(inputString);
@@ -327,8 +327,14 @@ public class Main {
 		reader.close();
 	}
 
+	private static String inputString(Scanner reader) {
+		String inputString;
+		inputString = reader.nextLine();
+		return inputString;
+	}
+
 	private static int getSelectorNumber(Scanner reader) {
-		String input = reader.next();
+		String input = reader.nextLine();
 		int selector;
 		while (true) {
 			try {
@@ -336,14 +342,14 @@ public class Main {
 				break;
 			} catch (NumberFormatException e) {
 				System.out.println("The input shall be only numbers and no letters");
-				input = reader.next();
+				input = reader.nextLine();
 			}
 		}
 		return selector;
 	}
 	
 	private static double getSelectorDouble(Scanner reader) {
-		String input = reader.next();
+		String input = reader.nextLine();
 		double selector;
 		while (true) {
 			try {
@@ -351,7 +357,7 @@ public class Main {
 				break;
 			} catch (NumberFormatException e) {
 				System.out.println("The input shall be only numbers and no letters");
-				input = reader.next();
+				input = reader.nextLine();
 			}
 		}
 		return selector;
