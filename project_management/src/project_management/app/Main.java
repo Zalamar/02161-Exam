@@ -152,7 +152,8 @@ public class Main {
 													}
 													break;
 												case 5: // set start date
-													managementTool.addActivityStartDate(setDate(reader, managementTool));
+													managementTool
+															.addActivityStartDate(setDate(reader, managementTool));
 													break;
 												case 6: // set end date
 													try {
@@ -265,6 +266,7 @@ public class Main {
 												case 3: // set start date
 													managementTool
 															.addActivityStartDate(setDate(reader, managementTool));
+													break;
 												case 4: // set end date
 													try {
 														managementTool
@@ -328,7 +330,7 @@ public class Main {
 	private static int getSelectorNumber(Scanner reader) {
 		String input = reader.next();
 		int selector;
-		while(true) {
+		while (true) {
 			try {
 				selector = Integer.parseInt(input);
 				break;
@@ -353,37 +355,34 @@ public class Main {
 		int month = 0;
 		int day = 0;
 		System.out.printf("Enter year\n");
-		boolean incorrectDate = true;
-		while (incorrectDate) {
+		while (true) {
 			year = getSelectorNumber(reader);
 			if (year < 0) {
-				System.out.printf("The year cannot be negative");
+				System.out.printf("The year cannot be negative \n");
 			} else {
-				incorrectDate = false;
+				break;
 			}
 		}
 		System.out.printf("Enter month number\n");
-		incorrectDate = true;
-		while (incorrectDate) {
+		while (true) {
 			month = getSelectorNumber(reader) - 1;
 			if (month < 0) {
-				System.out.printf("The month cannot be below 1");
+				System.out.printf("The month cannot be below 1 \n");
 			} else if (month > 11) {
-				System.out.printf("The month cannot be above 12");
+				System.out.printf("The month cannot be above 12 \n");
 			} else {
-				incorrectDate = false;
+				break;
 			}
 		}
 		System.out.printf("Enter day of month\n");
-		incorrectDate = true;
-		while (incorrectDate) {
+		while (true) {
 			day = getSelectorNumber(reader);
 			if (day < 1) {
-				System.out.printf("The day cannot be below 1");
+				System.out.printf("The day cannot be below 1 \n");
 			} else if (day > 31) {
-				System.out.printf("The day cannot be above 31");
+				System.out.printf("The day cannot be above 31 \n");
 			} else {
-				incorrectDate = false;
+				break;
 			}
 		}
 		return new GregorianCalendar(year, month, day);
