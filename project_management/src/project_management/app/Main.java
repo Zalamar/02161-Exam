@@ -115,7 +115,7 @@ public class Main {
 										for (String s : listOfActivities) {
 											System.out.println(s);
 										}
-										
+
 										System.out.printf("Enter activity ID\n");
 										inputString = reader.next();
 
@@ -132,7 +132,6 @@ public class Main {
 												System.out.printf("9. Remove activity\n10. Back\n");
 
 												selector = reader.nextInt();
-												boolean incorrectDate;
 
 												switch (selector) {
 												case 1: // Add used time
@@ -144,7 +143,7 @@ public class Main {
 													System.out.printf("%f\n", managementTool.getUsedTime(
 															managementTool.getEmployeeLoggedIn().getUsername()));
 													break;
-													
+
 												case 3: // See all used time
 
 													System.out.println(managementTool.getUsedTime());
@@ -160,95 +159,18 @@ public class Main {
 													}
 													break;
 												case 5: // set start date
-													System.out.printf("Enter year\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp1 = reader.nextInt();
-														if (temp1 < 0) {
-															System.out.printf("The year cannot be negative");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													System.out.printf("Enter month number\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp2 = reader.nextInt();
-														if (temp2 < 1) {
-															System.out.printf("The month cannot be below 1");
-														} else if (temp2 > 12) {
-															System.out.printf("The month cannot be above 12");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													System.out.printf("Enter day of month\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp3 = reader.nextInt();
-														if (temp3 < 1) {
-															System.out.printf("The day cannot be below 1");
-														} else if (temp3 > 12) {
-															System.out.printf("The day cannot be above 31");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													GregorianCalendar startDate = new GregorianCalendar(temp1, temp2,
-															temp3);
-													managementTool.addActivityStartDate(startDate);
+													managementTool.addActivityStartDate(setDate(reader, managementTool));
 													break;
 												case 6: // set end date
-													System.out.printf("Enter year\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp1 = reader.nextInt();
-														if (temp1 < 0) {
-															System.out.printf("The year cannot be negative");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													System.out.printf("Enter month number\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp2 = reader.nextInt();
-														if (temp2 < 1) {
-															System.out.printf("The month cannot be below 1");
-														} else if (temp2 > 12) {
-															System.out.printf("The month cannot be above 12");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													System.out.printf("Enter day of month\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp3 = reader.nextInt();
-														if (temp3 < 1) {
-															System.out.printf("The day cannot be below 1");
-														} else if (temp3 > 12) {
-															System.out.printf("The day cannot be above 31");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													GregorianCalendar endDate = new GregorianCalendar(temp1, temp2,
-															temp3);
 													try {
-														managementTool.addActivityEndDate(endDate);
+														managementTool
+																.addActivityEndDate(setDate(reader, managementTool));
 													} catch (startDateAfterEndDateException e) {
 														System.out.println(e.getMessage());
 													}
 													break;
 												case 7: // see start and end date
-													try {
-														System.out.printf("\nStart date:\n" + managementTool.getActivityStartDate().getTime());
-														System.out.printf("\nEnd date:\n" + managementTool.getActivityEndDate().getTime());
-														System.out.printf("\n");
-													} catch (NullPointerException e) {
-														System.out.println("Dates incomplete on project.");
-													}
+													showDate(managementTool);
 													break;
 												case 8: // See who's available
 													try {
@@ -302,7 +224,6 @@ public class Main {
 									System.out.printf("4. Back\n");
 
 									selector = reader.nextInt();
-									boolean incorrectDate;
 
 									switch (selector) {
 									case 1: // Add project manager
@@ -346,95 +267,18 @@ public class Main {
 															managementTool.getEmployeeLoggedIn().getUsername()));
 													break;
 												case 3: // set start date
-													System.out.printf("Enter year\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp1 = reader.nextInt();
-														if (temp1 < 0) {
-															System.out.printf("The year cannot be negative");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													System.out.printf("Enter month number\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp2 = reader.nextInt();
-														if (temp2 < 1) {
-															System.out.printf("The month cannot be below 1");
-														} else if (temp2 > 12) {
-															System.out.printf("The month cannot be above 12");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													System.out.printf("Enter day of month\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp3 = reader.nextInt();
-														if (temp3 < 1) {
-															System.out.printf("The day cannot be below 1");
-														} else if (temp3 > 12) {
-															System.out.printf("The day cannot be above 31");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													GregorianCalendar startDate = new GregorianCalendar(temp1, temp2,
-															temp3);
-													managementTool.addActivityStartDate(startDate);
-													break;
+													managementTool
+															.addActivityStartDate(setDate(reader, managementTool));
 												case 4: // set end date
-													System.out.printf("Enter year\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp1 = reader.nextInt();
-														if (temp1 < 0) {
-															System.out.printf("The year cannot be negative");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													System.out.printf("Enter month number\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp2 = reader.nextInt();
-														if (temp2 < 1) {
-															System.out.printf("The month cannot be below 1");
-														} else if (temp2 > 12) {
-															System.out.printf("The month cannot be above 12");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													System.out.printf("Enter day of month\n");
-													incorrectDate = true;
-													while(incorrectDate) {
-														temp3 = reader.nextInt();
-														if (temp3 < 1) {
-															System.out.printf("The day cannot be below 1");
-														} else if (temp3 > 12) {
-															System.out.printf("The day cannot be above 31");
-														} else {
-															incorrectDate = false;
-														}
-													}
-													GregorianCalendar endDate = new GregorianCalendar(temp1, temp2,
-															temp3);
 													try {
-														managementTool.addActivityEndDate(endDate);
+														managementTool
+																.addActivityEndDate(setDate(reader, managementTool));
 													} catch (startDateAfterEndDateException e) {
 														System.out.println(e.getMessage());
 													}
 													break;
 												case 5: // see start and end date
-													try {
-														System.out.printf("\nStart date:\n" + managementTool.getActivityStartDate().getTime());
-														System.out.printf("\nEnd date:\n" + managementTool.getActivityEndDate().getTime());
-														System.out.printf("\n");
-													} catch (NullPointerException e) {
-														System.out.println("Dates incomplete on project.");
-													}
+													showDate(managementTool);
 													break;
 												case 6: // Back
 													back = true;
@@ -485,18 +329,45 @@ public class Main {
 		reader.close();
 	}
 
-	private static GregorianCalendar setDate(Scanner reader) {
-		int year;
-		int month;
-		int day;
+	private static GregorianCalendar setDate(Scanner reader, ManagementTool managementTool) {
+		int year = 0;
+		int month = 0;
+		int day = 0;
 		System.out.printf("Enter year\n");
-		year = reader.nextInt();
+		boolean incorrectDate = true;
+		while (incorrectDate) {
+			year = reader.nextInt();
+			if (year < 0) {
+				System.out.printf("The year cannot be negative");
+			} else {
+				incorrectDate = false;
+			}
+		}
 		System.out.printf("Enter month number\n");
-		month = reader.nextInt() - 1;
+		incorrectDate = true;
+		while (incorrectDate) {
+			month = reader.nextInt();
+			if (month < 1) {
+				System.out.printf("The month cannot be below 1");
+			} else if (month > 12) {
+				System.out.printf("The month cannot be above 12");
+			} else {
+				incorrectDate = false;
+			}
+		}
 		System.out.printf("Enter day of month\n");
-		day = reader.nextInt();
-		GregorianCalendar startDate = new GregorianCalendar(year, month, day);
-		return startDate;
+		incorrectDate = true;
+		while (incorrectDate) {
+			day = reader.nextInt();
+			if (day < 1) {
+				System.out.printf("The day cannot be below 1");
+			} else if (day > 12) {
+				System.out.printf("The day cannot be above 31");
+			} else {
+				incorrectDate = false;
+			}
+		}
+		return new GregorianCalendar(year, month, day);
 	}
 
 	private static void showDate(ManagementTool managementTool) {
@@ -504,11 +375,15 @@ public class Main {
 		if (startDate != null) {
 			System.out.printf("\nStart date:\n");
 			System.out.println(managementTool.getActivityStartDate().getTime());
+		} else {
+			System.out.println("There are no start date on the activity");
 		}
 		GregorianCalendar endDate = managementTool.getActivityEndDate();
 		if (endDate != null) {
 			System.out.printf("End date:\n");
 			System.out.println(endDate.getTime());
+		} else {
+			System.out.println("There are no end date on the activity");
 		}
 		System.out.printf("\n");
 	}
