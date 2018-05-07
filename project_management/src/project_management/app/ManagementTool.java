@@ -141,6 +141,11 @@ public class ManagementTool {
 		return ListOfProjects;
 	}
 
+	public List<String> returnListOfActivities() { // Oliver
+		return selectedProject.getListOfActivities();
+	}
+	
+	
 	public void selectActivity(String activityName)
 			throws UserNotLoggedIn, NoProjectIsSelected, ActivityNotFoundException { // Tobias
 	    assert activityName != null;

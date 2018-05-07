@@ -93,4 +93,12 @@ public class Project {
 		workerList.remove(removedWorker);
 	}
 
+	public List<String> getListOfActivities() {
+		List<String> listOfActivities = new ArrayList<String>();
+		for (Activity a : activityList) {
+			listOfActivities.add(a.getName());
+		}
+		return listOfActivities;
+	}
+
 }
