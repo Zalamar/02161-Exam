@@ -93,7 +93,7 @@ public class Project {
 		workerList.remove(removedWorker);
 	}
 
-	public List<String> getListOfActivities() {
+	public List<String> getListOfActivities() { //Oliver
 		List<String> listOfActivities = new ArrayList<String>();
 		for (Activity a : activityList) {
 			listOfActivities.add(a.getName());
