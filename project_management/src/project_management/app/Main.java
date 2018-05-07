@@ -44,7 +44,7 @@ public class Main {
 			System.out.printf("1. Login\n");
 			System.out.printf("2. Quit\n");
 
-			selector = reader.nextInt();
+			selector = getSelectorNumber(reader);
 
 			switch (selector) {
 			case 1: // Login
@@ -66,7 +66,7 @@ public class Main {
 				while (userLoggedIn && quit == false) {
 					System.out.printf("1. Create project\n2. Select project\n3. Add user\n4. Logout\n");
 
-					selector = reader.nextInt();
+					selector = getSelectorNumber(reader);
 
 					switch (selector) {
 					case 1: // Create project
@@ -98,7 +98,7 @@ public class Main {
 									System.out.printf("3. Add worker to this project\n");
 									System.out.printf("4. See report\n5. Remove project\n6. Back\n");
 
-									selector = reader.nextInt();
+									selector = getSelectorNumber(reader);
 
 									switch (selector) {
 									case 1: // Add activity
@@ -124,7 +124,7 @@ public class Main {
 												System.out.printf("8. See who's available\n");
 												System.out.printf("9. Remove activity\n10. Back\n");
 
-												selector = reader.nextInt();
+												selector = getSelectorNumber(reader);
 
 												switch (selector) {
 												case 1: // Add used time
@@ -216,7 +216,7 @@ public class Main {
 											"1. Add project manager\n2. Add an activity\n3. Select an activity\n");
 									System.out.printf("4. Back\n");
 
-									selector = reader.nextInt();
+									selector = getSelectorNumber(reader);
 
 									switch (selector) {
 									case 1: // Add project manager
@@ -247,7 +247,7 @@ public class Main {
 												System.out.printf("5. See start and end date\n");
 												System.out.printf("6. Back\n");
 
-												selector = reader.nextInt();
+												selector = getSelectorNumber(reader);
 
 												switch (selector) {
 												case 1: // Add used time
@@ -322,6 +322,21 @@ public class Main {
 		reader.close();
 	}
 
+	private static int getSelectorNumber(Scanner reader) {
+		String input = reader.next();
+		int selector;
+		while(true) {
+			try {
+				selector = Integer.parseInt(input);
+				break;
+			} catch (NumberFormatException e) {
+				System.out.println("The input shall be only numbers and no letters");
+				input = reader.next();
+			}
+		}
+		return selector;
+	}
+
 	private static void printListOfActivitys(ManagementTool managementTool) {
 		System.out.println("List of activities:");
 		List<String> listOfActivities = managementTool.returnListOfActivities();
@@ -337,7 +352,7 @@ public class Main {
 		System.out.printf("Enter year\n");
 		boolean incorrectDate = true;
 		while (incorrectDate) {
-			year = reader.nextInt();
+			year = getSelectorNumber(reader);
 			if (year < 0) {
 				System.out.printf("The year cannot be negative");
 			} else {
@@ -359,7 +374,7 @@ public class Main {
 		System.out.printf("Enter day of month\n");
 		incorrectDate = true;
 		while (incorrectDate) {
-			day = reader.nextInt();
+			day = getSelectorNumber(reader);
 			if (day < 1) {
 				System.out.printf("The day cannot be below 1");
 			} else if (day > 31) {
