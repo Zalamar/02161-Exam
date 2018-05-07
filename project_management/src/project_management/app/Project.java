@@ -3,6 +3,8 @@ package project_management.app;
 import java.util.ArrayList;
 import java.util.List;
 
+import project_management.app.exceptions.ActivityAlreadyExisting;
+
 public class Project {
 
 	private String name;
@@ -19,7 +21,13 @@ public class Project {
 	}
 
 	public void addActivity(Activity activity) { // Alex
-		activityList.add(activity);
+		if (!searchActivitys(activity.getName())) {
+			activityList.add(activity);
+		}
+		else {
+			throw new ActivityAlreadyExisting();
+			
+		}
 	}
 
 	public boolean searchActivitys(String name) { // Alex
