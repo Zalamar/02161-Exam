@@ -76,6 +76,8 @@ public class Main {
 							managementTool.createProject(inputString);
 						} catch (UserNotLoggedIn e) {
 							System.out.println(e.getMessage());
+						} catch (ProjectAlreadyExits e) {
+							System.out.println(e.getMessage());
 						}
 						break;
 					case 2: // Select project
@@ -104,7 +106,11 @@ public class Main {
 									case 1: // Add activity
 										System.out.printf("Enter activity ID\n");
 										inputString = inputString(reader);
-										managementTool.addAnActivity(inputString);
+										try {
+											managementTool.addAnActivity(inputString);
+										} catch (ActivityAlreadyExisting e) {
+											System.out.println(e.getMessage());
+										}
 										break;
 									case 2: // Select activity
 										printListOfActivitys(managementTool);
@@ -234,7 +240,11 @@ public class Main {
 									case 2: // Add activity
 										printListOfActivitys(managementTool);
 										inputString = inputString(reader);
-										managementTool.addAnActivity(inputString);
+										try {
+											managementTool.addAnActivity(inputString);
+										} catch (ActivityAlreadyExisting e) {
+											System.out.println(e.getMessage());
+										}
 										break;
 									case 3: // Select activity
 										printListOfActivitys(managementTool);
