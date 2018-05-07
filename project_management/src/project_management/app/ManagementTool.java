@@ -17,7 +17,7 @@ import project_management.app.exceptions.workerNotOnProjectException;
 
 public class ManagementTool {
 
-	private static List<Project> projectList = new ArrayList<Project>();
+	private List<Project> projectList = new ArrayList<Project>();
 	private List<Employee> employeeList = new ArrayList<Employee>();
 	private Employee employeeLoggedIn = null;
 	private Project selectedProject = null;
