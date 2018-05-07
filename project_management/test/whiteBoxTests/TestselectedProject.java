@@ -8,7 +8,7 @@ import project_management.app.ManagementTool;
 import project_management.app.Project;
 import project_management.app.exceptions.NoProjectWithThatName;
 
-public class TestSelectedProject {
+public class TestselectedProject {
 
 	ManagementTool managementTool = new ManagementTool();
 	Project project = new Project("011001");
