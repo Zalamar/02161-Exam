@@ -12,10 +12,12 @@ import org.junit.Test;
 import project_management.app.Activity;
 import project_management.app.Employee;
 import project_management.app.ManagementTool;
+import project_management.app.exceptions.ActivityAlreadyExisting;
 import project_management.app.exceptions.ActivityNotFoundException;
 import project_management.app.exceptions.NoActivityIsSelectedException;
 import project_management.app.exceptions.NoProjectIsSelected;
 import project_management.app.exceptions.NoProjectWithThatName;
+import project_management.app.exceptions.ProjectAlreadyExits;
 import project_management.app.exceptions.UserNotLoggedIn;
 import project_management.app.exceptions.startDateAfterEndDateException;
 
@@ -25,7 +27,8 @@ public class TestgetTheNumberOfDays {
 	ManagementTool managementTool = new ManagementTool();
 
 	private void start() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ActivityNotFoundException,
-			NoActivityIsSelectedException, startDateAfterEndDateException {
+			NoActivityIsSelectedException, startDateAfterEndDateException, ProjectAlreadyExits,
+			ActivityAlreadyExisting {
 		managementTool.addWorker("AAAA", "Alex");
 		managementTool.login("AAAA");
 		managementTool.createProject("test");
@@ -67,7 +70,8 @@ public class TestgetTheNumberOfDays {
 
 	@Test
 	public void testInput1() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
-			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException,
+			ProjectAlreadyExits, ActivityAlreadyExisting {
 		start();
 		int days = 4;
 		int startDate = 12;
@@ -77,7 +81,8 @@ public class TestgetTheNumberOfDays {
 
 	@Test
 	public void testInput2() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
-			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException,
+			ProjectAlreadyExits, ActivityAlreadyExisting {
 		start();
 		int days = 9;
 		int startDate = 12;
@@ -87,7 +92,8 @@ public class TestgetTheNumberOfDays {
 
 	@Test
 	public void testInpu3() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
-			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException,
+			ProjectAlreadyExits, ActivityAlreadyExisting {
 		start();
 		int days = 5;
 		int startDate = 9;
@@ -97,7 +103,8 @@ public class TestgetTheNumberOfDays {
 
 	@Test
 	public void testInput4() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
-			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException,
+			ProjectAlreadyExits, ActivityAlreadyExisting {
 		start();
 		int days = 0;
 		int startDate = 6;
@@ -107,7 +114,8 @@ public class TestgetTheNumberOfDays {
 
 	@Test
 	public void testInput5() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
-			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException,
+			ProjectAlreadyExits, ActivityAlreadyExisting {
 		start();
 		int days = 0;
 		int startDate = 21;
@@ -117,7 +125,8 @@ public class TestgetTheNumberOfDays {
 
 	@Test
 	public void testInput6() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
-			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException,
+			ProjectAlreadyExits, ActivityAlreadyExisting {
 		start();
 		int days = 10;
 		int startDate = 9;
@@ -127,7 +136,8 @@ public class TestgetTheNumberOfDays {
 
 	@Test
 	public void testInput7() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
-			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException,
+			ProjectAlreadyExits, ActivityAlreadyExisting {
 		start();
 		int days = 1;
 		int startDate = 12;
@@ -136,7 +146,8 @@ public class TestgetTheNumberOfDays {
 
 	@Test
 	public void testInput8() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected,
-			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException {
+			ActivityNotFoundException, NoActivityIsSelectedException, startDateAfterEndDateException,
+			ProjectAlreadyExits, ActivityAlreadyExisting {
 		start();
 		int days = 0;
 		int startDate = 9;

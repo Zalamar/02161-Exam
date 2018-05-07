@@ -4,9 +4,11 @@ import org.junit.Test;
 import project_management.app.Activity;
 import project_management.app.Employee;
 import project_management.app.ManagementTool;
+import project_management.app.exceptions.ActivityAlreadyExisting;
 import project_management.app.exceptions.ActivityNotFoundException;
 import project_management.app.exceptions.NoProjectIsSelected;
 import project_management.app.exceptions.NoProjectWithThatName;
+import project_management.app.exceptions.ProjectAlreadyExits;
 import project_management.app.exceptions.UserNotLoggedIn;
 
 import static org.junit.Assert.assertEquals;
@@ -29,9 +31,9 @@ public class TestselectActivity {
 		}
 		assertEquals("No user is logged in", errorMessage);
 	}
-	
+
 	@Test
-	public void testInput2() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected {
+	public void testInput2() throws UserNotLoggedIn, NoProjectWithThatName, NoProjectIsSelected, ProjectAlreadyExits {
 		managementTool.addWorker("AAAA", "Tobias");
 		managementTool.login("AAAA");
 		managementTool.createProject("011001");
@@ -45,7 +47,8 @@ public class TestselectActivity {
 	}
 
 	@Test
-	public void testInput3() throws NoProjectWithThatName, UserNotLoggedIn, NoProjectIsSelected {
+	public void testInput3() throws NoProjectWithThatName, UserNotLoggedIn, NoProjectIsSelected, ProjectAlreadyExits,
+			ActivityAlreadyExisting {
 		managementTool.addWorker("AAAA", "Tobias");
 		managementTool.login("AAAA");
 		managementTool.createProject("011001");
@@ -58,9 +61,10 @@ public class TestselectActivity {
 		}
 		assertEquals("The activity dosnt exits", errorMessage);
 	}
-	
+
 	@Test
-	public void testInput4() throws NoProjectWithThatName, UserNotLoggedIn, NoProjectIsSelected, ActivityNotFoundException {
+	public void testInput4() throws NoProjectWithThatName, UserNotLoggedIn, NoProjectIsSelected,
+			ActivityNotFoundException, ProjectAlreadyExits, ActivityAlreadyExisting {
 		managementTool.addWorker("AAAA", "Tobias");
 		managementTool.login("AAAA");
 		managementTool.createProject("011001");
