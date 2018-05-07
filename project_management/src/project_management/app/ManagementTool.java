@@ -142,13 +142,13 @@ public class ManagementTool {
 		}
 	}
 	
-	/*public static String returnListOfProjects() { // Oliver
-		String ListOfProjects = "";
-		for (int i = 0;i<projectList.size();i++) {
-			ListOfProjects = ListOfProjects+"\n"+projectList.toString();
+	public List<String> returnListOfProjects() { // Oliver
+		List<String> ListOfProjects = new ArrayList<String>();
+		for (Project p : projectList) {
+			ListOfProjects.add(p.getName());
 		}
 		return ListOfProjects;
-	}*/
+	}
 
 	public void selectActivity(String activityName)
 			throws UserNotLoggedIn, NoProjectIsSelected, ActivityNotFoundException { // Tobias
