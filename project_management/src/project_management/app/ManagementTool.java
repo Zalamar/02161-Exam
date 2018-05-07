@@ -45,6 +45,8 @@ public class ManagementTool {
 	}
 
 	public void selectProject(String name) throws NoProjectWithThatName { // Alex
+		//precondition
+		assert(name!=null);
 		if (isthereAProjectWithThisName(name)) { //1
 			for (Project p : projectList) { //2
 				if (p.getName().equals(name)) { //3
@@ -54,6 +56,8 @@ public class ManagementTool {
 		} else { //4
 			throw new NoProjectWithThatName();
 		}
+		//postcondition
+		assert(name!=null);
 	}
 
 	public void addAnActivity(String name) throws UserNotLoggedIn, NoProjectIsSelected, ActivityAlreadyExisting { // Alex
