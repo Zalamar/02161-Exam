@@ -226,6 +226,8 @@ public class Main {
 											managementTool.addProjectManager(inputString);
 										} catch (TheProjectAlreadyHaveAManager e) {
 											System.out.println(e.getMessage());
+										} catch (NoWorkerExitingEception e) {
+											System.out.println(e.getMessage());
 										}
 										break;
 									case 2: // Add activity
